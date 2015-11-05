@@ -1,7 +1,5 @@
-package AtcIntClient;
+package AtcIntServer;
 
-import AtcIntServer.LobbyGUI;
-import AtcIntServer.LobbyLogik;
 
 /**
  * @author Nato
