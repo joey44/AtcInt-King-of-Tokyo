@@ -1,4 +1,4 @@
-package client_server_thread_object;
+package bsp_client_server_thread_object;
 
 import java.net.ServerSocket;
 import java.net.Socket;

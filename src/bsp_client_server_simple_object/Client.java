@@ -1,4 +1,4 @@
-package client_server_simple_object;
+package bsp_client_server_simple_object;
 
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
