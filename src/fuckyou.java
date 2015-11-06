@@ -1,5 +1,5 @@
 
 public class fuckyou {
 
-	String fuckyou = new String("FUxkyouuu")
+	String fuckyou = new String("FUxkyouuu");
 }
