@@ -4,7 +4,7 @@ import AtcIntServer.ServerSpielLogik;
 import AtcIntServer.Spieler;
 
 /**
- * @author Nato
+ * @author Renato
  * @version 1.0
  * @created 05-Nov-2015 23:08:40
  */
