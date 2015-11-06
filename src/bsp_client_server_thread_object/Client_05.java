@@ -2,7 +2,7 @@ package bsp_client_server_thread_object;
 import java.io.*;
 import java.net.Socket;
 
-import wuerfel.Wuerfel;
+import bsp_wuerfel.Wuerfel;
 
 public class Client_05 {
 

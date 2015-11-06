@@ -4,7 +4,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 
-import wuerfel.Wuerfel;
+import bsp_wuerfel.Wuerfel;
 
 public class Client{
 	

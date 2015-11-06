@@ -1,4 +1,4 @@
-package wuerfel;
+package bsp_wuerfel;
 
 
 import java.io.Serializable;

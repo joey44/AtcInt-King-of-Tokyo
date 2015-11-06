@@ -3,7 +3,7 @@ package bsp_client_server_simple_object;
 import java.io.*;
 import java.net.*;
 
-import wuerfel.Wuerfel;
+import bsp_wuerfel.Wuerfel;
 
 public class Server{
 
