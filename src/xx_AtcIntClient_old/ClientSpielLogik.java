@@ -1,6 +1,6 @@
-package AtcIntClient_old;
+package xx_AtcIntClient_old;
 
-import AtcIntServer_old.Spieler;
+import xx_AtcIntServer_old.Spieler;
 
 /**
  * @author Nato

@@ -3,9 +3,7 @@ package AtcIntWurfel;
 import java.io.Serializable;
 import java.util.Arrays;
 
-
-
-public class Wurfel implements Serializable {
+public class CopyWurfel implements Serializable {
 
 	private int[] werte = new int[6];
 	private boolean[] isAusgewahlt = new boolean[6];
@@ -17,6 +15,9 @@ public class Wurfel implements Serializable {
 				+ Arrays.toString(isAusgewahlt) + "]";
 	}
 
+	public CopyWurfel() {
+
+	}
 
 	public int[] wuerfeln() {
 
@@ -45,4 +46,5 @@ public class Wurfel implements Serializable {
 		this.isAusgewahlt[i] = wert;
 		
 	}
+
 }

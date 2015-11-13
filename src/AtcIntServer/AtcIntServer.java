@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntServer.AtcIntServerClientThread;
 import AtcIntWurfel.Wurfel;
 
@@ -21,6 +22,7 @@ public class AtcIntServer {
 	public AtcIntServer(int port) {
 		this.port = port;
 		this.clientlist = new ArrayList<AtcIntServerClientThread>();
+		DatenAustausch datenAustausch = new DatenAustausch();
 
 	}
 	

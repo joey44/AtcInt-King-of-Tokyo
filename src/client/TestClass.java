@@ -2,7 +2,7 @@ package client;
 
 import java.util.ArrayList;
 
-import datenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.DatenAustausch;
 
 public class TestClass {
 

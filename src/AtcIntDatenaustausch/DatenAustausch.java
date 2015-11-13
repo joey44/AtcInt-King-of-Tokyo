@@ -1,14 +1,16 @@
-package datenaustausch;
+package AtcIntDatenaustausch;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import server.Spieler;
-import client.Wuerfel;
+import AtcIntServer.Spieler;
+import AtcIntWurfel.Wurfel;
+
+
 
 public class DatenAustausch implements Serializable {
 
-	private Wuerfel wuerfel = new Wuerfel();;
+	private Wurfel wuerfel = new Wurfel();
 	private String moderation = "";
 	private ArrayList<Spieler> SpielerListe = new ArrayList<Spieler>();
 
@@ -22,11 +24,11 @@ public class DatenAustausch implements Serializable {
 				+ moderation + ", SpielerListe=" + SpielerListe + "]";
 	}
 
-	public Wuerfel getWuerfel() {
+	public Wurfel getWuerfel() {
 		return wuerfel;
 	}
 
-	public void setWuerfel(Wuerfel wuerfel) {
+	public void setWuerfel(Wurfel wuerfel) {
 		this.wuerfel = wuerfel;
 	}
 

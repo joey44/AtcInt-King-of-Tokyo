@@ -2,7 +2,7 @@ package server;
 
 import java.util.ArrayList;
 
-import datenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.DatenAustausch;
 
 public class ServerSpielLogik {
 

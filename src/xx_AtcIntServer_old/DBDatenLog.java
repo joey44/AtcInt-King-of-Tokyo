@@ -1,6 +1,6 @@
-package AtcIntServer_old;
+package xx_AtcIntServer_old;
 
-import AtcIntClient_old.DatenAustausch;
+import xx_AtcIntClient_old.DatenAustausch;
 
 /**
  * @author joey

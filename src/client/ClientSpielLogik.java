@@ -1,6 +1,6 @@
 package client;
 
-import datenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.DatenAustausch;
 import server.Spieler;
 
 public class ClientSpielLogik {

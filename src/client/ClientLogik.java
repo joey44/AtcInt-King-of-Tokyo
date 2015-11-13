@@ -2,7 +2,7 @@ package client;
 
 import java.net.Socket;
 
-import datenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.DatenAustausch;
 
 public class ClientLogik {
 
