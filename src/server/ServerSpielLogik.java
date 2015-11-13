@@ -6,7 +6,11 @@ public class ServerSpielLogik {
 
 	private ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
 
-	public void addSpieler(Spieler spieler) {
+	public void addSpieler(int spielerID, String spielerName) {
+
+		Spieler spieler = new Spieler(spielerID, spielerName);
+
+		spielerListe.add(spieler);
 
 	}
 }
