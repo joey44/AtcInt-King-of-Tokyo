@@ -21,8 +21,7 @@ public class Spieler {
 		this.isAufTokyo = false;
 		this.isAmZug = false;
 		this.isSpielerAktiv = true;
-		
-		ServerSpielLogik.
+
 	}
 
 }
