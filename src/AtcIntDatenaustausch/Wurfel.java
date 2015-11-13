@@ -1,4 +1,4 @@
-package AtcIntWurfel;
+package AtcIntDatenaustausch;
 
 import java.io.Serializable;
 import java.util.Arrays;

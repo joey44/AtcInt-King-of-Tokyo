@@ -2,7 +2,7 @@ package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
 
-import AtcIntWurfel.Wurfel;
+import AtcIntDatenaustausch.Wurfel;
 
 public class AtcIntServerClientThread extends Thread {
 

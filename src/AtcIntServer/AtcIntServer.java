@@ -6,8 +6,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.SpielerListe;
+import AtcIntDatenaustausch.Wurfel;
 import AtcIntServer.AtcIntServerClientThread;
-import AtcIntWurfel.Wurfel;
 
 public class AtcIntServer {
 
@@ -36,7 +37,7 @@ public class AtcIntServer {
 			clientThread.start();
 			clientlist.add(clientThread);
 			
-			ServerSpielLogik.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
+			SpielerListe.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
 			
 			System.out.println("client added: " + Threadname);
 			this.Threadcounter++;
