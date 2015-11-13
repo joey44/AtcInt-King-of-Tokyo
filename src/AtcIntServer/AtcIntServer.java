@@ -28,14 +28,19 @@ public class AtcIntServer {
 	public void start() throws Exception {
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
-			this.Threadcounter++;
-
 			Socket socket = serverSocket.accept();
 			this.Threadname = "Thread " + Threadcounter	+ socket.getInetAddress().toString();
 			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(this, socket, Threadname);
 			clientThread.start();
 			clientlist.add(clientThread);
+			
+			ServerSpielLogik.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
+			
 			System.out.println("client added: " + Threadname);
+			this.Threadcounter++;
+			
+			
+			
 			
 		}
 	}
