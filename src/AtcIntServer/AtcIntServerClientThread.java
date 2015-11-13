@@ -7,7 +7,8 @@ import java.net.Socket;
 
 
 
-import AtcIntWuerfel.Wurfel;
+
+import AtcIntWurfel.Wurfel;
 
 public class AtcIntServerClientThread extends Thread {
 

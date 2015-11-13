@@ -1,11 +1,12 @@
 package datenaustausch;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import server.Spieler;
 import client.Wuerfel;
 
-public class DatenAustausch {
+public class DatenAustausch implements Serializable{
 
 	private static Wuerfel wuerfel;
 	private static String moderation;

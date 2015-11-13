@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntServer.AtcIntServerClientThread;
-import AtcIntWuerfel.Wurfel;
+import AtcIntWurfel.Wurfel;
 
 public class AtcIntServer {
 

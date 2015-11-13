@@ -1,4 +1,4 @@
-package AtcIntWuerfel;
+package AtcIntWurfel;
 
 import java.io.Serializable;
 import java.util.Arrays;

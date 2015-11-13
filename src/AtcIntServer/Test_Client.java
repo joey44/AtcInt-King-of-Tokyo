@@ -2,7 +2,7 @@ package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
 
-import AtcIntWuerfel.Wurfel;
+import AtcIntWurfel.Wurfel;
 
 public class Test_Client {
 
