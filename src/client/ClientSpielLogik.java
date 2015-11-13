@@ -1,5 +1,6 @@
 package client;
 
+import datenaustausch.DatenAustausch;
 import server.Spieler;
 
 public class ClientSpielLogik {
@@ -22,7 +23,8 @@ public class ClientSpielLogik {
 	public void wuerfelWuerfeln() {
 		Wuerfel wuerfel = new Wuerfel();
 		wuerfel.wuerfeln();
-
+		DatenAustausch.setWuerfel(wuerfel);
+		DatenAustausch.setModeration("Arschloch hat gewürfelt");
 	}
 
 	public ClientSpielLogik() {
