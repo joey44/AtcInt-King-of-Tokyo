@@ -1,9 +1,9 @@
-package AtcIntServer;
+package AtcIntServer_old;
 
-import AtcIntClient.Client;
-import AtcIntClient.ClientLoginGUI;
-import AtcIntClient.DBLogin;
-import AtcIntClient.DatenAustausch;
+import AtcIntClient_old.Client;
+import AtcIntClient_old.ClientLoginGUI;
+import AtcIntClient_old.DBLogin;
+import AtcIntClient_old.DatenAustausch;
 
 /**
  * @version 1.0

@@ -1,7 +1,7 @@
-package AtcIntClient;
+package AtcIntClient_old;
 
-import AtcIntServer.ServerSpielLogik;
-import AtcIntServer.Spieler;
+import AtcIntServer_old.ServerSpielLogik;
+import AtcIntServer_old.Spieler;
 
 /**
  * @author Renato

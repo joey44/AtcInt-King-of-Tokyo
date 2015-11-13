@@ -1,6 +1,6 @@
-package AtcIntClient;
+package AtcIntClient_old;
 
-import AtcIntServer.EventHandlerConnection;
+import AtcIntServer_old.EventHandlerConnection;
 
 /**
  * @author joey
