@@ -7,6 +7,7 @@ import datenaustausch.DatenAustausch;
 public class ServerSpielLogik {
 
 	private ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
+	private DatenAustausch datenAustausch;
 
 	public void addSpieler(int spielerID, String spielerName) {
 
@@ -14,7 +15,11 @@ public class ServerSpielLogik {
 
 		spielerListe.add(spieler);
 
-		DatenAustausch.setSpielerListe(spielerListe);
+		this.datenAustausch.setSpielerListe(spielerListe);
 
+	}
+
+	public void createDatenAustausch() {
+		this.datenAustausch = new DatenAustausch();
 	}
 }

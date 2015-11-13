@@ -21,12 +21,12 @@ public class ClientSpielLogik {
 	}
 
 	public void wuerfelWuerfeln() {
-		Wuerfel wuerfel = new Wuerfel();
-		wuerfel.wuerfeln();
-		DatenAustausch.setWuerfel(wuerfel);
-		DatenAustausch.setModeration("Arschloch hat gewürfelt");
-	}
 
-	public ClientSpielLogik() {
+		// wuerfel.wuerfeln();
+		// DatenAustausch.setWuerfel(wuerfel);
+		// DatenAustausch.setModeration("Arschloch hat gewürfelt");
 	}
+	//
+	// public ClientSpielLogik() {
+	// }
 }

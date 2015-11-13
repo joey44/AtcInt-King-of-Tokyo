@@ -6,33 +6,44 @@ import java.util.ArrayList;
 import server.Spieler;
 import client.Wuerfel;
 
-public class DatenAustausch implements Serializable{
+public class DatenAustausch implements Serializable {
 
-	private static Wuerfel wuerfel;
-	private static String moderation;
-	private static ArrayList<Spieler> SpielerListe = new ArrayList<Spieler>();
+	private Wuerfel wuerfel = new Wuerfel();;
+	private String moderation = "";
+	private ArrayList<Spieler> SpielerListe = new ArrayList<Spieler>();
 
-	public static String getModeration() {
-		return moderation;
+	public DatenAustausch getDatenaustausch() {
+
+		return this;
 	}
 
-	public static void setModeration(String moderation) {
-		DatenAustausch.moderation = moderation;
+	public String toString() {
+		return "DatenAustausch [wuerfel=" + wuerfel + ", moderation="
+				+ moderation + ", SpielerListe=" + SpielerListe + "]";
 	}
 
-	public static Wuerfel getWuerfel() {
+	public Wuerfel getWuerfel() {
 		return wuerfel;
 	}
 
-	public static void setWuerfel(Wuerfel wuerfel) {
-		DatenAustausch.wuerfel = wuerfel;
+	public void setWuerfel(Wuerfel wuerfel) {
+		this.wuerfel = wuerfel;
 	}
 
-	public static ArrayList<Spieler> getSpielerListe() {
+	public String getModeration() {
+		return moderation;
+	}
+
+	public void setModeration(String moderation) {
+		this.moderation = moderation;
+	}
+
+	public ArrayList<Spieler> getSpielerListe() {
 		return SpielerListe;
 	}
 
-	public static void setSpielerListe(ArrayList<Spieler> spielerListe) {
+	public void setSpielerListe(ArrayList<Spieler> spielerListe) {
 		SpielerListe = spielerListe;
 	}
+
 }
