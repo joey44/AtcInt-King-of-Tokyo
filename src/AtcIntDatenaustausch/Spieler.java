@@ -1,4 +1,4 @@
-package AtcIntServer;
+package AtcIntDatenaustausch;
 
 public class Spieler {
 

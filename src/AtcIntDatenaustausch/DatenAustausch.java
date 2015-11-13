@@ -3,8 +3,6 @@ package AtcIntDatenaustausch;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import AtcIntServer.Spieler;
-
 
 
 public class DatenAustausch implements Serializable {

@@ -1,8 +1,5 @@
 package AtcIntServer;
 
-import java.util.ArrayList;
-import AtcIntServer.Spieler;
-
 public class ServerSpielLogik {
 
 	public static void angreifen(){

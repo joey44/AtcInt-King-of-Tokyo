@@ -2,8 +2,6 @@ package AtcIntDatenaustausch;
 
 import java.util.ArrayList;
 
-import AtcIntServer.Spieler;
-
 public class SpielerListe {
 	
 	private static ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
