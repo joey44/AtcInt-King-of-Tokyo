@@ -1,9 +1,12 @@
 package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
 //import AtcIntDatenaustausch.Wurfel;
+import AtcIntDatenaustausch.Spieler;
+import AtcIntDatenaustausch.Wurfel;
 
 public class Test_Client_W {
 
@@ -20,9 +23,25 @@ public class Test_Client_W {
 			DatenAustausch w1 = (DatenAustausch) ois.readObject();
 			System.out.println("first Object from server:" + w1);
 			
+			ArrayList<Spieler> spielerListe = w1.getSpielerListe();
+			//Wurfel wurfel = w1.getWuerfel();
+			String moderation = w1.getModeration();
+			
 			
 			
 			w1.wurfeln();
+			
+			moderation = "Spieler X hat gewürfelt";
+			w1.setModeration(moderation);
+			
+			Spieler spieler = spielerListe.get(0);
+			System.out.println(spieler.getAnzahlLeben());
+			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );
+			System.out.println(spieler.getAnzahlLeben());
+			
+			spielerListe.set(0, spieler);
+			
+			w1.setSpielerListe(spielerListe);
 			
 			oos.writeObject(w1);
 			
