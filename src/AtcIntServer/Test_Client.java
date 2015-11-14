@@ -2,6 +2,7 @@ package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
 
+import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Wurfel;
 
 public class Test_Client {
@@ -16,13 +17,14 @@ public class Test_Client {
 
 		) {
 
-			//Wuerfel w1 = new Wuerfel();
-			//w1.wuerfeln();
-			//oos.writeObject(w1);
+			int clientID = (int) ois.readObject();
+			
 
 			for (int i = 0; i<4; i++){
-			Wurfel w2 = (Wurfel) ois.readObject();
-			System.out.println("client: " + w2);
+				DatenAustausch w1 = (DatenAustausch) ois.readObject();
+				
+				System.out.println("client: " + w1);
+			
 			}
 
 		} catch (Exception e) {

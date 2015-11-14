@@ -39,7 +39,7 @@ public class AtcIntServer {
 			
 			datenAustausch.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
 			
-			this.firstContact(Threadcounter, clientThread, datenAustausch);
+			this.firstContact(Threadcounter, clientThread);
 			
 			System.out.println("client added: " + Threadname);
 			this.Threadcounter++;
@@ -47,7 +47,8 @@ public class AtcIntServer {
 		}
 		
 		if (getClientlist().size() == 4){ // Wenn 4 Clients verbunden sind, kann das Spiel gestartet werden
-			spielStarten();
+			
+			spielStarten(datenAustausch);
 		}
 	}
 
@@ -64,9 +65,11 @@ public class AtcIntServer {
 		}
 	}
 	
-	public void spielStarten(){
+	public void spielStarten(DatenAustausch w){
 		
 			System.out.println("spielStarten");
+			clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients verbunden sind, bekommen sie Infos vom Server
+
 		
 	}
 	
@@ -78,10 +81,10 @@ public class AtcIntServer {
 	
 	}
 	
-	public void firstContact(int clientID, AtcIntServerClientThread clientThread, DatenAustausch w) {
+	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
 		
 		clientThread.sendIDToClient(clientID);
-		clientThread.sendObjekctToClient(w); // Wenn der Client verbunden ist, bekommt er Infos vom Server
+		//clientThread.sendObjekctToClient(w); // Wenn der Client verbunden ist, bekommt er Infos vom Server
 		
 	
 	}
