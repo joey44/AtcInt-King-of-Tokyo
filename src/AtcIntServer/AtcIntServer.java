@@ -39,7 +39,7 @@ public class AtcIntServer {
 			
 			datenAustausch.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
 			
-			this.firstContact(clientThread, datenAustausch);
+			this.firstContact(Threadcounter, clientThread, datenAustausch);
 			
 			System.out.println("client added: " + Threadname);
 			this.Threadcounter++;
@@ -78,9 +78,11 @@ public class AtcIntServer {
 	
 	}
 	
-	public void firstContact(AtcIntServerClientThread clientThread, DatenAustausch w) {
+	public void firstContact(int clientID, AtcIntServerClientThread clientThread, DatenAustausch w) {
 		
+		clientThread.sendIDToClient(clientID);
 		clientThread.sendObjekctToClient(w); // Wenn der Client verbunden ist, bekommt er Infos vom Server
+		
 	
 	}
 

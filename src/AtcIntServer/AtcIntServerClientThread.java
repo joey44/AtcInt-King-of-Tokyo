@@ -74,7 +74,19 @@ public class AtcIntServerClientThread extends Thread {
 		}
 		
 	}
-	
+	public void sendIDToClient(int clientID) {
+		
+		try {
+			
+			this.out.writeObject(clientID);
+			out.flush();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
