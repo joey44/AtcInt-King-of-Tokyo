@@ -1,4 +1,4 @@
-package AtcIntServer;
+package AtcIntClient;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class Test_Client_W {
 			
 			
 			
-			moderation = "Spieler " + clientID + "hat gewürfelt";
+			moderation = "Spieler " + clientID + " hat gewürfelt";
 			
 			w1.setModeration(moderation);
 			

@@ -1,4 +1,4 @@
-package AtcIntServer;
+package AtcIntClient;
 import java.io.*;
 import java.net.Socket;
 
