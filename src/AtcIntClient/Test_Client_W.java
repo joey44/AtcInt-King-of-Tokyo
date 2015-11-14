@@ -28,7 +28,7 @@ public class Test_Client_W {
 			
 			
 			
-			System.out.println("first Object from server:" + w1);
+			System.out.println("Object from server:" + w1);
 			
 			ArrayList<Spieler> spielerListe = w1.getSpielerListe();
 			//Wurfel wurfel = w1.getWuerfel();
