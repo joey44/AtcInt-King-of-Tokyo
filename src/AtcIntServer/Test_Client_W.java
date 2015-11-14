@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
-//import AtcIntDatenaustausch.Wurfel;
 import AtcIntDatenaustausch.Spieler;
 import AtcIntDatenaustausch.Wurfel;
 
@@ -30,6 +29,8 @@ public class Test_Client_W {
 			
 			
 			w1.wurfeln();
+			
+			
 			
 			moderation = "Spieler X hat gewürfelt";
 			w1.setModeration(moderation);

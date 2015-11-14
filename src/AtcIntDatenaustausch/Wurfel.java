@@ -51,4 +51,30 @@ public class Wurfel implements Serializable {
 		this.isAusgewahlt[i] = wert;
 		
 	}
+	
+	public boolean getIsAusgewahlt(int i) {
+		return isAusgewahlt[i];
+	}
+
+	public void setWert(int i, int wert) {
+		this.werte[i] = wert;
+	}
+	
+
+	public int getWert(int i) {
+		return werte[i];
+	}
+
+	
+	
+	public int getwCounter() {
+		return wCounter;
+	}
+
+
+	public void setwCounter(int wCounter) {
+		this.wCounter = wCounter;
+	}
+	
+	
 }

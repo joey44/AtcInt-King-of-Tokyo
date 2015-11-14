@@ -23,7 +23,7 @@ public class AtcIntServer {
 		this.port = port;
 		this.clientlist = new ArrayList<AtcIntServerClientThread>();
 		
-		this.datenAustausch = new DatenAustausch();
+		this.datenAustausch = new DatenAustausch();  //Wenn der Server gestartet wird, wir das Datenaustausch Objekt initiert
 	
 	}
 	
@@ -46,7 +46,7 @@ public class AtcIntServer {
 			
 		}
 		
-		if (getClientlist().size() == 4){
+		if (getClientlist().size() == 4){ // Wenn 4 Clients verbunden sind, kann das Spiel gestartet werden
 			spielStarten();
 		}
 	}
@@ -73,26 +73,26 @@ public class AtcIntServer {
 	
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 		
-		this.datenAustausch = w;
+		this.datenAustausch = w; // Objekt welches vom Client gesendet wird, wird auf dem Server gespeichert
 
 	
 	}
 	
 	public void firstContact(AtcIntServerClientThread clientThread, DatenAustausch w) {
 		
-		clientThread.sendObjekctToClient(w);
+		clientThread.sendObjekctToClient(w); // Wenn der Client verbunden ist, bekommt er Infos vom Server
 	
 	}
 
 
 
 
-	public void broadcast(DatenAustausch w) {
+	public void broadcast(DatenAustausch w) {  // alle Objekte, welche vom Client kommen, werden an alle verbundenen Client verteilt
 		for (AtcIntServerClientThread client : clientlist) {
 	
 			try {
 				
-				//System.out.println("Server: " + w);
+				
 				
 				client.sendObjekctToClient(w);
 				

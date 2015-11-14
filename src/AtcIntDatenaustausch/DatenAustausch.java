@@ -16,10 +16,7 @@ public class DatenAustausch implements Serializable {
 		this.spielerListe = new ArrayList<Spieler>();
 	}
 	
-	public DatenAustausch getDatenaustausch() {
-
-		return this;
-	}
+	
 		
 	
 	public void addSpieler(int spielerID, String spielerName) {
