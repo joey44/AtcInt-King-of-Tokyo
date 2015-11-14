@@ -20,6 +20,10 @@ public class Test_Client_W {
 		) {
 			
 			int clientID = (int) ois.readObject();
+			
+			DatenAustausch w0 = (DatenAustausch) ois.readObject();
+			System.out.println(w0);
+			
 			DatenAustausch w1 = (DatenAustausch) ois.readObject();
 			
 			
@@ -36,10 +40,12 @@ public class Test_Client_W {
 			
 			
 			
-			moderation = "Spieler X hat gewürfelt";
+			moderation = "Spieler " + clientID + "hat gewürfelt";
+			
 			w1.setModeration(moderation);
 			
 			Spieler spieler = spielerListe.get(clientID);
+			
 			System.out.println(spieler.getAnzahlLeben());
 			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );
 			System.out.println(spieler.getAnzahlLeben());

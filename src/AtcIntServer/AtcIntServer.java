@@ -68,7 +68,10 @@ public class AtcIntServer {
 	public void spielStarten(DatenAustausch w){
 		
 			System.out.println("spielStarten");
-			clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients verbunden sind, bekommen sie Infos vom Server
+			
+			this.broadcast(w);
+			
+			this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients verbunden sind, bekommen sie Infos vom Server
 
 		
 	}
