@@ -24,6 +24,7 @@ public class AtcIntServer {
 		this.port = port;
 		this.clientlist = new ArrayList<AtcIntServerClientThread>();
 		DatenAustausch datenAustausch = new DatenAustausch();
+	//	SpielerListe spielerListe = new SpielerListe();
 
 	}
 	

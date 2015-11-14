@@ -7,10 +7,16 @@ import java.util.ArrayList;
 
 public class DatenAustausch implements Serializable {
 
-	private Wurfel wuerfel = new Wurfel();
-	private String moderation = "";
-	private ArrayList<Spieler> SpielerListe = new ArrayList<Spieler>();
+	private Wurfel wuerfel;
+	private String moderation;
+	private ArrayList<Spieler> SpielerListe;
 
+	public DatenAustausch(){
+		this.wuerfel = new Wurfel();
+		this.moderation = "";
+		this.SpielerListe = new ArrayList<Spieler>();
+	}
+	
 	public DatenAustausch getDatenaustausch() {
 
 		return this;
