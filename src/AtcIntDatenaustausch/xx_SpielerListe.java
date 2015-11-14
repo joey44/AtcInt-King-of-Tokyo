@@ -2,7 +2,7 @@ package AtcIntDatenaustausch;
 
 import java.util.ArrayList;
 
-public class SpielerListe {
+public class xx_SpielerListe {
 	
 	private static ArrayList<Spieler> spielerListe = new ArrayList<Spieler>();
 

@@ -2,7 +2,9 @@ package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
 
-import AtcIntDatenaustausch.Wurfel;
+import AtcIntDatenaustausch.DatenAustausch;
+
+//import AtcIntDatenaustausch.Wurfel;
 
 public class AtcIntServerClientThread extends Thread {
 
@@ -24,7 +26,9 @@ public class AtcIntServerClientThread extends Thread {
 	}
 
 	public void run() {
-		listen();
+		
+			listen();
+		
 	}
 	
 	public void close() {
@@ -37,9 +41,11 @@ public class AtcIntServerClientThread extends Thread {
 	}
 
 	public void listen() {
-		Wurfel w;
+		DatenAustausch w;
 		try {
-			while ((w = (Wurfel) in.readObject()) != null) { // waiting
+			while ((w = (DatenAustausch) in.readObject()) != null) { // waiting
+				
+				server.objectFromClientSetDatenaustausch(w);
 				
 				//System.out.println(server.getClientlist());
 				//this.sendObjekctToClient(w);
@@ -54,7 +60,8 @@ public class AtcIntServerClientThread extends Thread {
 		}
 	}
 	
-	public void sendObjekctToClient(Wurfel w) {
+	
+	public void sendObjekctToClient(DatenAustausch w) {
 		
 		try {
 			

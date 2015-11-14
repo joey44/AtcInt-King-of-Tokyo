@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
-import AtcIntDatenaustausch.SpielerListe;
-import AtcIntDatenaustausch.Wurfel;
 import AtcIntServer.AtcIntServerClientThread;
 
 public class AtcIntServer {
@@ -18,14 +16,15 @@ public class AtcIntServer {
 	private String Threadname;
 	private ServerSocket serverSocket;
 	private boolean stopServer = false;
+	private DatenAustausch datenAustausch;
 
 
 	public AtcIntServer(int port) {
 		this.port = port;
 		this.clientlist = new ArrayList<AtcIntServerClientThread>();
-		DatenAustausch datenAustausch = new DatenAustausch();
-	//	SpielerListe spielerListe = new SpielerListe();
-
+		
+		this.datenAustausch = new DatenAustausch();
+	
 	}
 	
 
@@ -38,14 +37,17 @@ public class AtcIntServer {
 			clientThread.start();
 			clientlist.add(clientThread);
 			
-			SpielerListe.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
+			datenAustausch.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
+			
+			this.firstContact(clientThread, datenAustausch);
 			
 			System.out.println("client added: " + Threadname);
 			this.Threadcounter++;
 			
-			
-			
-			
+		}
+		
+		if (getClientlist().size() == 4){
+			spielStarten();
 		}
 	}
 
@@ -61,11 +63,31 @@ public class AtcIntServer {
 			}
 		}
 	}
+	
+	public void spielStarten(){
+		
+			System.out.println("spielStarten");
+		
+	}
+	
+	
+	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
+		
+		this.datenAustausch = w;
+
+	
+	}
+	
+	public void firstContact(AtcIntServerClientThread clientThread, DatenAustausch w) {
+		
+		clientThread.sendObjekctToClient(w);
+	
+	}
 
 
 
 
-	public void broadcast(Wurfel w) {
+	public void broadcast(DatenAustausch w) {
 		for (AtcIntServerClientThread client : clientlist) {
 	
 			try {
