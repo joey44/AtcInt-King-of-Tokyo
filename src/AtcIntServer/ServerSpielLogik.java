@@ -62,16 +62,30 @@ public class ServerSpielLogik {
 
 	}
 
-	public static void lebenBerechnen() {
+	public static ArrayList<Spieler> lebenBerechnen(
+			ArrayList<Spieler> spielerListe) {
 
+		for (Spieler spieler : spielerListe) {
+			// Wenn Spieler nicht am Zug, Leben abziehen
+
+			if (spieler.isAmZug()) {
+
+				spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 1);
+
+			}
+		}
+		return spielerListe;
 	}
 
 	public static void ruhmpunkteBerechnen() {
 
 	}
 
-	public static void siegerKueren() {
+	public static void siegerKueren(Spieler spieler,
+			DatenAustausch datenAustausch) {
 
+		datenAustausch
+				.setModeration(spieler.getSpielerName() + " hat gewonnen");
 	}
 
 	public static void spielerAusschliessen(Spieler spieler) {
@@ -82,6 +96,7 @@ public class ServerSpielLogik {
 
 		Wurfel wurfel = datenAustausch.getWuerfel();
 		int[] werte = wurfel.getWerte();
+		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();
 
 		for (int i : werte) {
 
@@ -90,10 +105,19 @@ public class ServerSpielLogik {
 						.getSpielerListe()));
 			}
 			if (i == CONSTANT_HERZ) {
-				lebenBerechnen();
+				datenAustausch.setSpielerListe(lebenBerechnen(datenAustausch
+						.getSpielerListe()));
 
 			}
 
+		}
+
+		for (Spieler spieler : spielerListe) {
+
+			if (spieler.getAnzahlRuhmpunkte() == 20) {
+				siegerKueren(spieler, datenAustausch);
+
+			}
 		}
 
 	}
