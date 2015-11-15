@@ -8,19 +8,18 @@ import AtcIntDatenaustausch.Wurfel;
 
 public class ServerSpielLogik {
 
-	public static final int CONSTANT_TATZE = '6';
+	public static final int CONSTANT_TATZE = 6;
+	public static final int CONSTANT_HERZ = 5;
 
 	public static ArrayList<Spieler> angreifen(ArrayList<Spieler> spielerListe) {
 
-		int AngrSpielerAmZug = 0;
-		boolean AngrSpielerAufTokyo = false;
+		Spieler SpielerAmZug = null;
 
 		// evaluieren, welcher Spieler angreifen ist und ob auf Tokyo
 		for (Spieler spieler : spielerListe) {
 
 			if (spieler.isAmZug()) {
-				AngrSpielerAmZug = spieler.getSpielerID();
-				AngrSpielerAufTokyo = spieler.isAufTokyo();
+				SpielerAmZug = spieler;
 			}
 		}
 
@@ -28,11 +27,21 @@ public class ServerSpielLogik {
 
 		for (Spieler spieler : spielerListe) {
 			// Wenn Spieler nicht am Zug, Leben abziehen
-			if (spieler.getSpielerID() != AngrSpielerAmZug) {
 
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
-				if (AngrSpielerAufTokyo) {
-					break;
+			if (SpielerAmZug.isAufTokyo()) {
+				if (!spieler.equals(SpielerAmZug)) {
+
+					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
+
+				}
+			}
+			// Wenn Spieler nicht am Zug, Leben abziehen
+
+			if (!SpielerAmZug.isAufTokyo()) {
+
+				if (!spieler.equals(SpielerAmZug) && spieler.isAufTokyo()) {
+
+					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
 				}
 			}
 		}
@@ -40,7 +49,16 @@ public class ServerSpielLogik {
 		return spielerListe;
 	}
 
-	public static void aufTokyoGehen() {
+	public static void aufTokyoGehen(Spieler spielerAufTokyo,
+			DatenAustausch datenAustausch) {
+
+		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();
+		for (Spieler spieler : spielerListe) {
+
+			if (spieler.equals(spielerAufTokyo)) {
+				spieler.setAufTokyo(true);
+			}
+		}
 
 	}
 
@@ -56,7 +74,7 @@ public class ServerSpielLogik {
 
 	}
 
-	public static void spielerAusschliessen() {
+	public static void spielerAusschliessen(Spieler spieler) {
 
 	}
 
@@ -70,7 +88,8 @@ public class ServerSpielLogik {
 			if (i == CONSTANT_TATZE) {
 				datenAustausch.setSpielerListe(angreifen(datenAustausch
 						.getSpielerListe()));
-			} else {
+			}
+			if (i == CONSTANT_HERZ) {
 				lebenBerechnen();
 
 			}
