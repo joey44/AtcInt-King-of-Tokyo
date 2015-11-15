@@ -36,8 +36,6 @@ public class DatenAustausch implements Serializable {
 	
 
 	
-
-	
 	public String toString() {
 		return "DatenAustausch [wurfel=" + wurfel + ", moderation="
 				+ moderation + ", spielerListe=" + spielerListe + "]";
