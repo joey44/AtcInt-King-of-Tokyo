@@ -5,48 +5,44 @@ import java.util.ArrayList;
 
 public class DatenAustausch implements Serializable {
 
+	public static DatenAustausch instanz;
 	private Wurfel wurfel;
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
 
-
-	public DatenAustausch(){
+	public DatenAustausch() {
 		this.wurfel = new Wurfel();
 		this.moderation = "";
 		this.spielerListe = new ArrayList<Spieler>();
+		DatenAustausch.instanz = this;
 	}
-	
-	
-		
-	
+
 	public void addSpieler(int spielerID, String spielerName) {
 
 		Spieler spieler = new Spieler(spielerID, spielerName);
 
 		this.spielerListe.add(spieler);
-		
 
 	}
-	
+
 	public void wurfeln() {
 
-		this.wurfel.wuerfeln();
+		this.wurfel.setWerte(this.wurfel.wuerfeln());
+		this.setWurfel(this.wurfel);
 
 	}
-	
 
-	
 	public String toString() {
 		return "DatenAustausch [wurfel=" + wurfel + ", moderation="
 				+ moderation + ", spielerListe=" + spielerListe + "]";
 	}
 
-	public Wurfel getWuerfel() {
+	public Wurfel getWurfel() {
 		return wurfel;
 	}
 
-	public void setWuerfel(Wurfel wuerfel) {
-		this.wurfel = wuerfel;
+	public void setWurfel(Wurfel wurfel) {
+		this.wurfel = wurfel;
 	}
 
 	public String getModeration() {
@@ -65,4 +61,8 @@ public class DatenAustausch implements Serializable {
 		spielerListe = spielerListe;
 	}
 
+	public void setDatenAustausch(DatenAustausch datenAustausch) {
+
+		instanz = datenAustausch;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class Wurfel implements Serializable {
 
+	
 	private int[] werte = new int[6];
 	private boolean[] isAusgewahlt = new boolean[6];
 	private int wCounter = 0;
