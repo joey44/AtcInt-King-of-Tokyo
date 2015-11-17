@@ -24,7 +24,7 @@ public class AtcIntServer {
 
 		// Da DatenAustausch Singleton ist, kann von aussen nicht instanziert
 		// werden, Instanz wird über spezifische Methode geholt
-		this.datenAustausch = this.datenAustausch.getInstanz();
+		this.datenAustausch = DatenAustausch.getInstanz();
 
 		// Wenn der Server gestartet wird, wir das Datenaustausch Objekt
 		// initiert
@@ -42,7 +42,7 @@ public class AtcIntServer {
 			clientThread.start();
 			clientlist.add(clientThread);
 
-			datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
+			this.datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
 																	// wird
 																	// erstellt
 
@@ -56,7 +56,7 @@ public class AtcIntServer {
 		if (getClientlist().size() == 4) { // Wenn 4 Clients verbunden sind,
 											// kann das Spiel gestartet werden
 
-			spielStarten(datenAustausch);
+			spielStarten(this.datenAustausch);
 		}
 	}
 

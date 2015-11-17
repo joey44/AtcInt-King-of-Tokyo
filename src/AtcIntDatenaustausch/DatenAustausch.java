@@ -17,7 +17,7 @@ public class DatenAustausch implements Serializable {
 		InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
 	}
 
-	public DatenAustausch getInstanz() {
+	public static DatenAustausch getInstanz() {
 		// Singletonprinzip
 		if (DatenAustausch.InstanzDatenAustausch == null) {
 			DatenAustausch.InstanzDatenAustausch = new DatenAustausch();

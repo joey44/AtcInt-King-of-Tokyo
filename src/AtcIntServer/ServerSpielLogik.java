@@ -94,7 +94,7 @@ public class ServerSpielLogik {
 
 	public static void werteListeEvaluieren() {
 
-		DatenAustausch datenAustausch = DatenAustausch.instanz;
+		DatenAustausch datenAustausch = DatenAustausch.getInstanz();
 		Wurfel wurfel = datenAustausch.getWurfel();
 		int[] werte = wurfel.getWerte();
 		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();

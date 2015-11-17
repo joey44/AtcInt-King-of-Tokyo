@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Spieler implements Serializable{
 
-	public static final int DEFAULT_ANZAHL_LEBEN = 20;
-	public static final int DEFAULT_ANZAHL_RUHMPUNKTE = 0;
+	private static final int DEFAULT_ANZAHL_LEBEN = 20;
+	private static final int DEFAULT_ANZAHL_RUHMPUNKTE = 0;
 	private int anzahlLeben;
 	private int anzahlRuhmpunkte;
 	private boolean isAufTokyo;
