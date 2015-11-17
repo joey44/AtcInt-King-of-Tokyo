@@ -5,16 +5,24 @@ import java.util.ArrayList;
 
 public class DatenAustausch implements Serializable {
 
-	public static DatenAustausch instanz;
+	private static DatenAustausch InstanzDatenAustausch;
 	private Wurfel wurfel;
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
 
-	public DatenAustausch() {
-		this.wurfel = new Wurfel();
-		this.moderation = "";
-		this.spielerListe = new ArrayList<Spieler>();
-		DatenAustausch.instanz = this;
+	private DatenAustausch() {
+
+		InstanzDatenAustausch.wurfel = new Wurfel();
+		InstanzDatenAustausch.moderation = "";
+		InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
+	}
+
+	public DatenAustausch getInstanz() {
+		// Singletonprinzip
+		if (DatenAustausch.InstanzDatenAustausch == null) {
+			DatenAustausch.InstanzDatenAustausch = new DatenAustausch();
+		}
+		return DatenAustausch.InstanzDatenAustausch;
 	}
 
 	public void addSpieler(int spielerID, String spielerName) {
@@ -58,11 +66,7 @@ public class DatenAustausch implements Serializable {
 	}
 
 	public void setSpielerListe(ArrayList<Spieler> spielerListe) {
-		spielerListe = spielerListe;
+		this.spielerListe = spielerListe;
 	}
 
-	public void setDatenAustausch(DatenAustausch datenAustausch) {
-
-		instanz = datenAustausch;
-	}
 }

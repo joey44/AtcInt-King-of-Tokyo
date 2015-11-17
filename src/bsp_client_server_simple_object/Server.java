@@ -12,16 +12,8 @@ public class Server{
 			ServerSocket serv = new ServerSocket(55555);
 			Socket socket = serv.accept();
 			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-
-			
-
-					
 			Wuerfel w2 = (Wuerfel) ois.readObject();
-			
 			System.out.println(w2);
-
-			
-
 			socket.close();
 			serv.close();
 

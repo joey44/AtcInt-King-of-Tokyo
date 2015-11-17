@@ -18,36 +18,44 @@ public class AtcIntServer {
 	private boolean stopServer = false;
 	private DatenAustausch datenAustausch;
 
-
 	public AtcIntServer(int port) {
 		this.port = port;
 		this.clientlist = new ArrayList<AtcIntServerClientThread>();
-		
-		this.datenAustausch = new DatenAustausch();  //Wenn der Server gestartet wird, wir das Datenaustausch Objekt initiert
-	
+
+		// Da DatenAustausch Singleton ist, kann von aussen nicht instanziert
+		// werden, Instanz wird über spezifische Methode geholt
+		this.datenAustausch = this.datenAustausch.getInstanz();
+
+		// Wenn der Server gestartet wird, wir das Datenaustausch Objekt
+		// initiert
+
 	}
-	
 
 	public void start() throws Exception {
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
 			Socket socket = serverSocket.accept();
-			this.Threadname = "Thread " + Threadcounter	+ socket.getInetAddress().toString();
-			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(this, socket, Threadname);
+			this.Threadname = "Thread " + Threadcounter
+					+ socket.getInetAddress().toString();
+			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(
+					this, socket, Threadname);
 			clientThread.start();
 			clientlist.add(clientThread);
-			
-			datenAustausch.addSpieler(Threadcounter, Threadname); //Spieler wird erstellt
-			
+
+			datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
+																	// wird
+																	// erstellt
+
 			this.firstContact(Threadcounter, clientThread);
-			
+
 			System.out.println("client added: " + Threadname);
 			this.Threadcounter++;
-			
+
 		}
-		
-		if (getClientlist().size() == 4){ // Wenn 4 Clients verbunden sind, kann das Spiel gestartet werden
-			
+
+		if (getClientlist().size() == 4) { // Wenn 4 Clients verbunden sind,
+											// kann das Spiel gestartet werden
+
 			spielStarten(datenAustausch);
 		}
 	}
@@ -64,117 +72,99 @@ public class AtcIntServer {
 			}
 		}
 	}
-	
-	public void spielStarten(DatenAustausch w){
-		
-			System.out.println("spielStarten");
-			
-			this.broadcast(w);
-			
-			this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients verbunden sind, bekommen sie Infos vom Server
 
-		
+	public void spielStarten(DatenAustausch w) {
+
+		System.out.println("spielStarten");
+
+		this.broadcast(w);
+
+		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
+														// verbunden sind,
+														// bekommen sie Infos
+														// vom Server
+
 	}
-	
-	
+
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
-		
-		this.datenAustausch = w; // Objekt welches vom Client gesendet wird, wird auf dem Server gespeichert
 
-	
+		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
+									// wird auf dem Server gespeichert
+
 	}
-	
+
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
-		
+
 		clientThread.sendIDToClient(clientID);
-		//clientThread.sendObjekctToClient(w); // Wenn der Client verbunden ist, bekommt er Infos vom Server
-		
-	
+		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden
+		// ist, bekommt er Infos vom Server
+
 	}
 
-
-
-
-	public void broadcast(DatenAustausch w) {  // alle Objekte, welche vom Client kommen, werden an alle verbundenen Client verteilt
+	public void broadcast(DatenAustausch w) { // alle Objekte, welche vom Client
+												// kommen, werden an alle
+												// verbundenen Client verteilt
 		for (AtcIntServerClientThread client : clientlist) {
-	
+
 			try {
-				
-				
-				
+
 				client.sendObjekctToClient(w);
-				
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 		}
-		
+
 	}
-	
-	
-		
 
 	public int getPort() {
 		return port;
 	}
 
-
 	public void setPort(int port) {
 		this.port = port;
 	}
-
 
 	public ArrayList<AtcIntServerClientThread> getClientlist() {
 		return clientlist;
 	}
 
-
 	public void setClientlist(ArrayList<AtcIntServerClientThread> clientlist) {
 		this.clientlist = clientlist;
 	}
-
 
 	public int getThreadcounter() {
 		return Threadcounter;
 	}
 
-
 	public void setThreadcounter(int threadcounter) {
 		Threadcounter = threadcounter;
 	}
-
 
 	public String getThreadname() {
 		return Threadname;
 	}
 
-
 	public void setThreadname(String threadname) {
 		Threadname = threadname;
 	}
-
 
 	public ServerSocket getServerSocket() {
 		return serverSocket;
 	}
 
-
 	public void setServerSocket(ServerSocket serverSocket) {
 		this.serverSocket = serverSocket;
 	}
-
 
 	public boolean isStopServer() {
 		return stopServer;
 	}
 
-
 	public void setStopServer(boolean stopServer) {
 		this.stopServer = stopServer;
 	}
-
 
 	public static void main(String[] args) throws Exception {
 		new AtcIntServer(44444).start();
