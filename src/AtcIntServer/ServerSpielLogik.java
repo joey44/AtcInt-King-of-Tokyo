@@ -8,8 +8,8 @@ import AtcIntDatenaustausch.Wurfel;
 
 public class ServerSpielLogik {
 
-	public static final int CONSTANT_TATZE = 6;
-	public static final int CONSTANT_HERZ = 5;
+	public static final int CONSTANT_TATZE = 5;
+	public static final int CONSTANT_HERZ = 4;
 
 	public static ArrayList<Spieler> angreifen(ArrayList<Spieler> spielerListe) {
 
