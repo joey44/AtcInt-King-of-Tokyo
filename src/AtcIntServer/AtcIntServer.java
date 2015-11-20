@@ -89,7 +89,7 @@ public class AtcIntServer {
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
-									// wird auf dem Server gespeichert
+		DatenAustausch.setInstanz(w);							// wird auf dem Server gespeichert
 
 	}
 
