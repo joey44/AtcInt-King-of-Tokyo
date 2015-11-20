@@ -34,7 +34,7 @@ public class DatenAustausch implements Serializable {
 
 		Spieler spieler = new Spieler(spielerID, spielerName);
 
-		InstanzDatenAustausch.spielerListe.add(spieler);
+		this.spielerListe.add(spieler);
 
 	}
 
