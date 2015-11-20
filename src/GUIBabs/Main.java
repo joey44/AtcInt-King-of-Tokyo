@@ -49,27 +49,27 @@ public class Main extends Application{
 		CheckBox checkbox2 = new CheckBox("Würfel 2");
 		Image wuerfel2 = new Image(getClass().getResourceAsStream("Wuerfel_3_hellgruen.jpg"));
 		checkbox2.setGraphic(new ImageView(wuerfel2));
-		checkbox2.setOnAction(e -> handleButtonAction(e));
+	//	checkbox2.setOnAction(e -> handleButtonAction(e));
 		
 		CheckBox checkbox3 = new CheckBox("Würfel 3");
 		Image wuerfel3 = new Image(getClass().getResourceAsStream("Wuerfel_3_hellgruen.jpg"));
 		checkbox3.setGraphic(new ImageView(wuerfel3));
-		checkbox3.setOnAction(e -> handleButtonAction(e));
+	//	checkbox3.setOnAction(e -> handleButtonAction(e));
 		
 		CheckBox checkbox4 = new CheckBox("Würfel 4");
 		Image wuerfel4 = new Image(getClass().getResourceAsStream("Wuerfel_1_schwarz.jpg"));
 		checkbox4.setGraphic(new ImageView(wuerfel4));
-		checkbox4.setOnAction(e -> handleButtonAction(e));
+	//	checkbox4.setOnAction(e -> handleButtonAction(e));
 		
 		CheckBox checkbox5 = new CheckBox("Würfel 5");
 		Image wuerfel5 = new Image(getClass().getResourceAsStream("Wuerfel_Blitz_schwarz.jpg"));
 		checkbox5.setGraphic(new ImageView(wuerfel5));
-		checkbox5.setOnAction(e -> handleButtonAction(e));
+	//	checkbox5.setOnAction(e -> handleButtonAction(e));
 		
 		CheckBox checkbox6 = new CheckBox("Würfel 6");
 		Image wuerfel6 = new Image(getClass().getResourceAsStream("Wuerfel_3_schwarz.jpg"));
 		checkbox6.setGraphic(new ImageView(wuerfel6));
-		checkbox6.setOnAction(e -> handleButtonAction(e));
+	//	checkbox6.setOnAction(e -> handleButtonAction(e));
     	
     	
     	VBox layout2 = new VBox(20);
@@ -85,7 +85,7 @@ public class Main extends Application{
     	
 	}
     	
-    	private void handleButtonAction (ActionEvent e) {
+   /* 	private void handleButtonAction (ActionEvent e) {
     		Image img;
     		if(event.getSource == ()) {
     			checkbox1.getImage("wuerfel1");
