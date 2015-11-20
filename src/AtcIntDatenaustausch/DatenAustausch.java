@@ -3,6 +3,11 @@ package AtcIntDatenaustausch;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import AtcIntServer.ServerSpielLogik;
+import bsp_client_server_simple_object.Server;
+
+//import ServerSpielLogik;
+
 public class DatenAustausch implements Serializable {
 
 	private static DatenAustausch InstanzDatenAustausch;
@@ -37,6 +42,7 @@ public class DatenAustausch implements Serializable {
 
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
+		ServerSpielLogik.werteListeEvaluieren();
 
 	}
 
