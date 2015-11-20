@@ -3,8 +3,8 @@ package AtcIntDatenaustausch;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import AtcIntServer.ServerSpielLogik;
-import bsp_client_server_simple_object.Server;
+//import AtcIntServer.ServerSpielLogik;
+//import bsp_client_server_simple_object.Server;
 
 //import ServerSpielLogik;
 

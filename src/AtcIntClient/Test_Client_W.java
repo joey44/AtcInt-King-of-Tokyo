@@ -46,7 +46,7 @@ public class Test_Client_W {
 			
 			Spieler spielerAmZug = w1.getSpielerByID(clientID);
 			
-			spielerAmZug.setAmZug(true);
+		//	spielerAmZug.setAmZug(true);
 			spielerAmZug.setAufTokyo(true);
 			
 			System.out.println("am Zug: " + w1.getSpielerAmZug());
