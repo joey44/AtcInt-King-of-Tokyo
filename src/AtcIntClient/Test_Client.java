@@ -26,7 +26,7 @@ public class Test_Client {
 			for (int i = 0; i < 4; i++) {
 				DatenAustausch w1 = (DatenAustausch) ois.readObject();
 
-				System.out.println("client: " + w1);
+				System.out.println("client: "+ clientID + w1);
 
 			}
 

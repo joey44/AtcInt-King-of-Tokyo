@@ -14,6 +14,7 @@ public class DatenAustausch implements Serializable {
 	private Wurfel wurfel;
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
+	private int runde = 0;
 
 	private DatenAustausch() {
 
@@ -28,6 +29,10 @@ public class DatenAustausch implements Serializable {
 			InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
 		}
 		return DatenAustausch.InstanzDatenAustausch;
+	}
+	
+	public static void setInstanz(DatenAustausch w){
+		DatenAustausch.InstanzDatenAustausch = w;
 	}
 
 	public void addSpieler(int spielerID, String spielerName) {
@@ -110,5 +115,15 @@ public class DatenAustausch implements Serializable {
 	public void setSpielerListe(ArrayList<Spieler> spielerListe) {
 		this.spielerListe = spielerListe;
 	}
+
+	public int getRunde() {
+		return runde;
+	}
+
+	public void setRunde(int runde) {
+		this.runde = runde;
+	}
+	
+	
 
 }

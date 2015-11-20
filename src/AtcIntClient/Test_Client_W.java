@@ -25,7 +25,7 @@ public class Test_Client_W {
 			System.out.println(w0);
 			
 			DatenAustausch w1 = (DatenAustausch) ois.readObject();
-			
+			//System.out.println(DatenAustausch.getInstanz());
 			
 			
 			System.out.println("Object from server:" + w1);
@@ -44,16 +44,34 @@ public class Test_Client_W {
 			
 			w1.setModeration(moderation);
 			
-			Spieler spieler = w1.getSpielerByID(clientID);
+			Spieler spielerAmZug = w1.getSpielerByID(clientID);
+			
+			spielerAmZug.setAmZug(true);
+			spielerAmZug.setAufTokyo(true);
 			
 			System.out.println("am Zug: " + w1.getSpielerAmZug());
 			System.out.println("auf Tokyo : " + w1.getSpielerAufTokyo());
 			
-			System.out.println(spieler.getAnzahlLeben());
-			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );
-			System.out.println(spieler.getAnzahlLeben());
+			System.out.println(spielerAmZug.getAnzahlLeben());
+			spielerAmZug.setAnzahlLeben(spielerAmZug.getAnzahlLeben() + 2 );
+			System.out.println(spielerAmZug.getAnzahlLeben());
+		
 			
-			spielerListe.set(clientID, spieler);
+			w1.setRunde(w1.getRunde()+1);
+			int next = w1.getRunde()%4;
+			
+			Spieler nextSpieler = w1.getSpielerByID(next);
+			System.out.println("next Spieler am Zug " + nextSpieler.getSpielerName());
+			
+			
+			nextSpieler.setAmZug(true);
+			spielerAmZug.setAmZug(false);
+			
+			
+			
+			
+			spielerListe.set(clientID, spielerAmZug);
+			spielerListe.set(next, nextSpieler);
 			
 			w1.setSpielerListe(spielerListe);
 			
@@ -63,7 +81,7 @@ public class Test_Client_W {
 			
 			for (int i = 0; i<6; i++){
 			DatenAustausch w2 = (DatenAustausch) ois.readObject();
-			System.out.println("client: " + w2);
+			System.out.println("client: "+ clientID + w2);
 			}
 
 		} catch (Exception e) {
