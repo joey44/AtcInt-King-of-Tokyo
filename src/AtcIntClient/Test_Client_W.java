@@ -46,6 +46,9 @@ public class Test_Client_W {
 			
 			Spieler spieler = w1.getSpielerByID(clientID);
 			
+			System.out.println("am Zug: " + w1.getSpielerAmZug());
+			System.out.println("auf Tokyo : " + w1.getSpielerAufTokyo());
+			
 			System.out.println(spieler.getAnzahlLeben());
 			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );
 			System.out.println(spieler.getAnzahlLeben());
