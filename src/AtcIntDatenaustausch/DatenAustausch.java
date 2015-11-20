@@ -47,7 +47,7 @@ public class DatenAustausch implements Serializable {
 
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
-		ServerSpielLogik.werteListeEvaluieren();
+		
 
 	}
 

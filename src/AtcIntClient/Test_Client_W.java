@@ -79,6 +79,18 @@ public class Test_Client_W {
 			
 			//DatenAustausch w1 = new DatenAustausch();
 			
+			for (int i = 0; i<15; i++){
+				DatenAustausch w3 = (DatenAustausch) ois.readObject();
+				System.out.println("client: "+ clientID + w3);
+				
+				
+				w3.wurfeln();
+				
+				
+				oos.writeObject(w3);
+			}
+			
+			
 			for (int i = 0; i<6; i++){
 			DatenAustausch w2 = (DatenAustausch) ois.readObject();
 			System.out.println("client: "+ clientID + w2);

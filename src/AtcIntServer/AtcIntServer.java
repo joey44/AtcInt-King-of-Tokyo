@@ -89,8 +89,11 @@ public class AtcIntServer {
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
-		DatenAustausch.setInstanz(w);							// wird auf dem Server gespeichert
+		
+		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
+		ServerSpielLogik.werteListeEvaluieren();
+		
 	}
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
