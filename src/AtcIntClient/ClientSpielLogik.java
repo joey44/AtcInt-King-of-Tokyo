@@ -38,8 +38,8 @@ public class ClientSpielLogik {
 
 	public void wuerfelWuerfeln() {
 
-		DatenAustausch datenAustausch = DatenAustausch.instanz;
-		datenAustausch.wurfeln();
+//		DatenAustausch datenAustausch = DatenAustausch.instanz;
+//		datenAustausch.wurfeln();
 	}
 	//
 	// public ClientSpielLogik() {

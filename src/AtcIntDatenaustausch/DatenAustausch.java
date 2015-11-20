@@ -12,15 +12,16 @@ public class DatenAustausch implements Serializable {
 
 	private DatenAustausch() {
 
-		InstanzDatenAustausch.wurfel = new Wurfel();
-		InstanzDatenAustausch.moderation = "";
-		InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
+		
 	}
 
 	public static DatenAustausch getInstanz() {
 		// Singletonprinzip
 		if (DatenAustausch.InstanzDatenAustausch == null) {
 			DatenAustausch.InstanzDatenAustausch = new DatenAustausch();
+			InstanzDatenAustausch.wurfel = new Wurfel();
+			InstanzDatenAustausch.moderation = "";
+			InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
 		}
 		return DatenAustausch.InstanzDatenAustausch;
 	}
