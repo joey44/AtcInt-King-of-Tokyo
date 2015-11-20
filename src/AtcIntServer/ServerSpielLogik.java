@@ -118,7 +118,7 @@ public class ServerSpielLogik {
 		for (Spieler spieler : spielerListe) {
 
 			if (spieler.getAnzahlRuhmpunkte() == 20) {
-				siegerKueren(spieler, datenAustausch);
+				siegerKueren(spieler, DatenAustausch.getInstanz());
 
 			}
 		}
