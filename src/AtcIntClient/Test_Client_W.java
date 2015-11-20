@@ -33,7 +33,7 @@ public class Test_Client_W {
 			ArrayList<Spieler> spielerListe = w1.getSpielerListe();
 			//Wurfel wurfel = w1.getWuerfel();
 			String moderation = w1.getModeration();
-			
+			System.out.println(moderation);
 			
 			
 			w1.wurfeln();
@@ -44,7 +44,7 @@ public class Test_Client_W {
 			
 			w1.setModeration(moderation);
 			
-			Spieler spieler = spielerListe.get(clientID);
+			Spieler spieler = w1.getSpielerByID(clientID);
 			
 			System.out.println(spieler.getAnzahlLeben());
 			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );

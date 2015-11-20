@@ -29,7 +29,7 @@ public class DatenAustausch implements Serializable {
 
 		Spieler spieler = new Spieler(spielerID, spielerName);
 
-		this.spielerListe.add(spieler);
+		InstanzDatenAustausch.spielerListe.add(spieler);
 
 	}
 
@@ -43,7 +43,7 @@ public class DatenAustausch implements Serializable {
 	public Spieler getSpielerAmZug() {
 
 		Spieler spielerAmZug = null;
-		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+		for (Spieler spieler : this.spielerListe) {
 
 			if (spieler.isAmZug()) {
 				spielerAmZug = spieler;
@@ -55,7 +55,7 @@ public class DatenAustausch implements Serializable {
 	public Spieler getSpielerAufTokyo() {
 
 		Spieler spielerAufTokyo = null;
-		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+		for (Spieler spieler : this.spielerListe) {
 
 			if (spieler.isAufTokyo()) {
 				spielerAufTokyo = spieler;
@@ -67,7 +67,7 @@ public class DatenAustausch implements Serializable {
 	public Spieler getSpielerByID(int spielerID) {
 
 		Spieler Spieler = null;
-		for (Spieler s : InstanzDatenAustausch.spielerListe) {
+		for (Spieler s : this.spielerListe) {
 
 			if (s.getSpielerID() == spielerID) {
 				Spieler = s;
