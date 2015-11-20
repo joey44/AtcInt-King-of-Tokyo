@@ -94,20 +94,22 @@ public class ServerSpielLogik {
 
 	public static void werteListeEvaluieren() {
 
-		DatenAustausch datenAustausch = DatenAustausch.getInstanz();
-		Wurfel wurfel = datenAustausch.getWurfel();
-		int[] werte = wurfel.getWerte();
-		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();
+		int[] werte = DatenAustausch.getInstanz().getWurfel().getWerte();
+		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
+				.getSpielerListe();
 
 		for (int i : werte) {
 
 			if (i == CONSTANT_TATZE) {
-				datenAustausch.setSpielerListe(angreifen(datenAustausch
-						.getSpielerListe()));
+				DatenAustausch.getInstanz()
+						.setSpielerListe(
+								angreifen(DatenAustausch.getInstanz()
+										.getSpielerListe()));
 			}
 			if (i == CONSTANT_HERZ) {
-				datenAustausch.setSpielerListe(lebenBerechnen(datenAustausch
-						.getSpielerListe()));
+				DatenAustausch.getInstanz().setSpielerListe(
+						lebenBerechnen(DatenAustausch.getInstanz()
+								.getSpielerListe()));
 
 			}
 
