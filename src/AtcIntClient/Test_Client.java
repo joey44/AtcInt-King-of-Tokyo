@@ -1,4 +1,5 @@
 package AtcIntClient;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -19,14 +20,14 @@ public class Test_Client {
 
 			int clientID = (int) ois.readObject();
 			DatenAustausch w0 = (DatenAustausch) ois.readObject();
-			
+
 			System.out.println("client: " + w0);
 
-			for (int i = 0; i<4; i++){
+			for (int i = 0; i < 4; i++) {
 				DatenAustausch w1 = (DatenAustausch) ois.readObject();
-				
+
 				System.out.println("client: " + w1);
-			
+
 			}
 
 		} catch (Exception e) {

@@ -5,16 +5,24 @@ import java.util.ArrayList;
 
 public class DatenAustausch implements Serializable {
 
-	public static DatenAustausch instanz;
+	private static DatenAustausch InstanzDatenAustausch;
 	private Wurfel wurfel;
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
 
-	public DatenAustausch() {
-		this.wurfel = new Wurfel();
-		this.moderation = "";
-		this.spielerListe = new ArrayList<Spieler>();
-		DatenAustausch.instanz = this;
+	private DatenAustausch() {
+
+	}
+
+	public static DatenAustausch getInstanz() {
+		// Singletonprinzip
+		if (DatenAustausch.InstanzDatenAustausch == null) {
+			DatenAustausch.InstanzDatenAustausch = new DatenAustausch();
+			InstanzDatenAustausch.wurfel = Wurfel.getInstanz();
+			InstanzDatenAustausch.moderation = "";
+			InstanzDatenAustausch.spielerListe = new ArrayList<Spieler>();
+		}
+		return DatenAustausch.InstanzDatenAustausch;
 	}
 
 	public void addSpieler(int spielerID, String spielerName) {
@@ -30,6 +38,42 @@ public class DatenAustausch implements Serializable {
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
 
+	}
+
+	public Spieler getSpielerAmZug() {
+
+		Spieler spielerAmZug = null;
+		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+
+			if (spieler.isAmZug()) {
+				spielerAmZug = spieler;
+			}
+		}
+		return spielerAmZug;
+	}
+
+	public Spieler getSpielerAufTokyo() {
+
+		Spieler spielerAufTokyo = null;
+		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+
+			if (spieler.isAufTokyo()) {
+				spielerAufTokyo = spieler;
+			}
+		}
+		return spielerAufTokyo;
+	}
+
+	public Spieler getSpielerByID(int spielerID) {
+
+		Spieler Spieler = null;
+		for (Spieler s : InstanzDatenAustausch.spielerListe) {
+
+			if (s.getSpielerID() == spielerID) {
+				Spieler = s;
+			}
+		}
+		return Spieler;
 	}
 
 	public String toString() {
@@ -58,11 +102,7 @@ public class DatenAustausch implements Serializable {
 	}
 
 	public void setSpielerListe(ArrayList<Spieler> spielerListe) {
-		spielerListe = spielerListe;
+		this.spielerListe = spielerListe;
 	}
 
-	public void setDatenAustausch(DatenAustausch datenAustausch) {
-
-		instanz = datenAustausch;
-	}
 }

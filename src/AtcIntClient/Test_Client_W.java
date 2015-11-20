@@ -1,4 +1,5 @@
 package AtcIntClient;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -18,49 +19,43 @@ public class Test_Client_W {
 						clientSocket.getInputStream());
 
 		) {
-			
+
 			int clientID = (int) ois.readObject();
-			
+
 			DatenAustausch w0 = (DatenAustausch) ois.readObject();
 			System.out.println(w0);
-			
+
 			DatenAustausch w1 = (DatenAustausch) ois.readObject();
-			
-			
-			
+
 			System.out.println("Object from server:" + w1);
-			
+
 			ArrayList<Spieler> spielerListe = w1.getSpielerListe();
-			//Wurfel wurfel = w1.getWuerfel();
+			// Wurfel wurfel = w1.getWuerfel();
 			String moderation = w1.getModeration();
-			
-			
-			
+
 			w1.wurfeln();
-			
-			
-			
+
 			moderation = "Spieler " + clientID + " hat gewürfelt";
-			
+
 			w1.setModeration(moderation);
-			
+
 			Spieler spieler = spielerListe.get(clientID);
-			
+
 			System.out.println(spieler.getAnzahlLeben());
-			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2 );
+			spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 2);
 			System.out.println(spieler.getAnzahlLeben());
-			
+
 			spielerListe.set(clientID, spieler);
-			
+
 			w1.setSpielerListe(spielerListe);
-			
+
 			oos.writeObject(w1);
-			
-			//DatenAustausch w1 = new DatenAustausch();
-			
-			for (int i = 0; i<6; i++){
-			DatenAustausch w2 = (DatenAustausch) ois.readObject();
-			System.out.println("client: " + w2);
+
+			// DatenAustausch w1 = new DatenAustausch();
+
+			for (int i = 0; i < 6; i++) {
+				DatenAustausch w2 = (DatenAustausch) ois.readObject();
+				System.out.println("client: " + w2);
 			}
 
 		} catch (Exception e) {

@@ -8,8 +8,8 @@ import AtcIntDatenaustausch.Wurfel;
 
 public class ServerSpielLogik {
 
-	public static final int CONSTANT_TATZE = 6;
-	public static final int CONSTANT_HERZ = 5;
+	public static final int CONSTANT_TATZE = 5;
+	public static final int CONSTANT_HERZ = 4;
 
 	public static ArrayList<Spieler> angreifen(ArrayList<Spieler> spielerListe) {
 
@@ -94,20 +94,22 @@ public class ServerSpielLogik {
 
 	public static void werteListeEvaluieren() {
 
-		DatenAustausch datenAustausch = DatenAustausch.instanz;
-		Wurfel wurfel = datenAustausch.getWurfel();
-		int[] werte = wurfel.getWerte();
-		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();
+		int[] werte = DatenAustausch.getInstanz().getWurfel().getWerte();
+		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
+				.getSpielerListe();
 
 		for (int i : werte) {
 
 			if (i == CONSTANT_TATZE) {
-				datenAustausch.setSpielerListe(angreifen(datenAustausch
-						.getSpielerListe()));
+				DatenAustausch.getInstanz()
+						.setSpielerListe(
+								angreifen(DatenAustausch.getInstanz()
+										.getSpielerListe()));
 			}
 			if (i == CONSTANT_HERZ) {
-				datenAustausch.setSpielerListe(lebenBerechnen(datenAustausch
-						.getSpielerListe()));
+				DatenAustausch.getInstanz().setSpielerListe(
+						lebenBerechnen(DatenAustausch.getInstanz()
+								.getSpielerListe()));
 
 			}
 
@@ -116,7 +118,7 @@ public class ServerSpielLogik {
 		for (Spieler spieler : spielerListe) {
 
 			if (spieler.getAnzahlRuhmpunkte() == 20) {
-				siegerKueren(spieler, datenAustausch);
+				siegerKueren(spieler, DatenAustausch.getInstanz());
 
 			}
 		}
