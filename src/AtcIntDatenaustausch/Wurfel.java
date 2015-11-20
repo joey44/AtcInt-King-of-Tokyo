@@ -1,11 +1,12 @@
 package AtcIntDatenaustausch;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Wurfel implements Serializable {
 
-	
+	private static Wurfel InstanzWurfel;
 	private int[] werte = new int[6];
 	private boolean[] isAusgewahlt = new boolean[6];
 	private int wCounter = 0;
@@ -14,6 +15,14 @@ public class Wurfel implements Serializable {
 		return "Wurfel [werte=" + Arrays.toString(werte) + ", isAusgewahlt="
 				+ Arrays.toString(isAusgewahlt) + ", wCounter=" + wCounter
 				+ "]";
+	}
+
+	public static Wurfel getInstanz() {
+		// Singletonprinzip
+		if (Wurfel.InstanzWurfel == null) {
+			Wurfel.InstanzWurfel = new Wurfel();
+		}
+		return Wurfel.InstanzWurfel;
 	}
 
 	public int[] wuerfeln() {
