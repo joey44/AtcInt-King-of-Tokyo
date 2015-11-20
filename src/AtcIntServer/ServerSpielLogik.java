@@ -84,8 +84,7 @@ public class ServerSpielLogik {
 	public static void siegerKueren(Spieler spieler,
 			DatenAustausch datenAustausch) {
 
-		datenAustausch
-				.setModeration(spieler.getSpielerName() + " hat gewonnen");
+		datenAustausch.setModeration(spieler.getSpielerName() + " hat gewonnen");
 	}
 
 	public static void spielerAusschliessen(Spieler spieler) {
