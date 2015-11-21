@@ -43,8 +43,8 @@ public class AtcIntServer {
 			clientlist.add(clientThread);
 
 			this.datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
-																	// wird
-																	// erstellt
+																		// wird
+																		// erstellt
 
 			this.firstContact(Threadcounter, clientThread);
 
@@ -78,9 +78,8 @@ public class AtcIntServer {
 		System.out.println("spielStarten");
 
 		this.broadcast(w);
-		
+
 		w.getSpielerByID(0).setAmZug(true); // Spieler 0 beginnt
-	
 
 		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
 														// verbunden sind,
@@ -92,11 +91,12 @@ public class AtcIntServer {
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
-		
-		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
-		ServerSpielLogik.werteListeEvaluieren();
-		
+		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
+
+		ServerSpielLogik.werteListeEvaluieren(DatenAustausch.getInstanz()
+				.getSpielerAmZug());
+
 	}
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {

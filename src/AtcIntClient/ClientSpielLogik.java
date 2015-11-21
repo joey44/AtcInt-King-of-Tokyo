@@ -20,10 +20,10 @@ public class ClientSpielLogik {
 	public void standortAnzeigen() {
 	}
 
-	public void tokyoVerlassen(Spieler spielerVerlassen,
-			DatenAustausch datenAustausch) {
+	public void tokyoVerlassen(Spieler spielerVerlassen) {
 
-		ArrayList<Spieler> spielerListe = datenAustausch.getSpielerListe();
+		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
+				.getSpielerListe();
 
 		for (Spieler spieler : spielerListe) {
 
@@ -33,15 +33,12 @@ public class ClientSpielLogik {
 			}
 
 		}
-		datenAustausch.setSpielerListe(spielerListe);
+		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
 	public void wuerfelWuerfeln() {
 
-//		DatenAustausch datenAustausch = DatenAustausch.instanz;
-//		datenAustausch.wurfeln();
+		DatenAustausch.getInstanz().wurfeln();
+
 	}
-	//
-	// public ClientSpielLogik() {
-	// }
 }
