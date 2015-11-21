@@ -1,11 +1,10 @@
 package AtcIntServer;
 
-import java.sql.Date;
+
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
-import AtcIntDatenaustausch.Wurfel;
 
 public class ServerSpielLogik {
 
@@ -88,6 +87,7 @@ public class ServerSpielLogik {
 
 		DatenAustausch.getInstanz().setModeration(
 				spieler.getSpielerName() + " hat gewonnen");
+		
 	}
 
 	public static void spielerAusschliessen(Spieler spieler) {
