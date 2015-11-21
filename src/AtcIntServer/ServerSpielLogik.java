@@ -1,6 +1,5 @@
 package AtcIntServer;
 
-
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
@@ -87,7 +86,7 @@ public class ServerSpielLogik {
 
 		DatenAustausch.getInstanz().setModeration(
 				spieler.getSpielerName() + " hat gewonnen");
-		
+		// spielBeenden( );
 	}
 
 	public static void spielerAusschliessen(Spieler spieler) {
