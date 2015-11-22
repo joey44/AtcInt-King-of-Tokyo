@@ -1,162 +1,106 @@
 package GUIBabs;
-
+	
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.event.ActionEvent;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 
-// Main Klasse Ausführen aller Würfelfunktionalitäten
-public class Main extends Application{
-	Stage window;
-	Button button;
-	Scene scene1,scene2;
-	private Object checkbox3;
+public class Main extends Application {
+	Button button1;
+	static Label label;
+	Image image1;
+	
 	@Override
+	public void start(Stage primaryStage) {
+		
+		BorderPane root = new BorderPane();
+		
+		    HBox hb = new HBox();
+		    Button button1 = new Button("Regeln");
+		    button1.setMaxHeight(6);
+		    button1.setMaxWidth(70);
+		    button1.setFont(Font.font("Arial",FontWeight.BLACK,FontPosture.REGULAR,12));
+		    hb.getChildren().addAll(button1);
+		 
+		    hb.setPadding(new Insets(10,10,10,10));
+		    hb.setSpacing(3);
+		    
+		    VBox vb = new VBox();
+		 
+		    ImageView image = new ImageView(new Image(getClass().getResourceAsStream("/Images/KingOfTokyo1.jpg"),600,600,true,true));
+			vb.getChildren().add(image);
+		     vb.setPadding(new Insets(10,10,10,10));
+		     vb.setSpacing(30);
+		    	
+		     
+		     FlowPane fp = new FlowPane();
+		      fp.setOrientation(Orientation.VERTICAL);
+		      fp.setVgap(5);
+		      fp.setHgap(5);
+		      Button button2 = new Button("Würfeln");
+		      button2.setFont(Font.font("Arial",FontWeight.BLACK,FontPosture.REGULAR,12));
+			  fp.getChildren().add(button2);
+		      ImageView image2 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),50,50,true,true));
+		      fp.getChildren().add(image2);
+		      ImageView image3 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_schwarz.jpg"),50,50,true,true));
+		      fp.getChildren().add(image3);
+		      ImageView image4 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),50,50,true,true));
+		      fp.getChildren().add(image4);
+		      ImageView image5 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),50,50,true,true));
+		      fp.getChildren().add(image5);
+		      ImageView image6 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),50,50,true,true));
+		      fp.getChildren().add(image6);
+		      ImageView image7 = new ImageView(new Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),50,50,true,true));
+		      fp.getChildren().add(image7);	      
+		     
+			      HBox hb2 = new HBox();
+			      hb2.setPadding(new Insets(7,7,7,7));
+				  hb2.setSpacing(40);
+				  Text text1 = new Text("Spieler");
+				     text1.setFont(Font.font("Arial",FontWeight.BOLD,FontPosture.REGULAR,12));
+					 hb2.getChildren().add(text1);	
+			      ImageView image8 = new ImageView(new Image(getClass().getResourceAsStream("/Images/MekaDragon.jpg"),100,100,true,true));
+			      hb2.getChildren().add(image8);
+			      ImageView image9 = new ImageView(new Image(getClass().getResourceAsStream("/Images/TheKing.jpg"),100,100,true,true));
+			      hb2.getChildren().add(image9);
+			      ImageView image10 = new ImageView(new Image(getClass().getResourceAsStream("/Images/CyberBunny.jpg"),100,100,true,true));
+			      hb2.getChildren().add(image10);
+			      ImageView image11 = new ImageView(new Image(getClass().getResourceAsStream("/Images/GigaZaur.jpg"),100,100,true,true));
+			      hb2.getChildren().add(image11);
+			      
+			
+			Scene scene = new Scene(root,800,800,Color.WHITE);
+			root.setTop(hb);
+			root.setLeft(vb);
+			root.setCenter(fp);
+			root.setBottom(hb2);
+			
 	
-    
-	public void start(Stage primaryStage) throws Exception {
-    	
-		// Würfel starten
-    	window = primaryStage;
-    	
-    	Button button = new Button(); 	// Konstructor Button
-    	button.setText("Würfel werfen");
-    	StackPane layout = new StackPane();
-    	layout.getChildren().add(button);
-    	Scene scene1 = new Scene (layout, 600, 500); // Grösse der Scene definieren
-    	primaryStage.setScene(scene1);
-    	button.setText("Würfel ausgewählt");
-    	button.setOnAction(e -> window.setScene(scene2));
-    
-    	
- 
-        // Checkboxen mit Auswahl der Würfelergebnisse auswählen
-    	
-    	
-    	
-    	CheckBox checkbox1 = new CheckBox("Würfel 1");
-		Image wuerfel1 = new Image(getClass().getResourceAsStream("Wuerfel_2_hellgruen.jpg"));
-		checkbox1.setGraphic(new ImageView(wuerfel1));
-	
+			
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setTitle("King of Tokyo");
+			primaryStage.setScene(scene);
+			primaryStage.show();
 		
-		
-		CheckBox checkbox2 = new CheckBox("Würfel 2");
-		Image wuerfel2 = new Image(getClass().getResourceAsStream("Wuerfel_3_hellgruen.jpg"));
-		checkbox2.setGraphic(new ImageView(wuerfel2));
-	//	checkbox2.setOnAction(e -> handleButtonAction(e));
-		
-		CheckBox checkbox3 = new CheckBox("Würfel 3");
-		Image wuerfel3 = new Image(getClass().getResourceAsStream("Wuerfel_3_hellgruen.jpg"));
-		checkbox3.setGraphic(new ImageView(wuerfel3));
-	//	checkbox3.setOnAction(e -> handleButtonAction(e));
-		
-		CheckBox checkbox4 = new CheckBox("Würfel 4");
-		Image wuerfel4 = new Image(getClass().getResourceAsStream("Wuerfel_1_schwarz.jpg"));
-		checkbox4.setGraphic(new ImageView(wuerfel4));
-	//	checkbox4.setOnAction(e -> handleButtonAction(e));
-		
-		CheckBox checkbox5 = new CheckBox("Würfel 5");
-		Image wuerfel5 = new Image(getClass().getResourceAsStream("Wuerfel_Blitz_schwarz.jpg"));
-		checkbox5.setGraphic(new ImageView(wuerfel5));
-	//	checkbox5.setOnAction(e -> handleButtonAction(e));
-		
-		CheckBox checkbox6 = new CheckBox("Würfel 6");
-		Image wuerfel6 = new Image(getClass().getResourceAsStream("Wuerfel_3_schwarz.jpg"));
-		checkbox6.setGraphic(new ImageView(wuerfel6));
-	//	checkbox6.setOnAction(e -> handleButtonAction(e));
-    	
-    	
-    	VBox layout2 = new VBox(20);
- 
-     	layout2.getChildren().addAll(checkbox1,checkbox2,checkbox3,checkbox4,checkbox5,checkbox6);
-  
-    
-   
-     	scene2 = new Scene(layout2,600,600);
-     	window.setScene(scene1);
-     	window.setTitle("Würfelnergebnis auswählen");
-    	window.show();
-    	
 	}
-    	
-   /* 	private void handleButtonAction (ActionEvent e) {
-    		Image img;
-    		if(event.getSource == ()) {
-    			checkbox1.getImage("wuerfel1");
-    		
-    		if(checkbox2.isSelected()) {
-        		checkbox2.getImage("wuerfel2");	
-        			
-        	if(checkbox3.isSelected()) {
-            	 checkbox3.getImage("wuerfel3");
-            	 
-            if(checkbox4.isSelected()) {
-                checkbox4.getImage("wuerfel4");	
-                
-            if(checkbox5.isSelected()) {
-                checkbox5.getImage("wuerfel5");	
-                
-            if(checkbox6.isSelected()) {
-                 checkbox6.getImage("wuerfel6");	
-        			
-    }
-    
-	// Animierter Würfel
-    	 
-    /*		Pane pn = new Pane();
-        	pn.setTranslateX(200);
-            pn.setTranslateY(200);
-            pn.getChildren().addAll(pn);
-            scene2 = new Scene (pn); 
-
-        //    Box box = new Box(50,50,50);
-            
-/*
-    box.setMaterial(new PhongMaterial(Color.BEIGE));
-    box.getTransforms().add(new Rotate (10,0,0,0, Rotate.X_AXIS));
-    box.getTransforms().add(new Rotate (10,0,0,0, Rotate.Y_AXIS));
-    box.getTransforms().add(new Rotate (10,0,0,0, Rotate.Z_AXIS));
-    pn.getChildren().add(box);
-    
-   
-
-    TranslateTransition tt1 = new TranslateTransition (Duration.millis(1000),box);
-    tt1.setToX(100);
-    tt1.setCycleCount(2);
-    tt1.setAutoReverse(true);
-    tt1.play();
-
-    RotateTransition rt2 = new RotateTransition(Duration.millis(1000),box);
-    rt2.setAxis (Rotate.X_AXIS);
-    rt2.setToAngle(360);
-    rt2.setCycleCount(4);
-    rt2.setAutoReverse(true);
-    rt2.play();
-    
-    // Dritte Rotation um 360 ° und 4 Umdrehungen
-
-    RotateTransition rotation3 = new RotateTransition(Duration.millis(1000),box);
-    rotation3.setAxis (Rotate.Y_AXIS);
-    rotation3.setToAngle(360);
-    rotation3.setCycleCount(4);
-    rotation3.setAutoReverse(true);
-    rotation3.play();
-
-    RotateTransition rotation4 = new RotateTransition(Duration.millis(1000),box);
-    rotation4.setAxis (Rotate.Z_AXIS);
-    rotation4.setToAngle(360);
-    rotation4.setCycleCount(4);
-    rotation4.setAutoReverse(true);
-    rotation4.play(); */
 	
-
-
 	public static void main(String[] args) {
 		launch(args);
 	}
