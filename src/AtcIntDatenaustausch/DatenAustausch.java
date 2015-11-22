@@ -3,12 +3,18 @@ package AtcIntDatenaustausch;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//import AtcIntServer.ServerSpielLogik;
+//import bsp_client_server_simple_object.Server;
+
+//import ServerSpielLogik;
+
 public class DatenAustausch implements Serializable {
 
 	private static DatenAustausch InstanzDatenAustausch;
 	private Wurfel wurfel;
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
+	private int runde = 0;
 
 	private DatenAustausch() {
 
@@ -24,6 +30,10 @@ public class DatenAustausch implements Serializable {
 		}
 		return DatenAustausch.InstanzDatenAustausch;
 	}
+	
+	public static void setInstanz(DatenAustausch w){
+		DatenAustausch.InstanzDatenAustausch = w;
+	}
 
 	public void addSpieler(int spielerID, String spielerName) {
 
@@ -37,13 +47,14 @@ public class DatenAustausch implements Serializable {
 
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
+		
 
 	}
 
 	public Spieler getSpielerAmZug() {
 
 		Spieler spielerAmZug = null;
-		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+		for (Spieler spieler : this.spielerListe) {
 
 			if (spieler.isAmZug()) {
 				spielerAmZug = spieler;
@@ -55,7 +66,7 @@ public class DatenAustausch implements Serializable {
 	public Spieler getSpielerAufTokyo() {
 
 		Spieler spielerAufTokyo = null;
-		for (Spieler spieler : InstanzDatenAustausch.spielerListe) {
+		for (Spieler spieler : this.spielerListe) {
 
 			if (spieler.isAufTokyo()) {
 				spielerAufTokyo = spieler;
@@ -67,7 +78,7 @@ public class DatenAustausch implements Serializable {
 	public Spieler getSpielerByID(int spielerID) {
 
 		Spieler Spieler = null;
-		for (Spieler s : InstanzDatenAustausch.spielerListe) {
+		for (Spieler s : this.spielerListe) {
 
 			if (s.getSpielerID() == spielerID) {
 				Spieler = s;
@@ -104,5 +115,15 @@ public class DatenAustausch implements Serializable {
 	public void setSpielerListe(ArrayList<Spieler> spielerListe) {
 		this.spielerListe = spielerListe;
 	}
+
+	public int getRunde() {
+		return runde;
+	}
+
+	public void setRunde(int runde) {
+		this.runde = runde;
+	}
+	
+	
 
 }
