@@ -1,4 +1,4 @@
-package GUIBabs;
+package GUI_Babs;
 	
 import javafx.application.Application;
 import javafx.geometry.Insets;
