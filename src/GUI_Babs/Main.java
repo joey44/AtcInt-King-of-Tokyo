@@ -31,7 +31,7 @@ public class Main extends Application {
 	static Label label;
 	Image image1;
 
-	// EventHandler
+	// EventHandler von Paket AtcIntClient
 
 	EventHandler<ActionEvent> eventHandlerClient = new EventHandlerClient();
 
@@ -70,6 +70,7 @@ public class Main extends Application {
 		button2.setOnAction(eventHandlerClient);
 		button2.setFont(Font.font("Arial", FontWeight.BLACK,
 				FontPosture.REGULAR, 12));
+		//ID zur Erkennung, welcher Button gedrückt wurde
 		button2.setId("wurfeln");
 
 		fp.getChildren().add(button2);
