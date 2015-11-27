@@ -10,7 +10,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
 	prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_Lobby.Controller">
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_Lobby.ServerGUIController">
 	<top>
 		<ToolBar prefHeight="36.0" prefWidth="600.0"
 			style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 2;"
@@ -29,7 +29,7 @@
 			style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-border-width: 2;"
 			BorderPane.alignment="CENTER">
 			<items>
-				<Label text="PortNr.: 2540">
+				<Label fx:id="portLB" text="PortNr.: 2540">
 					<font>
 						<Font name="Arial" size="10.0" />
 					</font>
@@ -128,7 +128,7 @@
 					</VBox.margin>
 				</ListView>
 				<Button fx:id="start" mnemonicParsing="false" onAction="#SpielstartenButtonClicked"
-					text="Spielen starten">
+					text="Server starten">
 					<VBox.margin>
 						<Insets left="25.0" top="10.0" />
 					</VBox.margin>
