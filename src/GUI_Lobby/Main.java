@@ -1,4 +1,4 @@
-package GUI_Tschudi;
+package GUI_Lobby;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
