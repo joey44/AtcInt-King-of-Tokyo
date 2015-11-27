@@ -79,7 +79,7 @@ public class AtcIntServer {
 
 		this.broadcast(w);
 
-		w.getSpielerByID(0).setAmZug(true); // Spieler 0 beginnt
+
 
 		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
 														// verbunden sind,
