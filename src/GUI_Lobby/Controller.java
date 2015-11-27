@@ -29,7 +29,7 @@ public class Controller {
     @FXML
     void SpielstartenButtonClicked(ActionEvent event) {
     	start.setText("Spiel gestartet...");
-    	
+    	start.setDisable(true);
     }
 
 }
