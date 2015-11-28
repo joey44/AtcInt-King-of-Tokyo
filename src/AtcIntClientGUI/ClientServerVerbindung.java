@@ -5,7 +5,7 @@ import java.net.Socket;
 
 import javafx.application.Platform;
 import AtcIntDatenaustausch.DatenAustausch;
-import AtcIntDatenaustausch.Spieler;
+
 
 public class ClientServerVerbindung extends Thread {
 
@@ -84,7 +84,7 @@ public class ClientServerVerbindung extends Thread {
 	public void listen() {
 
 		try {
-			this.datenAustausch = (DatenAustausch) ois.readObject();
+			this.clientID = (int) ois.readObject();
 
 			// DatenAustausch.setInstanz(clientIDOb);
 
@@ -93,13 +93,14 @@ public class ClientServerVerbindung extends Thread {
 			// controller.setClientID();
 			
 			
-			setClientID(this.datenAustausch.getClientID());
+			//setClientID(this.datenAustausch.getClientID());
 			
 			 // UI updaten
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     // entsprechende UI Komponente updaten
+                	cview.getLbTitel().setText("King of Tokyo - Spieler Nr" +getClientID());
                     cview.getLbModeration().setText("client " + getClientID() + "verbunden");
                 }
             });
@@ -125,17 +126,25 @@ public class ClientServerVerbindung extends Thread {
 				//setDatenAustausch(this.datenAustausch);
 				
 				
+				int a = this.datenAustausch.getSpielerListe().size();
+				System.out.println(a);
+				
+			
+				controller.objectFromServerSetDatenaustausch(this.datenAustausch);
+				
 				 // UI updaten
 	            Platform.runLater(new Runnable() {
 	                @Override
 	                public void run() {
 	                    // entsprechende UI Komponente updaten
-	                	controller.objectFromServerSetDatenaustausch(getDatenAustausch());
+	                	
 	                	
 	                	System.out.println("runlater" + getClientID());
 	                	controller.updateClientGUI(getDatenAustausch(), getClientID());
 	                }
 	            });
+	            
+				
 
 				
 				

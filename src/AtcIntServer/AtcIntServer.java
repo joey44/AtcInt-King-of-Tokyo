@@ -5,13 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import AtcIntDatenaustausch.DatenAustausch;
-import AtcIntDatenaustausch.Spieler;
 import AtcIntServer.AtcIntServerClientThread;
 
 public class AtcIntServer{
@@ -101,16 +95,16 @@ public class AtcIntServer{
 		
 		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
-		//ServerSpielLogik.werteListeEvaluieren();
+		ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w.getClientID()));
 		
 	}
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
-		this.datenAustausch.setClientID(clientID);
+		//this.datenAustausch.setClientID(clientID);
 		
-		this.datenAustausch = DatenAustausch.getInstanz();
+		//this.datenAustausch = DatenAustausch.getInstanz();
 
-		clientThread.sendIDToClient(this.datenAustausch);
+		clientThread.sendIDToClient(clientID);
 		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden
 		// ist, bekommt er Infos vom Server
 
@@ -122,6 +116,8 @@ public class AtcIntServer{
 		for (AtcIntServerClientThread client : clientlist) {
 
 			try {
+				//int a = w.getSpielerListe().size();
+				//System.out.println(a);
 
 				client.sendObjekctToClient(w);
 

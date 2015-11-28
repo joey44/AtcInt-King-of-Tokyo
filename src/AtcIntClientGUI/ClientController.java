@@ -71,9 +71,9 @@ public class ClientController{
 		view.getLbLeben3().setText(ClientSpielLogik.lebenAnzeigen(d, 3));
 		view.getLbPunkte3().setText(ClientSpielLogik.ruhmpunkteAnzeigen(d, 3));
 
-		// view.getLbModeration().setText(ClientSpielLogik.spielModerieren());
+		view.getLbModeration().setText(ClientSpielLogik.spielModerieren(d));
 
-		// view.getLbTokyo().setText(ClientSpielLogik.standortAnzeigen());
+		view.getLbTokyo().setText(ClientSpielLogik.standortAnzeigen(d));
 
 	}
 
@@ -83,7 +83,7 @@ public class ClientController{
 
 		d = ClientSpielLogik.wurfelWurfeln(d);
 		
-		System.out.println(d.getWurfel());
+		d.setModeration("Spieler "+ getClientID()+" hat gewürfelt");
 		
 		setDatenAustausch(d);
 
@@ -104,9 +104,9 @@ public class ClientController{
 			System.out.println("würflen");
 
 			wurfelWurfeln(getDatenAustausch());
-			view.getLbTitel().setText(getDatenAustausch().getWurfel().toString());
 			
-			//updateClientGUI();
+			
+			
 			
 			
 
@@ -121,9 +121,13 @@ public class ClientController{
 
 			System.out.println("tokyoVerlassen");
 
-			//updateClientGUI();
+			getDatenAustausch().getSpielerByID(getClientID()).setAufTokyo(false);
+			getDatenAustausch().setModeration("Spieler " +getClientID()+" hat Tokyo verlassen");
 			
-			System.out.println(getClientID());
+			
+			System.out.println("Spieler " + getClientID() +"Tokyo verlassen");
+			
+			clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
 
 		}
 
@@ -138,13 +142,12 @@ public class ClientController{
 
 			clientServerVerbindung.connect();
 			
-			//	view.getLbModeration().setText("angemeldet Spieler: " + clientID);
+			
 			
 			
 			view.getBtnVerbinden().setDisable(true);
 			
-			//setClientID();
-
+			
 		}
 
 		

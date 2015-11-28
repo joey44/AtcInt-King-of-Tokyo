@@ -40,7 +40,7 @@ public class ClientSpielLogik {
 
 	public static String spielModerieren(DatenAustausch d) {
 
-	//	DatenAustausch d = DatenAustausch.getInstanz();
+	
 
 		return d.getModeration();
 
@@ -48,33 +48,17 @@ public class ClientSpielLogik {
 
 	public static String standortAnzeigen(DatenAustausch d) {
 
+		Spieler s = d.getSpielerAufTokyo();
 		
-
-		return "Auf Tokyoo Spieler: " + d.getSpielerAufTokyo().getSpielerID();
+		if (s == null){
+			return "kein Spieler ist auf Tokyo";
+		}
+		
+		return "Auf Tokyoo Spieler: " + s.getSpielerID();
 
 	}
 
-	public static DatenAustausch tokyoVerlassen(DatenAustausch d, int clientID) {
-
-		//DatenAustausch d = DatenAustausch.getInstanz();
-
-		Spieler s = d.getSpielerByID(clientID);
-		
-		s.setAufTokyo(false);
-		
-		ArrayList<Spieler> spielerListe = d.getSpielerListe();
-		
-		spielerListe.set(clientID, s);
-		
-		d.setSpielerListe(spielerListe);
-		
-		//d.setInstanz(d);
-		
-		return d;
-		
-		
-	}
-
+	
 	public static DatenAustausch wurfelWurfeln(DatenAustausch d) {
 
 		d.wurfeln();
