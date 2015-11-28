@@ -16,6 +16,7 @@ public class DatenAustausch implements Serializable {
 	private ArrayList<Spieler> spielerListe;
 	private int runde = 0;
 	private int clientID;
+	
 
 	private DatenAustausch() {
 
@@ -99,6 +100,10 @@ public class DatenAustausch implements Serializable {
 
 	public Wurfel getWurfel() {
 		return wurfel;
+	}
+	
+	public int getwCounter() {
+		return this.wurfel.getwCounter();
 	}
 
 	public void setWurfel(Wurfel wurfel) {

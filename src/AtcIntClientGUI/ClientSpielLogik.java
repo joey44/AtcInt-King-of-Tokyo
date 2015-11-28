@@ -63,6 +63,22 @@ public class ClientSpielLogik {
 
 		d.wurfeln();
 		
+		d.setModeration("Spieler Nr: "+ d.getSpielerAmZug().getSpielerID()+" hat gewürfelt" + d.getwCounter()%3);
+		
+		if (d.getwCounter()%3 == 0){
+			
+			Spieler s = d.getSpielerAmZug();
+			int a = s.getSpielerID();
+			
+			
+			d.getSpielerAmZug().setAmZug(false);
+			d.getSpielerByID((a+1)%4).setAmZug(true);
+
+			d.setModeration("Spieler Nr " + a + " hat den Zug beendet" + d.getWurfel().toString());
+			
+			
+			
+		}
 		
 
 		return d;

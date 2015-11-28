@@ -62,6 +62,9 @@ public class ClientView {
 	btnTokyoVerlassen = new Button ("Tokyo verlassen / GuI update");
 	btnVerbinden = new Button("verbinden");
 	
+	getBtnWurfeln().setDisable(true);
+	getBtnTokyoVerlassen().setDisable(true);
+	
 	btnVerbinden.setDefaultButton(true);
 	
 	VBox root = new VBox();

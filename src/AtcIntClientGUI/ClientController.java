@@ -74,6 +74,20 @@ public class ClientController{
 		view.getLbModeration().setText(ClientSpielLogik.spielModerieren(d));
 
 		view.getLbTokyo().setText(ClientSpielLogik.standortAnzeigen(d));
+		
+		view.getBtnWurfeln().setDisable(true);
+		view.getBtnTokyoVerlassen().setDisable(true);
+		
+		if (getClientID() == d.getSpielerAmZug().getSpielerID()){
+			view.getBtnWurfeln().setDisable(false);
+			
+		}
+		
+		if (getClientID() == d.getSpielerAufTokyo().getSpielerID()){
+			view.getBtnTokyoVerlassen().setDisable(false);
+			
+		}
+		
 
 	}
 
@@ -82,8 +96,6 @@ public class ClientController{
 		//DatenAustausch d = this.datenAustausch;
 
 		d = ClientSpielLogik.wurfelWurfeln(d);
-		
-		d.setModeration("Spieler "+ getClientID()+" hat gewürfelt");
 		
 		setDatenAustausch(d);
 
@@ -146,6 +158,8 @@ public class ClientController{
 			
 			
 			view.getBtnVerbinden().setDisable(true);
+			
+			view.getLbModeration().setText("warten auf Spiel start");
 			
 			
 		}
