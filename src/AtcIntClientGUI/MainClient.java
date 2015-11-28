@@ -3,7 +3,7 @@ package AtcIntClientGUI;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainController extends Application {
+public class MainClient extends Application {
 
 	private ClientView view;
 

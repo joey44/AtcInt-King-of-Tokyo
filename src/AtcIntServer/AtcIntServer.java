@@ -5,11 +5,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
 import AtcIntServer.AtcIntServerClientThread;
 
-public class AtcIntServer {
+public class AtcIntServer{
 
 	private int port;
 	private ArrayList<AtcIntServerClientThread> clientlist;
@@ -29,6 +34,8 @@ public class AtcIntServer {
 
 		// Wenn der Server gestartet wird, wir das Datenaustausch Objekt
 		// initiert
+		
+		
 
 	}
 
@@ -173,8 +180,10 @@ public class AtcIntServer {
 	public void setStopServer(boolean stopServer) {
 		this.stopServer = stopServer;
 	}
-
-	public static void main(String[] args) throws Exception {
+	
+	public static void main (String[]args) throws Exception{
 		new AtcIntServer(44444).start();
 	}
+
+
 }
