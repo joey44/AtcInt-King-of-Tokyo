@@ -100,6 +100,8 @@ public class AtcIntServer {
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
 		this.datenAustausch.setClientID(clientID);
+		
+		this.datenAustausch = DatenAustausch.getInstanz();
 
 		clientThread.sendIDToClient(this.datenAustausch);
 		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden

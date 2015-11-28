@@ -17,6 +17,7 @@ public class ClientServerVerbindung extends Thread {
 	private ClientView cview;
 
 	private DatenAustausch datenAustausch;
+	
 
 	private volatile boolean stopThread = false;
 
@@ -27,7 +28,7 @@ public class ClientServerVerbindung extends Thread {
 		this.cview = cview;
 		this.controller = controller;
 		
-		this.datenAustausch = DatenAustausch.getInstanz();
+		//this.datenAustausch = DatenAustausch.getInstanz();
 
 	}
 
@@ -83,7 +84,7 @@ public class ClientServerVerbindung extends Thread {
 	public void listen() {
 
 		try {
-			DatenAustausch clientIDOb = (DatenAustausch) ois.readObject();
+			this.datenAustausch = (DatenAustausch) ois.readObject();
 
 			// DatenAustausch.setInstanz(clientIDOb);
 
@@ -92,7 +93,7 @@ public class ClientServerVerbindung extends Thread {
 			// controller.setClientID();
 			
 			
-			setClientID(clientIDOb.getClientID());
+			setClientID(this.datenAustausch.getClientID());
 			
 			 // UI updaten
             Platform.runLater(new Runnable() {
@@ -115,13 +116,13 @@ public class ClientServerVerbindung extends Thread {
 		// clientSpielLogik.updateClientGUIVerbindung(clientID);
 
 		try {
-			while ((datenAustausch = (DatenAustausch) ois.readObject()) != null) { // waiting
+			while ((this.datenAustausch = (DatenAustausch) ois.readObject()) != null) { // waiting
 
 				// Thread.sleep(20);
 
-				System.out.println("Client: " + getClientID() + datenAustausch);
+				System.out.println("Client: " + getClientID() + this.datenAustausch);
 
-				// DatenAustausch.setInstanz(w);
+				//setDatenAustausch(this.datenAustausch);
 				
 				
 				 // UI updaten
@@ -129,13 +130,14 @@ public class ClientServerVerbindung extends Thread {
 	                @Override
 	                public void run() {
 	                    // entsprechende UI Komponente updaten
+	                	controller.objectFromServerSetDatenaustausch(getDatenAustausch());
 	                	
 	                	System.out.println("runlater" + getClientID());
-	                	controller.updateClientGUI(datenAustausch, getClientID());
+	                	controller.updateClientGUI(getDatenAustausch(), getClientID());
 	                }
 	            });
 
-				controller.objectFromServerSetDatenaustausch(datenAustausch);
+				
 				
 				
 
@@ -161,5 +163,14 @@ public class ClientServerVerbindung extends Thread {
 	public void setClientID(int clientID) {
 		this.clientID = clientID;
 	}
+
+	public DatenAustausch getDatenAustausch() {
+		return datenAustausch;
+	}
+
+	public void setDatenAustausch(DatenAustausch datenAustausch) {
+		this.datenAustausch = datenAustausch;
+	}
+	
 
 }
