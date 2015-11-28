@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.Spieler;
 import AtcIntServer.AtcIntServerClientThread;
 
 public class AtcIntServer {
@@ -35,7 +36,7 @@ public class AtcIntServer {
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
 			Socket socket = serverSocket.accept();
-			this.Threadname = "Thread " + Threadcounter
+			this.Threadname = "Spieler " + Threadcounter
 					+ socket.getInetAddress().toString();
 			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(
 					this, socket, Threadname);
@@ -43,8 +44,8 @@ public class AtcIntServer {
 			clientlist.add(clientThread);
 
 			this.datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
-																		// wird
-																		// erstellt
+																	// wird
+																	// erstellt
 
 			this.firstContact(Threadcounter, clientThread);
 
@@ -78,9 +79,8 @@ public class AtcIntServer {
 		System.out.println("spielStarten");
 
 		this.broadcast(w);
-
-
-
+		
+		
 		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
 														// verbunden sind,
 														// bekommen sie Infos
@@ -91,17 +91,17 @@ public class AtcIntServer {
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
+		
+		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
-		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
-
-		ServerSpielLogik.werteListeEvaluieren(DatenAustausch.getInstanz()
-				.getSpielerAmZug());
-
+		//ServerSpielLogik.werteListeEvaluieren();
+		
 	}
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
+		this.datenAustausch.setClientID(clientID);
 
-		clientThread.sendIDToClient(clientID);
+		clientThread.sendIDToClient(this.datenAustausch);
 		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden
 		// ist, bekommt er Infos vom Server
 

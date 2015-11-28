@@ -26,6 +26,7 @@ public class Spieler implements Serializable{
 		
 		if (this.spielerID == 0){ // Spieler 1 beginnt
 			this.isAmZug = true;
+			this.isAufTokyo = true;
 			
 		}
 

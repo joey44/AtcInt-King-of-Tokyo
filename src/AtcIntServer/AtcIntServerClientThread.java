@@ -74,7 +74,7 @@ public class AtcIntServerClientThread extends Thread {
 		}
 		
 	}
-	public void sendIDToClient(int clientID) {
+	public void sendIDToClient(DatenAustausch clientID) {
 		
 		try {
 			
