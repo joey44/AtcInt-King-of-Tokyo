@@ -15,6 +15,8 @@ public class DatenAustausch implements Serializable {
 	private String moderation;
 	private ArrayList<Spieler> spielerListe;
 	private int runde = 0;
+	private int clientID;
+	
 
 	private DatenAustausch() {
 
@@ -47,6 +49,7 @@ public class DatenAustausch implements Serializable {
 
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
+		
 		
 
 	}
@@ -87,13 +90,21 @@ public class DatenAustausch implements Serializable {
 		return Spieler;
 	}
 
+	
+
+	@Override
 	public String toString() {
 		return "DatenAustausch [wurfel=" + wurfel + ", moderation="
-				+ moderation + ", spielerListe=" + spielerListe + "]";
+				+ moderation + ", spielerListe=" + spielerListe + ", runde="
+				+ runde + ", clientID=" + clientID + "]";
 	}
 
 	public Wurfel getWurfel() {
 		return wurfel;
+	}
+	
+	public int getwCounter() {
+		return this.wurfel.getwCounter();
 	}
 
 	public void setWurfel(Wurfel wurfel) {
@@ -122,6 +133,14 @@ public class DatenAustausch implements Serializable {
 
 	public void setRunde(int runde) {
 		this.runde = runde;
+	}
+
+	public int getClientID() {
+		return clientID;
+	}
+
+	public void setClientID(int clientID) {
+		this.clientID = clientID;
 	}
 	
 	

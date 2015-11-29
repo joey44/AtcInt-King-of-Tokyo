@@ -1,4 +1,4 @@
-package AtcIntServer;
+package GUI_Lobby;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,21 +6,21 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import AtcIntDatenaustausch.DatenAustausch;
-import AtcIntServer.AtcIntServerClientThread;
+import GUI_Lobby.ServerThread;
 
-public class AtcIntServer{
+public class Server {
 
 	private int port;
-	private ArrayList<AtcIntServerClientThread> clientlist;
+	private ArrayList<ServerThread> clientlist;
 	private int Threadcounter = 0;
 	private String Threadname;
 	private ServerSocket serverSocket;
 	private boolean stopServer = false;
 	private DatenAustausch datenAustausch;
 
-	public AtcIntServer(int port) {
+	public Server(int port) {
 		this.port = port;
-		this.clientlist = new ArrayList<AtcIntServerClientThread>();
+		this.clientlist = new ArrayList<ServerThread>();
 
 		// Da DatenAustausch Singleton ist, kann von aussen nicht instanziert
 		// werden, Instanz wird über spezifische Methode geholt
@@ -28,8 +28,6 @@ public class AtcIntServer{
 
 		// Wenn der Server gestartet wird, wir das Datenaustausch Objekt
 		// initiert
-		
-		
 
 	}
 
@@ -37,16 +35,16 @@ public class AtcIntServer{
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
 			Socket socket = serverSocket.accept();
-			this.Threadname = "Spieler " + Threadcounter
+			this.Threadname = "Thread " + Threadcounter
 					+ socket.getInetAddress().toString();
-			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(
+			ServerThread clientThread = new ServerThread(
 					this, socket, Threadname);
 			clientThread.start();
 			clientlist.add(clientThread);
 
 			this.datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
-																	// wird
-																	// erstellt
+																		// wird
+																		// erstellt
 
 			this.firstContact(Threadcounter, clientThread);
 
@@ -80,8 +78,9 @@ public class AtcIntServer{
 		System.out.println("spielStarten");
 
 		this.broadcast(w);
-		
-		
+
+
+
 		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
 														// verbunden sind,
 														// bekommen sie Infos
@@ -92,17 +91,15 @@ public class AtcIntServer{
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
-		
-		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
-		ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w.getClientID()));
-		
+		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
+
+		ServerSpielLogik.werteListeEvaluieren(DatenAustausch.getInstanz()
+				.getSpielerAmZug());
+
 	}
 
-	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
-		//this.datenAustausch.setClientID(clientID);
-		
-		//this.datenAustausch = DatenAustausch.getInstanz();
+	public void firstContact(int clientID, ServerThread clientThread) {
 
 		clientThread.sendIDToClient(clientID);
 		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden
@@ -113,11 +110,9 @@ public class AtcIntServer{
 	public void broadcast(DatenAustausch w) { // alle Objekte, welche vom Client
 												// kommen, werden an alle
 												// verbundenen Client verteilt
-		for (AtcIntServerClientThread client : clientlist) {
+		for (ServerThread client : clientlist) {
 
 			try {
-				//int a = w.getSpielerListe().size();
-				//System.out.println(a);
 
 				client.sendObjekctToClient(w);
 
@@ -137,11 +132,11 @@ public class AtcIntServer{
 		this.port = port;
 	}
 
-	public ArrayList<AtcIntServerClientThread> getClientlist() {
+	public ArrayList<ServerThread> getClientlist() {
 		return clientlist;
 	}
 
-	public void setClientlist(ArrayList<AtcIntServerClientThread> clientlist) {
+	public void setClientlist(ArrayList<ServerThread> clientlist) {
 		this.clientlist = clientlist;
 	}
 
@@ -175,10 +170,6 @@ public class AtcIntServer{
 
 	public void setStopServer(boolean stopServer) {
 		this.stopServer = stopServer;
-	}
-	
-	public static void main (String[]args) throws Exception{
-		new AtcIntServer(44444).start();
 	}
 
 

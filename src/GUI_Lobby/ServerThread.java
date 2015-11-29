@@ -1,4 +1,4 @@
-package AtcIntServer;
+package GUI_Lobby;
 import java.io.*;
 import java.net.Socket;
 
@@ -6,16 +6,16 @@ import AtcIntDatenaustausch.DatenAustausch;
 
 //import AtcIntDatenaustausch.Wurfel;
 
-public class AtcIntServerClientThread extends Thread {
+public class ServerThread extends Thread {
 
 	private Socket socket;
 	private String Threadname;
 	private ObjectOutputStream out;
 	private ObjectInputStream in;
-	private AtcIntServer server;
+	private Server server;
 
 
-	public AtcIntServerClientThread(AtcIntServer server, Socket socket, String Threadname) throws Exception {
+	public ServerThread(Server server, Socket socket, String Threadname) throws Exception {
 		this.socket = socket;
 		this.Threadname = Threadname;
 		this.server = server;
@@ -65,9 +65,6 @@ public class AtcIntServerClientThread extends Thread {
 		
 		try {
 			
-			int a = w.getSpielerListe().size();
-			System.out.println(a);
-			
 			this.out.writeObject(w);
 			out.flush();
 			
@@ -92,16 +89,7 @@ public class AtcIntServerClientThread extends Thread {
 	}
 	
 	
-	
 
-	
-	public Socket getSocket() {
-		return socket;
-	}
-
-	public void setSocket(Socket socket) {
-		this.socket = socket;
-	}
 
 	public String getThreadname() {
 		return Threadname;
@@ -111,37 +99,9 @@ public class AtcIntServerClientThread extends Thread {
 		Threadname = threadname;
 	}
 
-	public ObjectOutputStream getOut() {
-		return out;
-	}
-
-	public void setOut(ObjectOutputStream out) {
-		this.out = out;
-	}
-
-	public ObjectInputStream getIn() {
-		return in;
-	}
-
-	public void setIn(ObjectInputStream in) {
-		this.in = in;
-	}
-
-	public AtcIntServer getServer() {
-		return server;
-	}
-
-	public void setServer(AtcIntServer server) {
-		this.server = server;
-	}
 
 
-	
-	public String toString() {
-		return "AtcIntServerClientThread [socket=" + socket + ", Threadname="
-				+ Threadname + ", out=" + out + ", in=" + in + ", server="
-				+ server + "]";
-	}
+
 
 	
 }

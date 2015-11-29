@@ -1,4 +1,4 @@
-package AtcIntServer;
+package GUI_Lobby;
 
 import java.util.ArrayList;
 
@@ -10,8 +10,8 @@ public class ServerSpielLogik {
 	public static final int CONSTANT_TATZE = 5;
 	public static final int CONSTANT_HERZ = 4;
 
-	private static void angreifen(Spieler angrSpieler) {
-//Methode evaluiert, ob angreifender Spieler auf Tokyo ist/ welche Spieler angreift
+	public static void angreifen(Spieler angrSpieler) {
+
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -33,7 +33,7 @@ public class ServerSpielLogik {
 	}
 
 	public void aufTokyoGehen(Spieler spielerAufTokyo) {
-//Methode setzt Spieler auf Tokyo
+
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 		for (Spieler spieler : spielerListe) {
@@ -46,8 +46,8 @@ public class ServerSpielLogik {
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
-	private static void lebenBerechnen(Spieler spielerAmZug) {
-//Addiert dem Spieler Leben
+	public static void lebenBerechnen(Spieler spielerAmZug) {
+
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -61,8 +61,8 @@ public class ServerSpielLogik {
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
-	private static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
-//Ruhmpunkte werden dem Spieler addiert und gewinner festgestellt
+	public static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
+
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -82,7 +82,7 @@ public class ServerSpielLogik {
 		}
 	}
 
-	private static void siegerKueren(Spieler spieler) {
+	public static void siegerKueren(Spieler spieler) {
 
 		DatenAustausch.getInstanz().setModeration(
 				spieler.getSpielerName() + " hat gewonnen");
@@ -105,7 +105,7 @@ public class ServerSpielLogik {
 			if (i == CONSTANT_HERZ) {
 				lebenBerechnen(spieler);
 			}
-			if (i < CONSTANT_HERZ) {
+			if (i <= CONSTANT_HERZ) {
 				ruhmpunkteBerechnen(i, spieler);
 			}
 
