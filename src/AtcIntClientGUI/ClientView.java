@@ -7,85 +7,81 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ClientView {
-	
+
 	private Scene scene;
+
 	
 	private Label lbPunkte0;
 	private Label lbPunkte1;
 	private Label lbPunkte2;
 	private Label lbPunkte3;
-	
+
 	private Label lbSpieler0;
 	private Label lbSpieler1;
 	private Label lbSpieler2;
 	private Label lbSpieler3;
-	
+
 	private Label lbLeben0;
 	private Label lbLeben1;
 	private Label lbLeben2;
 	private Label lbLeben3;
-	
+
 	private Label lbTitel;
 	private Label lbModeration;
 	private Label lbTokyo;
-	
-	
+
 	private Button btnWurfeln;
 	private Button btnTokyoVerlassen;
 	private Button btnVerbinden;
-	
-	public ClientView(){
-		
-	
-	lbSpieler1 = new Label("Spieler 1");
-	lbPunkte1 = new Label("Punkte");
-	lbLeben1 = new Label("Leben");
-	
-	lbSpieler2 = new Label("Spieler 2");
-	lbPunkte2 = new Label("Punkte");
-	lbLeben2 = new Label("Leben");
-	
-	lbSpieler3 = new Label("Spieler 3");
-	lbPunkte3 = new Label("Punkte");
-	lbLeben3 = new Label("Leben");
-	
-	lbSpieler0 = new Label("Spieler 0");
-	lbPunkte0 = new Label("Punkte");
-	lbLeben0 = new Label("Leben");
-	
-	lbTitel = new Label ("King of Tokyo");
-	lbModeration = new Label ("King of Tokyo");
-	lbTokyo = new Label ("King of Tokyo");
-	
-	
-	btnWurfeln = new Button("würfeln");
-	btnTokyoVerlassen = new Button ("Tokyo verlassen / GuI update");
-	btnVerbinden = new Button("verbinden");
-	
-	getBtnWurfeln().setDisable(true);
-	getBtnTokyoVerlassen().setDisable(true);
-	
-	btnVerbinden.setDefaultButton(true);
-	
-	VBox root = new VBox();
-	root.getChildren().addAll(lbTitel, lbModeration, lbTokyo,
-			lbSpieler0, lbLeben0, lbPunkte0,
-			lbSpieler1, lbLeben1, lbPunkte1,
-			lbSpieler2, lbLeben2, lbPunkte2,
-			lbSpieler3, lbLeben3, lbPunkte3,
-			
-			btnWurfeln, btnTokyoVerlassen,btnVerbinden);
 
-	
-	scene = new Scene(root, 500, 500);
-	
-	
-	//stage.setScene(scene);
-	
-	//scene = stage.show();
-	
+	public ClientView() {
+
+		
+		lbSpieler1 = new Label("\nSpieler 1");
+		lbPunkte1 = new Label("Punkte");
+		lbLeben1 = new Label("Leben");
+
+		lbSpieler2 = new Label("\nSpieler 2");
+		lbPunkte2 = new Label("Punkte");
+		lbLeben2 = new Label("Leben");
+
+		lbSpieler3 = new Label("\nSpieler 3");
+		lbPunkte3 = new Label("Punkte");
+		lbLeben3 = new Label("Leben");
+
+		lbSpieler0 = new Label("\nSpieler 0");
+		lbPunkte0 = new Label("Punkte");
+		lbLeben0 = new Label("Leben");
+
+		lbTitel = new Label("King of Tokyo");
+		lbModeration = new Label("King of Tokyo");
+		lbTokyo = new Label("King of Tokyo");
+
+		btnWurfeln = new Button("würfeln");
+		btnTokyoVerlassen = new Button("Tokyo verlassen / GuI update");
+		btnVerbinden = new Button("verbinden");
+
+		getBtnWurfeln().setDisable(true);
+		getBtnTokyoVerlassen().setDisable(true);
+
+		btnVerbinden.setDefaultButton(true);
+
+		VBox root = new VBox();
+		root.getChildren().addAll(lbTitel, lbModeration, lbTokyo, lbSpieler0,
+				lbLeben0, lbPunkte0, lbSpieler1, lbLeben1, lbPunkte1,
+				lbSpieler2, lbLeben2, lbPunkte2,lbSpieler3,
+				lbLeben3, lbPunkte3,
+
+				btnWurfeln, btnTokyoVerlassen, btnVerbinden);
+
+		scene = new Scene(root, 500, 500);
+
+		// stage.setScene(scene);
+
+		// scene = stage.show();
+
 	}
-	
+
 	public Label getLbModeration() {
 		return lbModeration;
 	}
@@ -102,11 +98,11 @@ public class ClientView {
 		this.lbTokyo = lbTokyo;
 	}
 
-	public void show (Stage stage){
+	public void show(Stage stage) {
 		stage.setTitle("King of Tokyo");
 		stage.setScene(scene);
 		stage.show();
-		
+
 	}
 
 	public Scene getScene() {
@@ -244,7 +240,5 @@ public class ClientView {
 	public void setBtnVerbinden(Button btnVerbinden) {
 		this.btnVerbinden = btnVerbinden;
 	}
-	
-	
 
 }

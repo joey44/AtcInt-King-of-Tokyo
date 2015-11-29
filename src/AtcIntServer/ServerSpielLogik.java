@@ -11,7 +11,7 @@ public class ServerSpielLogik {
 	public static final int CONSTANT_HERZ = 4;
 
 	private static void angreifen(Spieler angrSpieler) {
-
+//Methode evaluiert, ob angreifender Spieler auf Tokyo ist/ welche Spieler angreift
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -33,7 +33,7 @@ public class ServerSpielLogik {
 	}
 
 	public void aufTokyoGehen(Spieler spielerAufTokyo) {
-
+//Methode setzt Spieler auf Tokyo
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 		for (Spieler spieler : spielerListe) {
@@ -47,7 +47,7 @@ public class ServerSpielLogik {
 	}
 
 	private static void lebenBerechnen(Spieler spielerAmZug) {
-
+//Addiert dem Spieler Leben
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -62,7 +62,7 @@ public class ServerSpielLogik {
 	}
 
 	private static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
-
+//Ruhmpunkte werden dem Spieler addiert und gewinner festgestellt
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
