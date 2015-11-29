@@ -121,20 +121,29 @@ public class ServerSpielLogik {
 				continue;
 			}
 
-			if (j > 0) {
+			if (j >= 1) {
 				if (werte[j] == werte[j - 1]) {
 
-					if (j > 2) {
+					if (j >= 2) {
 						if (werte[j] == werte[j - 2]) {
 
-							punkte = werte[j];
+							punkte = punkte + werte[j];
 							ruhmpunkteBerechnen(punkte, spieler);
 
+							if (j >= 3) {
+								if (werte[j] == werte[j - 3]) {
+
+									punkte = punkte + 1;
+									ruhmpunkteBerechnen(punkte, spieler);
+
+								}
+							}
 						}
+
 					}
 				}
-
 			}
+			punkte = 0;
 		}
 	}
 }
