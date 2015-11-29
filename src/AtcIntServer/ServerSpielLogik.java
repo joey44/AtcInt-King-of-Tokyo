@@ -10,7 +10,7 @@ public class ServerSpielLogik {
 	public static final int CONSTANT_TATZE = 5;
 	public static final int CONSTANT_HERZ = 4;
 
-	public static void angreifen(Spieler angrSpieler) {
+	private static void angreifen(Spieler angrSpieler) {
 
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
@@ -46,7 +46,7 @@ public class ServerSpielLogik {
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
-	public static void lebenBerechnen(Spieler spielerAmZug) {
+	private static void lebenBerechnen(Spieler spielerAmZug) {
 
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
@@ -61,7 +61,7 @@ public class ServerSpielLogik {
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
-	public static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
+	private static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
 
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
@@ -82,7 +82,7 @@ public class ServerSpielLogik {
 		}
 	}
 
-	public static void siegerKueren(Spieler spieler) {
+	private static void siegerKueren(Spieler spieler) {
 
 		DatenAustausch.getInstanz().setModeration(
 				spieler.getSpielerName() + " hat gewonnen");
@@ -105,7 +105,7 @@ public class ServerSpielLogik {
 			if (i == CONSTANT_HERZ) {
 				lebenBerechnen(spieler);
 			}
-			if (i <= CONSTANT_HERZ) {
+			if (i < CONSTANT_HERZ) {
 				ruhmpunkteBerechnen(i, spieler);
 			}
 
