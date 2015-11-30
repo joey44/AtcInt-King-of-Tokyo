@@ -20,9 +20,23 @@ public class ClientController {
 		clientServerVerbindung = new ClientServerVerbindung(this, view);
 
 		view.getBtnWurfeln().setOnAction(new wurfelnEventHandler());
+		
+		
+		view.getBtnWuerfel1().setOnAction(new wurfelnAuswahlEventHandler());
+		view.getBtnWuerfel2().setOnAction(new wurfelnAuswahlEventHandler());
+		view.getBtnWuerfel3().setOnAction(new wurfelnAuswahlEventHandler());
+		view.getBtnWuerfel4().setOnAction(new wurfelnAuswahlEventHandler());
+		view.getBtnWuerfel5().setOnAction(new wurfelnAuswahlEventHandler());
+		view.getBtnWuerfel6().setOnAction(new wurfelnAuswahlEventHandler());
+		
 		view.getBtnTokyoVerlassen().setOnAction(
 				new tokyoVerlassenEventHandler());
 		view.getBtnVerbinden().setOnAction(new verbindenEventHandler());
+		
+		view.getBtnWurfeln().setDisable(true);
+		view.getBtnTokyoVerlassen().setDisable(true);
+
+		view.getBtnVerbinden().setDefaultButton(true);
 
 	}
 
@@ -75,6 +89,19 @@ public class ClientController {
 			view.getBtnTokyoVerlassen().setDisable(false);
 
 		}
+		
+		
+		
+		
+		
+		
+		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0)+"");
+		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1)+"");
+		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2)+"");
+		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3)+"");
+		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4)+"");
+		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5)+"");
+		
 
 	}
 
@@ -87,7 +114,20 @@ public class ClientController {
 		setDatenAustausch(d);
 
 		clientServerVerbindung.sendDatenAustauschToServer(d);
+		
+		updateClientGUI(getDatenAustausch(), getClientID());
 
+	}
+	
+	public void wurfelAuswahl(DatenAustausch d) {
+		
+		
+			
+			
+		setDatenAustausch(d);
+		
+		
+		
 	}
 
 	public int getClientID() {
@@ -106,6 +146,21 @@ public class ClientController {
 		}
 
 	}
+	
+	class wurfelnAuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl");
+			
+			
+
+			wurfelAuswahl(getDatenAustausch());
+
+		}
+
+	}
 
 	class tokyoVerlassenEventHandler implements EventHandler<ActionEvent> {
 
@@ -114,15 +169,12 @@ public class ClientController {
 
 			System.out.println("tokyoVerlassen");
 
-			getDatenAustausch().getSpielerByID(getClientID())
-					.setAufTokyo(false);
-			getDatenAustausch().setModeration(
-					"Spieler " + getClientID() + " hat Tokyo verlassen");
+			getDatenAustausch().getSpielerByID(getClientID()).setAufTokyo(false);
+			getDatenAustausch().setModeration("Spieler " + getClientID() + " hat Tokyo verlassen");
 
 			System.out.println("Spieler " + getClientID() + "Tokyo verlassen");
 
-			clientServerVerbindung
-					.sendDatenAustauschToServer(getDatenAustausch());
+			clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
 
 		}
 

@@ -16,7 +16,7 @@ public class ClientSpielLogik {
 
 		Spieler s = d2.getSpielerByID(clientID);
 
-		return "Leben: " + s.getAnzahlLeben();
+		return ": " + s.getAnzahlLeben();
 
 	}
 
@@ -26,7 +26,7 @@ public class ClientSpielLogik {
 
 		Spieler s = d2.getSpielerByID(clientID);
 
-		return "Punkte: " + s.getAnzahlRuhmpunkte();
+		return ": " + s.getAnzahlRuhmpunkte();
 	}
 	
 	public static String spielerName(DatenAustausch d2, int clientID) {

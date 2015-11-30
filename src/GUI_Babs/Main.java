@@ -45,6 +45,8 @@ public class Main extends Application {
 	private Button btnTokyoVerlassen;
 	private Label lbTitel;
 	private Scene scene;
+	
+	
 	private Button btnWuerfel1;
 	private Button btnWuerfel2;
 	private Button btnWuerfel3;
