@@ -1,4 +1,4 @@
-package AtcIntClient;
+package xxAtcIntClient;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;

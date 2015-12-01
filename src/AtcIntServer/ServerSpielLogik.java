@@ -3,10 +3,9 @@ package AtcIntServer;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import bsp_wuerfel.Wuerfel;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
-import AtcIntDatenaustausch.Wurfel;
+
 
 public class ServerSpielLogik {
 
