@@ -16,7 +16,6 @@ public class DatenAustausch implements Serializable {
 	private ArrayList<Spieler> spielerListe;
 	private int runde = 0;
 	private int clientID;
-	
 
 	private DatenAustausch() {
 
@@ -32,8 +31,8 @@ public class DatenAustausch implements Serializable {
 		}
 		return DatenAustausch.InstanzDatenAustausch;
 	}
-	
-	public static void setInstanz(DatenAustausch w){
+
+	public static void setInstanz(DatenAustausch w) {
 		DatenAustausch.InstanzDatenAustausch = w;
 	}
 
@@ -49,7 +48,7 @@ public class DatenAustausch implements Serializable {
 
 		this.wurfel.setWerte(this.wurfel.wuerfeln());
 		this.setWurfel(this.wurfel);
-		
+
 	}
 
 	public Spieler getSpielerAmZug() {
@@ -88,7 +87,29 @@ public class DatenAustausch implements Serializable {
 		return Spieler;
 	}
 
-	
+	public void setSpielerByID(int spielerID, Spieler s) {
+
+		spielerListe.set(spielerID, s);
+
+	}
+
+	public void setWurfelIsAusgewahlt(int wID) {
+
+		if (wurfel.getIsAusgewahlt(wID) == false) {
+			wurfel.setIsAusgewahlt(wID, true);
+		}
+
+		else {
+			wurfel.setIsAusgewahlt(wID, false);
+		}
+
+	}
+
+	public boolean getWurfelIsAusgewahlt(int wID) {
+
+		return wurfel.getIsAusgewahlt(wID);
+
+	}
 
 	@Override
 	public String toString() {
@@ -100,7 +121,7 @@ public class DatenAustausch implements Serializable {
 	public Wurfel getWurfel() {
 		return wurfel;
 	}
-	
+
 	public int getwCounter() {
 		return this.wurfel.getwCounter();
 	}
@@ -140,7 +161,5 @@ public class DatenAustausch implements Serializable {
 	public void setClientID(int clientID) {
 		this.clientID = clientID;
 	}
-	
-	
 
 }

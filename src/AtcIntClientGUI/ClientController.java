@@ -1,6 +1,7 @@
 package AtcIntClientGUI;
 
 import AtcIntDatenaustausch.DatenAustausch;
+import AtcIntDatenaustausch.Spieler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -20,19 +21,18 @@ public class ClientController {
 		clientServerVerbindung = new ClientServerVerbindung(this, view);
 
 		view.getBtnWurfeln().setOnAction(new wurfelnEventHandler());
-		
-		
-		view.getBtnWuerfel1().setOnAction(new wurfelnAuswahlEventHandler());
-		view.getBtnWuerfel2().setOnAction(new wurfelnAuswahlEventHandler());
-		view.getBtnWuerfel3().setOnAction(new wurfelnAuswahlEventHandler());
-		view.getBtnWuerfel4().setOnAction(new wurfelnAuswahlEventHandler());
-		view.getBtnWuerfel5().setOnAction(new wurfelnAuswahlEventHandler());
-		view.getBtnWuerfel6().setOnAction(new wurfelnAuswahlEventHandler());
-		
+
+		view.getBtnWuerfel1().setOnAction(new wurfeln1AuswahlEventHandler());
+		view.getBtnWuerfel2().setOnAction(new wurfeln2AuswahlEventHandler());
+		view.getBtnWuerfel3().setOnAction(new wurfeln3AuswahlEventHandler());
+		view.getBtnWuerfel4().setOnAction(new wurfeln4AuswahlEventHandler());
+		view.getBtnWuerfel5().setOnAction(new wurfeln5AuswahlEventHandler());
+		view.getBtnWuerfel6().setOnAction(new wurfeln6AuswahlEventHandler());
+
 		view.getBtnTokyoVerlassen().setOnAction(
 				new tokyoVerlassenEventHandler());
 		view.getBtnVerbinden().setOnAction(new verbindenEventHandler());
-		
+
 		view.getBtnWurfeln().setDisable(true);
 		view.getBtnTokyoVerlassen().setDisable(true);
 
@@ -89,45 +89,63 @@ public class ClientController {
 			view.getBtnTokyoVerlassen().setDisable(false);
 
 		}
-		
-		
-		
-		
-		
-		
-		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0)+"");
-		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1)+"");
-		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2)+"");
-		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3)+"");
-		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4)+"");
-		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5)+"");
-		
+
+		else if (d.getSpielerAufTokyo() == null) {
+			System.out.println("kein Spieler ist auf Tokyo");
+			view.getBtnTokyoVerlassen().setDisable(true);
+		}
+
+		view.getBtnWuerfel1().setSelected(d.getWurfelIsAusgewahlt(0));
+		view.getBtnWuerfel2().setSelected(d.getWurfelIsAusgewahlt(1));
+		view.getBtnWuerfel3().setSelected(d.getWurfelIsAusgewahlt(2));
+		view.getBtnWuerfel4().setSelected(d.getWurfelIsAusgewahlt(3));
+		view.getBtnWuerfel5().setSelected(d.getWurfelIsAusgewahlt(4));
+		view.getBtnWuerfel6().setSelected(d.getWurfelIsAusgewahlt(5));
+
+		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0) + "");
+		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
+		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
+		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
+		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
+		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");
 
 	}
 
-	public void wurfelWurfeln(DatenAustausch d) {
+	public void wurfelWurfeln() {
 
-		// DatenAustausch d = this.datenAustausch;
+		DatenAustausch d = getDatenAustausch();
 
 		d = ClientSpielLogik.wurfelWurfeln(d);
 
 		setDatenAustausch(d);
 
 		clientServerVerbindung.sendDatenAustauschToServer(d);
-		
+
 		updateClientGUI(getDatenAustausch(), getClientID());
 
 	}
-	
-	public void wurfelAuswahl(DatenAustausch d) {
-		
-		
-			
-			
-		setDatenAustausch(d);
-		
-		
-		
+
+	public void wurfelAuswahl(int w) {
+
+		getDatenAustausch().setWurfelIsAusgewahlt(w);
+
+	}
+
+	public void tokyoVerlasse() {
+
+		Spieler s = getDatenAustausch().getSpielerByID(getClientID());
+
+		s.setAufTokyo(false);
+
+		getDatenAustausch().setSpielerByID(clientID, s);
+
+		getDatenAustausch().setModeration(
+				"Spieler " + getClientID() + " hat Tokyo verlassen");
+
+		System.out.println("Spieler " + getClientID() + "Tokyo verlassen");
+
+		clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
+
 	}
 
 	public int getClientID() {
@@ -141,26 +159,102 @@ public class ClientController {
 
 			System.out.println("würflen");
 
-			wurfelWurfeln(getDatenAustausch());
+			wurfelWurfeln();
+
+		}
+
+	}
+
+	class wurfeln1AuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl1");
+
+			int wID = 1;
+
+			wurfelAuswahl(wID - 1);
+
+		}
+
+	}
+
+	class wurfeln2AuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl2");
+
+			int wID = 2;
+
+			wurfelAuswahl(wID - 1);
 
 		}
 
 	}
 	
-	class wurfelnAuswahlEventHandler implements EventHandler<ActionEvent> {
+	class wurfeln3AuswahlEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
 		public void handle(ActionEvent event) {
 
-			System.out.println("würflenAuswahl");
-			
-			
+			System.out.println("würflenAuswahl2");
 
-			wurfelAuswahl(getDatenAustausch());
+			int wID = 3;
+
+			wurfelAuswahl(wID - 1);
 
 		}
 
 	}
+	
+	class wurfeln4AuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl2");
+
+			int wID = 4;
+
+			wurfelAuswahl(wID - 1);
+
+		}
+
+	}
+	
+	class wurfeln5AuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl2");
+
+			int wID = 5;
+
+			wurfelAuswahl(wID - 1);
+
+		}
+
+	}
+	
+	class wurfeln6AuswahlEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+
+			System.out.println("würflenAuswahl2");
+
+			int wID = 6;
+
+			wurfelAuswahl(wID - 1);
+
+		}
+
+	}
+		
 
 	class tokyoVerlassenEventHandler implements EventHandler<ActionEvent> {
 
@@ -169,12 +263,7 @@ public class ClientController {
 
 			System.out.println("tokyoVerlassen");
 
-			getDatenAustausch().getSpielerByID(getClientID()).setAufTokyo(false);
-			getDatenAustausch().setModeration("Spieler " + getClientID() + " hat Tokyo verlassen");
-
-			System.out.println("Spieler " + getClientID() + "Tokyo verlassen");
-
-			clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
+			tokyoVerlasse();
 
 		}
 
