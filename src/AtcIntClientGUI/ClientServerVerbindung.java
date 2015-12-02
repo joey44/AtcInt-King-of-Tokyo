@@ -6,7 +6,6 @@ import java.net.Socket;
 import javafx.application.Platform;
 import AtcIntDatenaustausch.DatenAustausch;
 
-
 public class ClientServerVerbindung extends Thread {
 
 	private Socket clientSocket;
@@ -17,7 +16,6 @@ public class ClientServerVerbindung extends Thread {
 	private ClientView cview;
 
 	private DatenAustausch datenAustausch;
-	
 
 	private volatile boolean stopThread = false;
 
@@ -27,8 +25,8 @@ public class ClientServerVerbindung extends Thread {
 
 		this.cview = cview;
 		this.controller = controller;
-		
-		//this.datenAustausch = DatenAustausch.getInstanz();
+
+		// this.datenAustausch = DatenAustausch.getInstanz();
 
 	}
 
@@ -66,7 +64,7 @@ public class ClientServerVerbindung extends Thread {
 	public void sendDatenAustauschToServer(DatenAustausch d) {
 
 		try {
-			
+
 			d.setClientID(getClientID());
 			oos.writeObject(d);
 		} catch (IOException e) {
@@ -91,22 +89,21 @@ public class ClientServerVerbindung extends Thread {
 			// controller.objectFromServerSetDatenaustausch(clientIDOb);
 
 			// controller.setClientID();
-			
-			
-			//setClientID(this.datenAustausch.getClientID());
-			
-			 // UI updaten
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    // entsprechende UI Komponente updaten
-                	cview.getLbTitel().setText("King of Tokyo - Spieler Nr" +getClientID());
-                    cview.getLbModeration().setText("client " + getClientID() + "verbunden");
-                }
-            });
 
+			// setClientID(this.datenAustausch.getClientID());
 
-			
+			// UI updaten
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					// entsprechende UI Komponente updaten
+					cview.getLbTitel().setText(
+							"King of Tokyo - Spieler Nr" + getClientID());
+					// cview.getLbModeration().setText(
+					// "client " + getClientID() + "verbunden");
+					cview.setModeration("client " + getClientID() + "verbunden");
+				}
+			});
 
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
@@ -121,34 +118,28 @@ public class ClientServerVerbindung extends Thread {
 
 				// Thread.sleep(20);
 
-				System.out.println("Client: " + getClientID() + this.datenAustausch);
+				System.out.println("Client: " + getClientID()
+						+ this.datenAustausch);
 
-				//setDatenAustausch(this.datenAustausch);
-				
-				
+				// setDatenAustausch(this.datenAustausch);
+
 				int a = this.datenAustausch.getSpielerListe().size();
 				System.out.println(a);
-				
-			
-				controller.objectFromServerSetDatenaustausch(this.datenAustausch);
-				
-				 // UI updaten
-	            Platform.runLater(new Runnable() {
-	                @Override
-	                public void run() {
-	                    // entsprechende UI Komponente updaten
-	                	
-	                	
-	                	System.out.println("runlater" + getClientID());
-	                	controller.updateClientGUI(getDatenAustausch(), getClientID());
-	                }
-	            });
-	            
-				
 
-				
-				
-				
+				controller
+						.objectFromServerSetDatenaustausch(this.datenAustausch);
+
+				// UI updaten
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						// entsprechende UI Komponente updaten
+
+						System.out.println("runlater" + getClientID());
+						controller.updateClientGUI(getDatenAustausch(),
+								getClientID());
+					}
+				});
 
 			}
 		} catch (Exception e) {
@@ -180,6 +171,5 @@ public class ClientServerVerbindung extends Thread {
 	public void setDatenAustausch(DatenAustausch datenAustausch) {
 		this.datenAustausch = datenAustausch;
 	}
-	
 
 }

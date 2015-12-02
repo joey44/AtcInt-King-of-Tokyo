@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntServer.AtcIntServerClientThread;
 
-public class AtcIntServer{
+public class AtcIntServer {
 
 	private int port;
 	private ArrayList<AtcIntServerClientThread> clientlist;
@@ -28,8 +28,6 @@ public class AtcIntServer{
 
 		// Wenn der Server gestartet wird, wir das Datenaustausch Objekt
 		// initiert
-		
-		
 
 	}
 
@@ -45,8 +43,8 @@ public class AtcIntServer{
 			clientlist.add(clientThread);
 
 			this.datenAustausch.addSpieler(Threadcounter, Threadname); // Spieler
-																	// wird
-																	// erstellt
+																		// wird
+																		// erstellt
 
 			this.firstContact(Threadcounter, clientThread);
 
@@ -80,8 +78,7 @@ public class AtcIntServer{
 		System.out.println("spielStarten");
 
 		this.broadcast(w);
-		
-		
+
 		this.clientlist.get(0).sendObjekctToClient(w); // Wenn alle Clients
 														// verbunden sind,
 														// bekommen sie Infos
@@ -92,17 +89,19 @@ public class AtcIntServer{
 	public void objectFromClientSetDatenaustausch(DatenAustausch w) {
 
 		this.datenAustausch = w; // Objekt welches vom Client gesendet wird,
-		
-		DatenAustausch.setInstanz(w);	// wird auf dem Server gespeichert
 
-		ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w.getClientID()));
-		
+		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
+
+		if (w.getwCounter() == 3) {
+			ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w
+					.getClientID()));
+		}
 	}
 
 	public void firstContact(int clientID, AtcIntServerClientThread clientThread) {
-		//this.datenAustausch.setClientID(clientID);
-		
-		//this.datenAustausch = DatenAustausch.getInstanz();
+		// this.datenAustausch.setClientID(clientID);
+
+		// this.datenAustausch = DatenAustausch.getInstanz();
 
 		clientThread.sendIDToClient(clientID);
 		// clientThread.sendObjekctToClient(w); // Wenn der Client verbunden
@@ -116,8 +115,8 @@ public class AtcIntServer{
 		for (AtcIntServerClientThread client : clientlist) {
 
 			try {
-				//int a = w.getSpielerListe().size();
-				//System.out.println(a);
+				// int a = w.getSpielerListe().size();
+				// System.out.println(a);
 
 				client.sendObjekctToClient(w);
 
@@ -176,10 +175,9 @@ public class AtcIntServer{
 	public void setStopServer(boolean stopServer) {
 		this.stopServer = stopServer;
 	}
-	
-	public static void main (String[]args) throws Exception{
+
+	public static void main(String[] args) throws Exception {
 		new AtcIntServer(44444).start();
 	}
-
 
 }

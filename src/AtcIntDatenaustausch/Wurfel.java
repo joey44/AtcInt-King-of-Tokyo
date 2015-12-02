@@ -27,6 +27,12 @@ public class Wurfel implements Serializable {
 
 	public int[] wuerfeln() {
  
+		
+		if (this.wCounter == 3) {
+			 // nächster Spieler kommt an den Zug
+			 this.wCounter = 0;
+			 }
+		
 		if (this.wCounter % 3 == 0) {
 			for (int i = 0; i < 6; i++) {
 				this.werte[i] = (int) (1 + Math.random() * 5);
@@ -43,10 +49,8 @@ public class Wurfel implements Serializable {
 		}
 
 		this.wCounter++;
-		// if (this.wCounter == 3) {
-		// // nächster Spieler kommt an den Zug
-		// this.wCounter = 0;
-		// }
+		
+		 
 
 		return werte;
 

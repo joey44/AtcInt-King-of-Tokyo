@@ -34,6 +34,20 @@ public class ClientController {
 		view.getBtnVerbinden().setOnAction(new verbindenEventHandler());
 
 		view.getBtnWurfeln().setDisable(true);
+		view.getBtnWuerfel1().setDisable(true);
+		view.getBtnWuerfel2().setDisable(true);
+		view.getBtnWuerfel3().setDisable(true);
+		view.getBtnWuerfel4().setDisable(true);
+		view.getBtnWuerfel5().setDisable(true);
+		view.getBtnWuerfel6().setDisable(true);
+
+		view.getBtnWuerfel1().setSelected(false);
+		view.getBtnWuerfel2().setSelected(false);
+		view.getBtnWuerfel3().setSelected(false);
+		view.getBtnWuerfel4().setSelected(false);
+		view.getBtnWuerfel5().setSelected(false);
+		view.getBtnWuerfel6().setSelected(false);
+
 		view.getBtnTokyoVerlassen().setDisable(true);
 
 		view.getBtnVerbinden().setDefaultButton(true);
@@ -55,8 +69,8 @@ public class ClientController {
 
 		// DatenAustausch d = this.datenAustausch;
 
-		view.getLbModeration().setText("gewürfelt Client:" + clientID);
-
+		// view.getLbModeration().setText("gewürfelt Client:" + clientID);
+		view.setModeration("gewürfelt Client:" + clientID);
 		view.getLbSpieler0().setText(ClientSpielLogik.spielerName(d, 0));
 		view.getLbLeben0().setText(ClientSpielLogik.lebenAnzeigen(d, 0));
 		view.getLbPunkte0().setText(ClientSpielLogik.ruhmpunkteAnzeigen(d, 0));
@@ -73,15 +87,30 @@ public class ClientController {
 		view.getLbLeben3().setText(ClientSpielLogik.lebenAnzeigen(d, 3));
 		view.getLbPunkte3().setText(ClientSpielLogik.ruhmpunkteAnzeigen(d, 3));
 
-		view.getLbModeration().setText(ClientSpielLogik.spielModerieren(d));
-
+		// view.getLbModeration().setText(ClientSpielLogik.spielModerieren(d));
+		view.setModeration(ClientSpielLogik.spielModerieren(d));
 		view.getLbTokyo().setText(ClientSpielLogik.standortAnzeigen(d));
 
 		view.getBtnWurfeln().setDisable(true);
 		view.getBtnTokyoVerlassen().setDisable(true);
 
+		
 		if (getClientID() == d.getSpielerAmZug().getSpielerID()) {
 			view.getBtnWurfeln().setDisable(false);
+			view.getBtnWuerfel1().setDisable(false);
+			view.getBtnWuerfel2().setDisable(false);
+			view.getBtnWuerfel3().setDisable(false);
+			view.getBtnWuerfel4().setDisable(false);
+			view.getBtnWuerfel5().setDisable(false);
+			view.getBtnWuerfel6().setDisable(false);
+			
+			view.getBtnWuerfel1().setSelected(false);
+			view.getBtnWuerfel2().setSelected(false);
+			view.getBtnWuerfel3().setSelected(false);
+			view.getBtnWuerfel4().setSelected(false);
+			view.getBtnWuerfel5().setSelected(false);
+			view.getBtnWuerfel6().setSelected(false);
+
 
 		}
 
@@ -194,7 +223,7 @@ public class ClientController {
 		}
 
 	}
-	
+
 	class wurfeln3AuswahlEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
@@ -209,7 +238,7 @@ public class ClientController {
 		}
 
 	}
-	
+
 	class wurfeln4AuswahlEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
@@ -224,7 +253,7 @@ public class ClientController {
 		}
 
 	}
-	
+
 	class wurfeln5AuswahlEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
@@ -239,7 +268,7 @@ public class ClientController {
 		}
 
 	}
-	
+
 	class wurfeln6AuswahlEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
@@ -254,7 +283,6 @@ public class ClientController {
 		}
 
 	}
-		
 
 	class tokyoVerlassenEventHandler implements EventHandler<ActionEvent> {
 
@@ -280,8 +308,8 @@ public class ClientController {
 
 			view.getBtnVerbinden().setDisable(true);
 
-			view.getLbModeration().setText("warten auf Spiel start");
-
+			// view.getLbModeration().setText("warten auf Spiel start");
+			view.setModeration("warten auf Spiel start");
 		}
 
 	}

@@ -41,16 +41,15 @@ public class ClientView {
 	private Label lbLeben0;
 	private Label lbLeben3;
 
-	
 	private Button btnSenden;
 	private Text txChat;
 	private Button btnVerbinden;
 
 	private Button btnTokyoVerlassen;
-	private Label lbModeration;
+	private TextArea taModeration;
 	private Label lbTitel;
 	private Label lbTokyo;
-	
+
 	private Button btnRegeln;
 
 	private Button btnWurfeln;
@@ -72,9 +71,9 @@ public class ClientView {
 
 		HBox hb = new HBox();
 		btnRegeln = new Button("Regeln"); // Button Regeln wird erstellt
-												// --> HyperLink noch ergÃ¤nzen
+											// --> HyperLink noch ergÃ¤nzen
 		lbTitel = new Label("King of Tokyo");
-		
+
 		btnRegeln.setMaxHeight(6);
 		btnRegeln.setMaxWidth(70);
 		btnRegeln.setFont(Font.font("Arial", FontWeight.BLACK,
@@ -92,15 +91,16 @@ public class ClientView {
 		vb.setSpacing(10);
 		HBox hbox = new HBox(3);
 		vb.getChildren().add(hbox);
-		
+
 		btnTokyoVerlassen = new Button("Tokyo verlassen");
 		btnVerbinden = new Button("Verbinden");
 		lbTokyo = new Label("Wer ist auf Tokyo?");
-	
-		hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden,lbTokyo);
-		lbModeration = new Label("Moderation");
-		lbModeration.setAlignment(Pos.CENTER_RIGHT);
-		vb.getChildren().add(lbModeration);
+
+		hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
+		
+		taModeration = new TextArea();
+		taModeration.setEditable(false);
+		vb.getChildren().add(taModeration);
 
 		// FlowPane mit den 6 Würfel wird estellt und in der Border Pane
 		// angeordnet
@@ -113,7 +113,7 @@ public class ClientView {
 
 		fp.getChildren().add(btnWurfeln);
 		btnWuerfel1 = new ToggleButton("Würfel1");
-		
+
 		fp.getChildren().add(btnWuerfel1);
 		// ImageView image2 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
@@ -169,7 +169,7 @@ public class ClientView {
 		ImageView image10 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Stern.jpg"), 30, 30, true, true));
 		lbPunkte0 = new Label();
-		
+
 		hb5.getChildren().addAll(image9, lbLeben0, image10, lbPunkte0);
 		lbSpieler0 = new Label("SpielerName");
 		vb4.getChildren().addAll(lbSpieler0, image8, hb5);
@@ -250,8 +250,7 @@ public class ClientView {
 		vb2.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
 
 		scene = new Scene(root, 950, 650, Color.WHITE);
-		
-		
+
 		root.setTop(hb);
 		root.setLeft(vb);
 		root.setCenter(fp);
@@ -260,12 +259,10 @@ public class ClientView {
 
 	}
 
-	public Label getLbModeration() {
-		return lbModeration;
-	}
 
-	public void setLbModeration(Label lbModeration) {
-		this.lbModeration = lbModeration;
+	public void setModeration(String modText) {
+
+		this.taModeration.appendText(modText + "\n");
 	}
 
 	public Label getLbTokyo() {
@@ -424,7 +421,7 @@ public class ClientView {
 	public void setBtnVerbinden(Button btnVerbinden) {
 		this.btnVerbinden = btnVerbinden;
 	}
-	
+
 	public Button getBtnSenden() {
 		return btnSenden;
 	}
@@ -496,7 +493,5 @@ public class ClientView {
 	public void setBtnWuerfel5(ToggleButton btnWuerfel5) {
 		this.btnWuerfel5 = btnWuerfel5;
 	}
-
-	
 
 }

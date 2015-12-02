@@ -6,7 +6,6 @@ import java.util.Arrays;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
 
-
 public class ServerSpielLogik {
 
 	public static final int CONSTANT_TATZE = 5;
@@ -106,31 +105,31 @@ public class ServerSpielLogik {
 	public static void werteListeEvaluieren(Spieler spieler) {
 
 		int punkte = 0;
-		int[] werte = DatenAustausch.getInstanz().getWurfel().getWerte();
-		Arrays.sort(werte);
+		int[] lokalWerte = DatenAustausch.getInstanz().getWurfel().getWerte();
+		Arrays.sort(lokalWerte);
 
-		for (int j = 0; j < werte.length; j++) {
+		for (int j = 0; j < lokalWerte.length; j++) {
 
-			if (werte[j] == CONSTANT_TATZE) {
+			if (lokalWerte[j] == CONSTANT_TATZE) {
 				angreifen(spieler);
 				continue;
 			}
-			if (werte[j] == CONSTANT_HERZ) {
+			if (lokalWerte[j] == CONSTANT_HERZ) {
 				lebenBerechnen(spieler);
 				continue;
 			}
 
 			if (j >= 1) {
-				if (werte[j] == werte[j - 1]) {
+				if (lokalWerte[j] == lokalWerte[j - 1]) {
 
 					if (j >= 2) {
-						if (werte[j] == werte[j - 2]) {
+						if (lokalWerte[j] == lokalWerte[j - 2]) {
 
-							punkte = punkte + werte[j];
+							punkte = punkte + lokalWerte[j];
 							ruhmpunkteBerechnen(punkte, spieler);
 
 							if (j >= 3) {
-								if (werte[j] == werte[j - 3]) {
+								if (lokalWerte[j] == lokalWerte[j - 3]) {
 
 									punkte = punkte + 1;
 									ruhmpunkteBerechnen(punkte, spieler);
