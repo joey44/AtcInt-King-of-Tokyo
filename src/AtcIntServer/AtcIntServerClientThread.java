@@ -2,6 +2,7 @@ package AtcIntServer;
 import java.io.*;
 import java.net.Socket;
 
+import AtcIntDatenaustausch.Chat;
 import AtcIntDatenaustausch.DatenAustausch;
 
 //import AtcIntDatenaustausch.Wurfel;
@@ -22,6 +23,7 @@ public class AtcIntServerClientThread extends Thread {
 
 		this.out = new ObjectOutputStream(socket.getOutputStream());
 		this.in = new ObjectInputStream(socket.getInputStream());
+		
 
 	}
 
@@ -42,22 +44,44 @@ public class AtcIntServerClientThread extends Thread {
 
 	public void listen() {
 		DatenAustausch w;
+		Chat c;
+		Object x;
+	
+		
 		try {
-			while ((w = (DatenAustausch) in.readObject()) != null) { // waiting
+			while ((x = in.readObject()) != null) { // waiting
 				
-				server.objectFromClientSetDatenaustausch(w);
 				
-				//System.out.println(server.getClientlist());
-				//this.sendObjekctToClient(w);
-				server.broadcast(w);
+				
+				if(x instanceof DatenAustausch){
+					
+					w = (DatenAustausch) x;
+					
+					server.objectFromClientSetDatenaustausch(w);
+					server.broadcast(w);
+					
+					
+				}
+				
+				else if(x instanceof Chat){	
+					
+				c = (Chat) x;
+					
+					
+					server.broadcastChat(c);
 
 
-				//System.out.println("Server: " + w + this.getThreadname());
 				
+				}
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 	
 	
@@ -77,6 +101,22 @@ public class AtcIntServerClientThread extends Thread {
 		}
 		
 	}
+	
+	
+	public void sendChatObjekctToClient(Chat c) {
+	try {
+				
+			this.out.writeObject(c);
+			out.flush();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public void sendIDToClient(int clientID) {
 		
 		try {
@@ -142,6 +182,8 @@ public class AtcIntServerClientThread extends Thread {
 				+ Threadname + ", out=" + out + ", in=" + in + ", server="
 				+ server + "]";
 	}
+
+
 
 	
 }

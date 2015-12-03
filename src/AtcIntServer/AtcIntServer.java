@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import AtcIntDatenaustausch.Chat;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntServer.AtcIntServerClientThread;
 
@@ -35,10 +36,8 @@ public class AtcIntServer {
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
 			Socket socket = serverSocket.accept();
-			this.Threadname = "Spieler " + Threadcounter
-					+ socket.getInetAddress().toString();
-			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(
-					this, socket, Threadname);
+			this.Threadname = "Spieler " + Threadcounter + socket.getInetAddress().toString();
+			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(this, socket, Threadname);
 			clientThread.start();
 			clientlist.add(clientThread);
 
@@ -93,8 +92,7 @@ public class AtcIntServer {
 		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
 
 		if (w.getwCounter() == 3) {
-			ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w
-					.getClientID()));
+			ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w.getClientID()));
 		}
 	}
 
@@ -119,6 +117,24 @@ public class AtcIntServer {
 				// System.out.println(a);
 
 				client.sendObjekctToClient(w);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
+	public void broadcastChat(Chat c) { // alle Chat Objekte, welche vom
+													// Client
+		// kommen, werden an alle
+		// verbundenen Clients verteilt
+		for (AtcIntServerClientThread client : clientlist) {
+
+			try {
+				
+				client.sendChatObjekctToClient(c);
 
 			} catch (Exception e) {
 				e.printStackTrace();

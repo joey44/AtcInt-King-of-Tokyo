@@ -1,5 +1,6 @@
 package AtcIntClientGUI;
 
+import AtcIntDatenaustausch.Chat;
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ public class ClientController {
 	public ClientController(ClientView view) {
 
 		this.view = view;
+		
+		
 
 		clientServerVerbindung = new ClientServerVerbindung(this, view);
 
@@ -28,6 +31,8 @@ public class ClientController {
 		view.getBtnWuerfel4().setOnAction(new wurfeln4AuswahlEventHandler());
 		view.getBtnWuerfel5().setOnAction(new wurfeln5AuswahlEventHandler());
 		view.getBtnWuerfel6().setOnAction(new wurfeln6AuswahlEventHandler());
+		
+		view.getBtnSenden().setOnAction(new nachrichtSendenEventHandler());
 
 		view.getBtnTokyoVerlassen().setOnAction(
 				new tokyoVerlassenEventHandler());
@@ -51,6 +56,8 @@ public class ClientController {
 		view.getBtnTokyoVerlassen().setDisable(true);
 
 		view.getBtnVerbinden().setDefaultButton(true);
+		
+		view.getBtnSenden().setDisable(true);
 
 	}
 
@@ -138,6 +145,12 @@ public class ClientController {
 		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
 		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");
 
+	}
+	
+	public void updateChat(Chat c){
+		
+		view.getTaChat().appendText(c.getAbsender()+": " + c.getChatNachricht() + "\n");
+		
 	}
 
 	public void wurfelWurfeln() {
@@ -310,6 +323,27 @@ public class ClientController {
 
 			// view.getLbModeration().setText("warten auf Spiel start");
 			view.setModeration("warten auf Spiel start");
+			
+			view.getBtnSenden().setDisable(false);
+		}
+
+	}
+	
+// Chat
+	class nachrichtSendenEventHandler implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent event) {
+			
+			Chat c = new Chat("","");
+			
+			c.setChatNachricht(view.getTf2Chat().getText());
+			c.setAbsender("S " + getClientID());
+			
+			clientServerVerbindung.sendChatToServer(c);
+			
+			view.getTf2Chat().clear();
+			
 		}
 
 	}

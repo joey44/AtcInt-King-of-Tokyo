@@ -41,8 +41,13 @@ public class ClientView {
 	private Label lbLeben0;
 	private Label lbLeben3;
 
+	//Chat
 	private Button btnSenden;
+	private TextArea taChat;
+	private TextField tf2Chat;
+	
 	private Text txChat;
+	
 	private Button btnVerbinden;
 
 	private Button btnTokyoVerlassen;
@@ -241,10 +246,10 @@ public class ClientView {
 				FontPosture.REGULAR, 14));
 		vb2.setPadding(new Insets(10, 10, 10, 10));
 		vb.setSpacing(20);
-		TextArea taChat = new TextArea();
+		taChat = new TextArea();
 		taChat.setPrefWidth(200);
 		taChat.setPrefHeight(300);
-		TextField tf2Chat = new TextField();
+		tf2Chat = new TextField();
 		btnSenden = new Button();
 		btnSenden.setText("Senden");
 		vb2.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
@@ -493,5 +498,36 @@ public class ClientView {
 	public void setBtnWuerfel5(ToggleButton btnWuerfel5) {
 		this.btnWuerfel5 = btnWuerfel5;
 	}
+
+
+	public TextArea getTaChat() {
+		return taChat;
+	}
+
+
+	public void setTaChat(TextArea taChat) {
+		this.taChat = taChat;
+	}
+
+
+	public TextField getTf2Chat() {
+		return tf2Chat;
+	}
+
+
+	public void setTf2Chat(TextField tf2Chat) {
+		this.tf2Chat = tf2Chat;
+	}
+
+
+	public TextArea getTaModeration() {
+		return taModeration;
+	}
+
+
+	public void setTaModeration(TextArea taModeration) {
+		this.taModeration = taModeration;
+	}
+	
 
 }

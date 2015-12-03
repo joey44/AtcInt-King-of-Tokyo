@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.Socket;
 
 import javafx.application.Platform;
+import AtcIntDatenaustausch.Chat;
 import AtcIntDatenaustausch.DatenAustausch;
 
 public class ClientServerVerbindung extends Thread {
@@ -11,9 +12,11 @@ public class ClientServerVerbindung extends Thread {
 	private Socket clientSocket;
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
+
 	private ClientController controller;
 	private ClientSpielLogik clientSpielLogik;
 	private ClientView cview;
+	private Chat c;
 
 	private DatenAustausch datenAustausch;
 
@@ -74,6 +77,18 @@ public class ClientServerVerbindung extends Thread {
 
 	}
 
+	public void sendChatToServer(Chat c) {
+
+		try {
+
+			oos.writeObject(c);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
 	public void run() {
 		listen();
 
@@ -84,21 +99,13 @@ public class ClientServerVerbindung extends Thread {
 		try {
 			this.clientID = (int) ois.readObject();
 
-			// DatenAustausch.setInstanz(clientIDOb);
-
-			// controller.objectFromServerSetDatenaustausch(clientIDOb);
-
-			// controller.setClientID();
-
-			// setClientID(this.datenAustausch.getClientID());
-
+			
 			// UI updaten
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					// entsprechende UI Komponente updaten
-					cview.getLbTitel().setText(
-							"King of Tokyo - Spieler Nr" + getClientID());
+					cview.getLbTitel().setText("King of Tokyo - Spieler Nr" + getClientID());
 					// cview.getLbModeration().setText(
 					// "client " + getClientID() + "verbunden");
 					cview.setModeration("client " + getClientID() + "verbunden");
@@ -113,35 +120,62 @@ public class ClientServerVerbindung extends Thread {
 		System.out.println("clientID: " + getClientID());
 		// clientSpielLogik.updateClientGUIVerbindung(clientID);
 
+		
+		Chat c;
+		Object x;
+
 		try {
-			while ((this.datenAustausch = (DatenAustausch) ois.readObject()) != null) { // waiting
+			while ((x = ois.readObject()) != null) { // waiting
 
-				// Thread.sleep(20);
+				if (x instanceof DatenAustausch) {
 
-				System.out.println("Client: " + getClientID()
-						+ this.datenAustausch);
+					this.datenAustausch = (DatenAustausch) x;
 
-				// setDatenAustausch(this.datenAustausch);
+					System.out.println("Client: " + getClientID() + this.datenAustausch);
 
-				int a = this.datenAustausch.getSpielerListe().size();
-				System.out.println(a);
+					// setDatenAustausch(this.datenAustausch);
 
-				controller
-						.objectFromServerSetDatenaustausch(this.datenAustausch);
+					int a = this.datenAustausch.getSpielerListe().size();
+					System.out.println(a);
 
-				// UI updaten
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						// entsprechende UI Komponente updaten
+					controller.objectFromServerSetDatenaustausch(this.datenAustausch);
 
-						System.out.println("runlater" + getClientID());
-						controller.updateClientGUI(getDatenAustausch(),
-								getClientID());
-					}
-				});
+					// UI updaten
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							// entsprechende UI Komponente updaten
+
+							System.out.println("runlater" + getClientID());
+							controller.updateClientGUI(getDatenAustausch(), getClientID());
+						}
+					});
+
+				}
+
+				else if (x instanceof Chat) {
+
+					c = (Chat) x;
+
+					System.out.println(c);
+
+					setC(c);
+
+					// UI updaten
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							// entsprechende UI Komponente updaten
+
+							System.out.println("runlater Chat");
+							controller.updateChat(getC());
+						}
+					});
+
+				}
 
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,6 +204,14 @@ public class ClientServerVerbindung extends Thread {
 
 	public void setDatenAustausch(DatenAustausch datenAustausch) {
 		this.datenAustausch = datenAustausch;
+	}
+
+	public Chat getC() {
+		return c;
+	}
+
+	public void setC(Chat c) {
+		this.c = c;
 	}
 
 }
