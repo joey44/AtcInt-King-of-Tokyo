@@ -26,31 +26,46 @@ public class Wurfel implements Serializable {
 	}
 
 	public int[] wuerfeln() {
- 
-		
+
 		if (this.wCounter == 3) {
-			 // nächster Spieler kommt an den Zug
-			 this.wCounter = 0;
-			 }
-		
+
+			// nächster Spieler kommt an den Zug
+			//this.wCounter = 0;
+		}
+
 		if (this.wCounter % 3 == 0) {
 			for (int i = 0; i < 6; i++) {
 				this.werte[i] = (int) (1 + Math.random() * 5);
 				this.isAusgewahlt[i] = false;
 			}
 
-		} else if (this.wCounter % 3 == 1 || this.wCounter % 3 == 2) {
+		}
+
+		else if (this.wCounter % 3 == 1) {
 			for (int i = 0; i < 6; i++) {
 				if (this.isAusgewahlt[i] == false) {
 					this.werte[i] = (int) (1 + Math.random() * 5);
 				}
 
 			}
+
+		}
+
+		else if (this.wCounter % 3 == 2) {
+			for (int i = 0; i < 6; i++) {
+				if (this.isAusgewahlt[i] == false) {
+					this.werte[i] = (int) (1 + Math.random() * 5);
+				}
+
+			}
+
+	
+			
+			
+
 		}
 
 		this.wCounter++;
-		
-		 
 
 		return werte;
 
@@ -64,7 +79,7 @@ public class Wurfel implements Serializable {
 	public int getAnzWurfe() {
 
 		return this.wCounter;
-		
+
 	}
 
 	public boolean getIsAusgewahlt(int i) {

@@ -36,7 +36,7 @@ public class AtcIntServer {
 		serverSocket = new ServerSocket(port);
 		while (clientlist.size() <= 3) { // vier Threads sind möglich
 			Socket socket = serverSocket.accept();
-			this.Threadname = "Spieler " + Threadcounter + socket.getInetAddress().toString();
+			this.Threadname = "Spieler " + Threadcounter;
 			AtcIntServerClientThread clientThread = new AtcIntServerClientThread(this, socket, Threadname);
 			clientThread.start();
 			clientlist.add(clientThread);
@@ -91,7 +91,7 @@ public class AtcIntServer {
 
 		DatenAustausch.setInstanz(w); // wird auf dem Server gespeichert
 
-		if (w.getwCounter() == 3) {
+		if (w.getwCounter()%3 == 0 && !w.isTokyoVerlassen() ){
 			ServerSpielLogik.werteListeEvaluieren(w.getSpielerByID(w.getClientID()));
 		}
 	}

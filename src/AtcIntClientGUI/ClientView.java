@@ -73,7 +73,7 @@ public class ClientView {
 		// Generierung der Border Pane
 
 		root = new BorderPane();
-
+		
 		HBox hb = new HBox();
 		btnRegeln = new Button("Regeln"); // Button Regeln wird erstellt
 											// --> HyperLink noch ergÃ¤nzen
@@ -101,10 +101,12 @@ public class ClientView {
 		btnVerbinden = new Button("Verbinden");
 		lbTokyo = new Label("Wer ist auf Tokyo?");
 
-		hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
+		//hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
 		
 		taModeration = new TextArea();
 		taModeration.setEditable(false);
+		taModeration.setWrapText(true);
+		
 		vb.getChildren().add(taModeration);
 
 		// FlowPane mit den 6 Würfel wird estellt und in der Border Pane
@@ -146,7 +148,9 @@ public class ClientView {
 		// fp.getChildren().add(image7);
 		btnWuerfel6 = new ToggleButton("Würfel6");
 		fp.getChildren().add(btnWuerfel6);
-
+		
+		//Buttons unter Wurfel
+		fp.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
 		// Die ausgewÃ¤hlten Spieler werden angezeigt
 
 		HBox hb2 = new HBox();
@@ -247,15 +251,24 @@ public class ClientView {
 		vb2.setPadding(new Insets(10, 10, 10, 10));
 		vb.setSpacing(20);
 		taChat = new TextArea();
+		taChat.setScrollLeft(0);
+		taChat.setEditable(false);
+		taChat.setWrapText(true);
+		taChat.setFocusTraversable(false);
+		
+		
 		taChat.setPrefWidth(200);
 		taChat.setPrefHeight(300);
 		tf2Chat = new TextField();
+		tf2Chat.setFocusTraversable(true);
 		btnSenden = new Button();
 		btnSenden.setText("Senden");
 		vb2.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
 
 		scene = new Scene(root, 950, 650, Color.WHITE);
-
+	
+		
+		
 		root.setTop(hb);
 		root.setLeft(vb);
 		root.setCenter(fp);
@@ -267,7 +280,7 @@ public class ClientView {
 
 	public void setModeration(String modText) {
 
-		this.taModeration.appendText(modText + "\n");
+		this.taModeration.appendText("\n"+ modText);
 	}
 
 	public Label getLbTokyo() {
@@ -282,6 +295,8 @@ public class ClientView {
 		stage.setTitle("King of Tokyo");
 		stage.setScene(scene);
 		stage.show();
+		
+		
 
 		// primaryStage.setTitle("King of Tokyo");
 		// primaryStage.setScene(scene);

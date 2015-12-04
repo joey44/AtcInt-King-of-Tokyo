@@ -31,7 +31,7 @@ public class ServerSpielLogik {
 			}
 
 			if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
-
+				DatenAustausch.getInstanz().setSpielerAufTokyoAngegrifen(true);
 				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
 				break;
 			}

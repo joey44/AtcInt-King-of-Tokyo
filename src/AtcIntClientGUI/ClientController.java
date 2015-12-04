@@ -39,6 +39,7 @@ public class ClientController {
 		view.getBtnVerbinden().setOnAction(new verbindenEventHandler());
 
 		view.getBtnWurfeln().setDisable(true);
+		
 		view.getBtnWuerfel1().setDisable(true);
 		view.getBtnWuerfel2().setDisable(true);
 		view.getBtnWuerfel3().setDisable(true);
@@ -46,12 +47,7 @@ public class ClientController {
 		view.getBtnWuerfel5().setDisable(true);
 		view.getBtnWuerfel6().setDisable(true);
 
-		view.getBtnWuerfel1().setSelected(false);
-		view.getBtnWuerfel2().setSelected(false);
-		view.getBtnWuerfel3().setSelected(false);
-		view.getBtnWuerfel4().setSelected(false);
-		view.getBtnWuerfel5().setSelected(false);
-		view.getBtnWuerfel6().setSelected(false);
+	
 
 		view.getBtnTokyoVerlassen().setDisable(true);
 
@@ -77,7 +73,7 @@ public class ClientController {
 		// DatenAustausch d = this.datenAustausch;
 
 		// view.getLbModeration().setText("gewürfelt Client:" + clientID);
-		view.setModeration("gewürfelt Client:" + clientID);
+		//view.setModeration("gewürfelt Client:" + clientID);
 		view.getLbSpieler0().setText(ClientSpielLogik.spielerName(d, 0));
 		view.getLbLeben0().setText(ClientSpielLogik.lebenAnzeigen(d, 0));
 		view.getLbPunkte0().setText(ClientSpielLogik.ruhmpunkteAnzeigen(d, 0));
@@ -100,29 +96,55 @@ public class ClientController {
 
 		view.getBtnWurfeln().setDisable(true);
 		view.getBtnTokyoVerlassen().setDisable(true);
+		
+		view.getBtnWuerfel1().setDisable(true);
+		view.getBtnWuerfel2().setDisable(true);
+		view.getBtnWuerfel3().setDisable(true);
+		view.getBtnWuerfel4().setDisable(true);
+		view.getBtnWuerfel5().setDisable(true);
+		view.getBtnWuerfel6().setDisable(true);
 
+		view.getBtnWuerfel1().setSelected(d.getWurfelIsAusgewahlt(0));
+		view.getBtnWuerfel2().setSelected(d.getWurfelIsAusgewahlt(1));
+		view.getBtnWuerfel3().setSelected(d.getWurfelIsAusgewahlt(2));
+		view.getBtnWuerfel4().setSelected(d.getWurfelIsAusgewahlt(3));
+		view.getBtnWuerfel5().setSelected(d.getWurfelIsAusgewahlt(4));
+		view.getBtnWuerfel6().setSelected(d.getWurfelIsAusgewahlt(5));
+		
+		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0) + "");
+		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
+		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
+		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
+		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
+		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");		
+		
 		
 		if (getClientID() == d.getSpielerAmZug().getSpielerID()) {
 			view.getBtnWurfeln().setDisable(false);
-			view.getBtnWuerfel1().setDisable(false);
-			view.getBtnWuerfel2().setDisable(false);
-			view.getBtnWuerfel3().setDisable(false);
-			view.getBtnWuerfel4().setDisable(false);
-			view.getBtnWuerfel5().setDisable(false);
-			view.getBtnWuerfel6().setDisable(false);
 			
-			view.getBtnWuerfel1().setSelected(false);
-			view.getBtnWuerfel2().setSelected(false);
-			view.getBtnWuerfel3().setSelected(false);
-			view.getBtnWuerfel4().setSelected(false);
-			view.getBtnWuerfel5().setSelected(false);
-			view.getBtnWuerfel6().setSelected(false);
+			if (d.getWurfel().getwCounter()%3 == 1 || d.getWurfel().getwCounter()%3 == 2){
+				view.getBtnWuerfel1().setDisable(false);
+				view.getBtnWuerfel2().setDisable(false);
+				view.getBtnWuerfel3().setDisable(false);
+				view.getBtnWuerfel4().setDisable(false);
+				view.getBtnWuerfel5().setDisable(false);
+				view.getBtnWuerfel6().setDisable(false);		
+			}
+		
+			
+
 
 
 		}
 
-		if (getClientID() == d.getSpielerAufTokyo().getSpielerID()) {
+		//Möglichkeiten wenn Tokyo verlassen werden kan:
+		if (getClientID() == d.getSpielerAufTokyo().getSpielerID()
+				//&& d.wurdeIchAngegrifen()
+				&& d.getwCounter()%3 ==0
+				&& d.isSpielerAufTokyoAngegrifen()
+				&& getClientID() != d.getSpielerAmZug().getSpielerID()) {
 			view.getBtnTokyoVerlassen().setDisable(false);
+			
 
 		}
 
@@ -131,21 +153,11 @@ public class ClientController {
 			view.getBtnTokyoVerlassen().setDisable(true);
 		}
 
-		view.getBtnWuerfel1().setSelected(d.getWurfelIsAusgewahlt(0));
-		view.getBtnWuerfel2().setSelected(d.getWurfelIsAusgewahlt(1));
-		view.getBtnWuerfel3().setSelected(d.getWurfelIsAusgewahlt(2));
-		view.getBtnWuerfel4().setSelected(d.getWurfelIsAusgewahlt(3));
-		view.getBtnWuerfel5().setSelected(d.getWurfelIsAusgewahlt(4));
-		view.getBtnWuerfel6().setSelected(d.getWurfelIsAusgewahlt(5));
 
-		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0) + "");
-		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
-		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
-		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
-		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
-		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");
 
 	}
+	
+	
 	
 	public void updateChat(Chat c){
 		
@@ -160,10 +172,13 @@ public class ClientController {
 		d = ClientSpielLogik.wurfelWurfeln(d);
 
 		setDatenAustausch(d);
+		
+		d.setTokyoVerlassen(false);
+		d.setSpielerAufTokyoAngegrifen(false);
 
 		clientServerVerbindung.sendDatenAustauschToServer(d);
 
-		updateClientGUI(getDatenAustausch(), getClientID());
+		//updateClientGUI(getDatenAustausch(), getClientID());
 
 	}
 
@@ -175,17 +190,16 @@ public class ClientController {
 
 	public void tokyoVerlasse() {
 
-		Spieler s = getDatenAustausch().getSpielerByID(getClientID());
+		getDatenAustausch().tokyoVerlassenById(getClientID());
+		
+		
 
-		s.setAufTokyo(false);
-
-		getDatenAustausch().setSpielerByID(clientID, s);
-
-		getDatenAustausch().setModeration(
-				"Spieler " + getClientID() + " hat Tokyo verlassen");
+		getDatenAustausch().setModeration("Spieler " + getClientID() + " hat Tokyo verlassen");
 
 		System.out.println("Spieler " + getClientID() + "Tokyo verlassen");
-
+		
+		getDatenAustausch().setTokyoVerlassen(true);
+		
 		clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
 
 	}
@@ -242,7 +256,7 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			System.out.println("würflenAuswahl2");
+			System.out.println("würflenAuswahl3");
 
 			int wID = 3;
 
@@ -257,7 +271,7 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			System.out.println("würflenAuswahl2");
+			System.out.println("würflenAuswahl4");
 
 			int wID = 4;
 
@@ -272,7 +286,7 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			System.out.println("würflenAuswahl2");
+			System.out.println("würflenAuswahl5");
 
 			int wID = 5;
 
@@ -287,7 +301,7 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			System.out.println("würflenAuswahl2");
+			System.out.println("würflenAuswahl6");
 
 			int wID = 6;
 

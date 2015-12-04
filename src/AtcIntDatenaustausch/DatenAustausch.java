@@ -16,6 +16,10 @@ public class DatenAustausch implements Serializable {
 	private ArrayList<Spieler> spielerListe;
 	private int runde = 0;
 	private int clientID;
+	private boolean isTokyoVerlassen;
+	private boolean isSpielerAufTokyoAngegrifen;
+	
+	public static final int CONSTANT_TATZE = 5;
 
 	private DatenAustausch() {
 
@@ -92,6 +96,15 @@ public class DatenAustausch implements Serializable {
 		spielerListe.set(spielerID, s);
 
 	}
+	public void tokyoVerlassenById(int spielerID){
+		
+		Spieler s = getSpielerByID(spielerID);
+		
+		s.setAufTokyo(false);
+		
+		setSpielerByID(spielerID, s);
+		
+	}
 
 	public void setWurfelIsAusgewahlt(int wID) {
 
@@ -111,11 +124,28 @@ public class DatenAustausch implements Serializable {
 
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "DatenAustausch [wurfel=" + wurfel + ", moderation="
 				+ moderation + ", spielerListe=" + spielerListe + ", runde="
-				+ runde + ", clientID=" + clientID + "]";
+				+ runde + ", clientID=" + clientID + ", isTokyoVerlassen="
+				+ isTokyoVerlassen + "]";
+	}
+
+	public boolean wurdeIchAngegrifen(){
+		
+		for (int w : this.wurfel.getWerte()){
+			
+			if (w == CONSTANT_TATZE){
+				return true;
+			}
+			
+		}
+		
+		
+		return false;
 	}
 
 	public Wurfel getWurfel() {
@@ -161,5 +191,26 @@ public class DatenAustausch implements Serializable {
 	public void setClientID(int clientID) {
 		this.clientID = clientID;
 	}
+
+	public boolean isTokyoVerlassen() {
+		return isTokyoVerlassen;
+	}
+
+	public void setTokyoVerlassen(boolean isTokyoVerlassen) {
+		this.isTokyoVerlassen = isTokyoVerlassen;
+		
+		
+	}
+
+	public boolean isSpielerAufTokyoAngegrifen() {
+		return isSpielerAufTokyoAngegrifen;
+	}
+
+	public void setSpielerAufTokyoAngegrifen(boolean isSpielerAufTokyoAngegrifen) {
+		this.isSpielerAufTokyoAngegrifen = isSpielerAufTokyoAngegrifen;
+	}
+	
+	
+	
 
 }
