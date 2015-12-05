@@ -67,8 +67,39 @@ public class ClientView {
 	private ToggleButton btnWuerfel5;
 
 	private BorderPane root;
+	
+	private Image imgWurfel1;
+	private Image imgWurfel2;
+	private Image imgWurfel3;
+	private Image imgWurfel4;
+	private Image imgWurfel5;
+	
+	
+
+	public Image getWurfelImage(int i) {
+		if (i == 1)
+			return imgWurfel1;
+		else if (i == 2)
+			return imgWurfel2;
+		else if (i == 3)
+			return imgWurfel3;
+		else if (i == 4)
+			return imgWurfel4;
+		else
+			return imgWurfel5;
+	}
+
+
 
 	public ClientView() {
+		
+		imgWurfel1 = new Image("/Images/1.jpg");
+		imgWurfel2 = new Image("/Images/2.jpg");
+		imgWurfel3 = new Image("/Images/3.jpg");
+		imgWurfel4 = new Image("/Images/herz.jpg");
+		imgWurfel5 = new Image("/Images/tatze.jpg");
+		
+		
 
 		// Generierung der Border Pane
 
@@ -119,34 +150,34 @@ public class ClientView {
 		btnWurfeln = new Button("Würfeln");
 
 		fp.getChildren().add(btnWurfeln);
-		btnWuerfel1 = new ToggleButton("Würfel1");
+		btnWuerfel1 = new ToggleButton();
 
 		fp.getChildren().add(btnWuerfel1);
 		// ImageView image2 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// ImageView image3 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_schwarz.jpg"),40,40,true,true));
-		btnWuerfel2 = new ToggleButton("Würfel2");
+		btnWuerfel2 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel2);
 		// ImageView image4 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image4);
-		btnWuerfel3 = new ToggleButton("Würfel3");
+		btnWuerfel3 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel3);
 		// ImageView image5 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image5);
-		btnWuerfel4 = new ToggleButton("Würfel4");
+		btnWuerfel4 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel4);
 		// ImageView image6 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image6);
-		btnWuerfel5 = new ToggleButton("Würfel5");
+		btnWuerfel5 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel5);
 		// ImageView image7 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image7);
-		btnWuerfel6 = new ToggleButton("Würfel6");
+		btnWuerfel6 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel6);
 		
 		//Buttons unter Wurfel

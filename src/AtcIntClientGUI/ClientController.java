@@ -5,6 +5,7 @@ import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 
 public class ClientController {
 
@@ -111,12 +112,19 @@ public class ClientController {
 		view.getBtnWuerfel5().setSelected(d.getWurfelIsAusgewahlt(4));
 		view.getBtnWuerfel6().setSelected(d.getWurfelIsAusgewahlt(5));
 		
-		view.getBtnWuerfel1().setText(d.getWurfel().getWert(0) + "");
-		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
-		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
-		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
-		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
-		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");		
+		
+		view.getBtnWuerfel1().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(0))));
+		view.getBtnWuerfel2().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(1))));
+		view.getBtnWuerfel3().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(2))));
+		view.getBtnWuerfel4().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(3))));
+		view.getBtnWuerfel5().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(4))));
+		view.getBtnWuerfel6().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(5))));
+		
+//		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
+//		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
+//		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
+//		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
+//		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");		
 		
 		
 		if (getClientID() == d.getSpielerAmZug().getSpielerID()) {
