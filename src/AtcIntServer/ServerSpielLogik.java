@@ -24,7 +24,8 @@ public class ServerSpielLogik {
 			if (DatenAustausch.getInstanz().getSpielerAufTokyo() == null
 					&& spieler.equals(angrSpieler)) {
 				spieler.setAufTokyo(true);
-				break;
+				angrSpieler.setAufTokyo(true);
+
 			}
 
 			if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
