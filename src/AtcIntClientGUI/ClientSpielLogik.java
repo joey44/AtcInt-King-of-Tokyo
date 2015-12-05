@@ -43,7 +43,7 @@ public class ClientSpielLogik {
 
 	}
 
-	public static String standortAnzeigen(DatenAustausch d){
+	public static String standortAnzeigen(DatenAustausch d) {
 
 		Spieler s = d.getSpielerAufTokyo();
 
@@ -51,7 +51,7 @@ public class ClientSpielLogik {
 			return "kein Spieler ist auf Tokyo";
 		}
 
-		return "Auf Tokyoo Spieler: " + s.getSpielerID();
+		return " Spieler " + s.getSpielerID() + " ist auf Tokyo";
 
 	}
 
@@ -66,7 +66,7 @@ public class ClientSpielLogik {
 		d.wurfeln();
 
 		d.setModeration("Spieler Nr: " + d.getSpielerAmZug().getSpielerID()
-				+ " hat gewürfelt" + d.getwCounter() % 3);
+				+ " hat " + d.getwCounter() % 3 + " Mal gewürfelt");
 
 		if (d.getwCounter() % 3 == 0) {
 
