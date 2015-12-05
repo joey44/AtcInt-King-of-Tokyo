@@ -2,6 +2,8 @@ package AtcIntServer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
@@ -11,7 +13,7 @@ public class ServerSpielLogik {
 	public static final int CONSTANT_TATZE = 5;
 	public static final int CONSTANT_HERZ = 4;
 
-	private static void angreifen(Spieler angrSpieler) {
+	private static void angreifen(int punkte, Spieler angrSpieler) {
 		// Methode evaluiert, ob angreifender Spieler auf Tokyo ist/ welche
 		// Spieler angreift
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
@@ -27,12 +29,12 @@ public class ServerSpielLogik {
 
 			if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
 
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
+				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 			}
 
 			if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
 				DatenAustausch.getInstanz().setSpielerAufTokyoAngegrifen(true);
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - 1);
+				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 				break;
 			}
 
@@ -55,7 +57,7 @@ public class ServerSpielLogik {
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
-	private static void lebenBerechnen(Spieler spielerAmZug) {
+	private static void lebenBerechnen(int punkte, Spieler spielerAmZug) {
 		// Addiert dem Spieler Leben
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
@@ -63,7 +65,7 @@ public class ServerSpielLogik {
 		for (Spieler spieler : spielerListe) {
 			if (spieler.equals(spielerAmZug)) {
 
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() + 1);
+				spieler.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
 
 			}
 		}
@@ -106,42 +108,37 @@ public class ServerSpielLogik {
 
 		int punkte = 0;
 		int[] lokalWerte = DatenAustausch.getInstanz().getWurfel().getWerte();
-		Arrays.sort(lokalWerte);
 
-		for (int j = 0; j < lokalWerte.length; j++) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
-			if (lokalWerte[j] == CONSTANT_TATZE) {
-				angreifen(spieler);
-				continue;
-			}
-			if (lokalWerte[j] == CONSTANT_HERZ) {
-				lebenBerechnen(spieler);
-				continue;
-			}
+		for (int i = 0; i < lokalWerte.length; i++) {
 
-			if (j >= 1) {
-				if (lokalWerte[j] == lokalWerte[j - 1]) {
+			if (map.containsKey(lokalWerte[i]))
+				map.put(lokalWerte[i], map.get(lokalWerte[i]) + 1);
+			else
+				map.put(lokalWerte[i], 1);
+		}
 
-					if (j >= 2) {
-						if (lokalWerte[j] == lokalWerte[j - 2]) {
+		for (Integer i : map.keySet()) {
 
-							punkte = punkte + lokalWerte[j];
-							ruhmpunkteBerechnen(punkte, spieler);
-
-							if (j >= 3) {
-								if (lokalWerte[j] == lokalWerte[j - 3]) {
-
-									punkte = punkte + 1;
-									ruhmpunkteBerechnen(punkte, spieler);
-
-								}
-							}
-						}
-
-					}
-				}
-			}
 			punkte = 0;
+			if (i == CONSTANT_HERZ) {
+				punkte = map.get(i);
+				lebenBerechnen(punkte, spieler);
+				continue;
+			}
+
+			if (i == CONSTANT_TATZE) {
+				punkte = map.get(i);
+				angreifen(punkte, spieler);
+				continue;
+			}
+
+			if (map.get(i) >= 3) {
+				punkte = (punkte + i) + (map.get(i) - 3);
+				ruhmpunkteBerechnen(punkte, spieler);
+			}
+
 		}
 	}
 }
