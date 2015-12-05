@@ -1,5 +1,6 @@
 package AtcIntClientGUI;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -21,11 +22,12 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ClientView {
 
 	private Scene scene;
-
+	
 	private Label lbPunkte1;
 	private Label lbPunkte2;
 	private Label lbPunkte0;
@@ -332,6 +334,7 @@ public class ClientView {
 		// primaryStage.setTitle("King of Tokyo");
 		// primaryStage.setScene(scene);
 		stage.setResizable(false);
+	
 
 		// primaryStage.show();
 

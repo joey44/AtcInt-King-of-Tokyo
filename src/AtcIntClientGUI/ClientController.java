@@ -6,6 +6,8 @@ import AtcIntDatenaustausch.Spieler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ClientController {
 
@@ -15,12 +17,22 @@ public class ClientController {
 	private DatenAustausch datenAustausch;
 
 	private int clientID;
+	private Stage stage;
 
-	public ClientController(ClientView view) {
+	public ClientController(ClientView view, Stage stage) {
 
 		this.view = view;
+		this.stage = stage;
 		
 		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				clientServerVerbindung.disconnect();
+				
+			}
+		});
 
 		clientServerVerbindung = new ClientServerVerbindung(this, view);
 
@@ -327,6 +339,8 @@ public class ClientController {
 			System.out.println("tokyoVerlassen");
 
 			tokyoVerlasse();
+			
+			
 
 		}
 
@@ -377,5 +391,7 @@ public class ClientController {
 	public void setDatenAustausch(DatenAustausch datenAustausch) {
 		this.datenAustausch = datenAustausch;
 	}
+	
+	
 
 }

@@ -15,7 +15,7 @@ public class MainClient extends Application {
 
 		view = new ClientView();
 
-		ClientController c = new ClientController(view);
+		ClientController c = new ClientController(view, stage);
 
 		view.show(stage);
 
