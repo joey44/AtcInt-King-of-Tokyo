@@ -49,7 +49,8 @@ public class ServerSpielLogik {
 					spieler.setSpielerAktiv(false);
 					spieler.setAufTokyo(false);
 					DatenAustausch.getInstanz().setModeration(
-							spieler.getSpielerName() + " hat verloren");
+							spieler.getSpielerName()
+									+ " hat verloren, LOOOOOOSEEEER!!!!");
 				}
 			}
 		}
