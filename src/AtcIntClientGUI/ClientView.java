@@ -1,12 +1,16 @@
 package AtcIntClientGUI;
 
+import javax.naming.LinkRef;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -57,7 +61,7 @@ public class ClientView {
 	private Label lbTitel;
 	private Label lbTokyo;
 
-	private Button btnRegeln;
+	private Hyperlink linkRegeln;
 
 	private Button btnWurfeln;
 
@@ -102,15 +106,15 @@ public class ClientView {
 		root = new BorderPane();
 
 		HBox hb = new HBox();
-		btnRegeln = new Button("Regeln"); // Button Regeln wird erstellt
-											// --> HyperLink noch ergänzen
-		lbTitel = new Label("King of Tokyo");
-
-		btnRegeln.setMaxHeight(6);
-		btnRegeln.setMaxWidth(70);
-		btnRegeln.setFont(Font.font("Arial", FontWeight.BLACK,
-				FontPosture.REGULAR, 12));
-		hb.getChildren().addAll(btnRegeln, lbTitel);
+		linkRegeln = new Hyperlink("Regeln"); // Button Regeln wird erstellt
+		// linkRegeln.set // --> HyperLink noch ergänzen
+		//
+		linkRegeln.setMaxHeight(6);
+		linkRegeln.setMaxWidth(70);
+		// linkRegeln.setFont(Font.font("Arial", FontWeight.BLACK,
+		// FontPosture.REGULAR, 12));
+		// hb.getChildren().addAll(linkRegeln, lbTitel);
+		hb.getChildren().add(linkRegeln);
 
 		hb.setPadding(new Insets(10, 10, 10, 10));
 		hb.setSpacing(3);
@@ -149,7 +153,8 @@ public class ClientView {
 		fp.getChildren().add(btnWurfeln);
 		btnWuerfel1 = new ToggleButton();
 		btnWuerfel1.setPadding(Insets.EMPTY);
-		btnWuerfel1.setStyle("-fx-border-width: 30px");
+		btnWuerfel1.getStyleClass().add("wurfel");
+
 		fp.getChildren().add(btnWuerfel1);
 		// ImageView image2 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
@@ -157,35 +162,40 @@ public class ClientView {
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_schwarz.jpg"),40,40,true,true));
 		btnWuerfel2 = new ToggleButton();
 		btnWuerfel2.setPadding(Insets.EMPTY);
-		btnWuerfel2.setStyle("-fx-border-width: 30px");
+		btnWuerfel2.getStyleClass().add("wurfel");
+		// btnWuerfel2.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel2);
 		// ImageView image4 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image4);
 		btnWuerfel3 = new ToggleButton();
 		btnWuerfel3.setPadding(Insets.EMPTY);
-		btnWuerfel3.setStyle("-fx-border-width: 30px");
+		btnWuerfel3.getStyleClass().add("wurfel");
+		// btnWuerfel3.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel3);
 		// ImageView image5 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image5);
 		btnWuerfel4 = new ToggleButton();
 		btnWuerfel4.setPadding(Insets.EMPTY);
-		btnWuerfel4.setStyle("-fx-border-width: 30px");
+		btnWuerfel4.getStyleClass().add("wurfel");
+		// btnWuerfel4.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel4);
 		// ImageView image6 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image6);
 		btnWuerfel5 = new ToggleButton();
 		btnWuerfel5.setPadding(Insets.EMPTY);
-		btnWuerfel5.setStyle("-fx-border-width: 30px");
+		btnWuerfel5.getStyleClass().add("wurfel");
+		// btnWuerfel5.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel5);
 		// ImageView image7 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image7);
 		btnWuerfel6 = new ToggleButton();
 		btnWuerfel6.setPadding(Insets.EMPTY);
-		btnWuerfel6.setStyle("-fx-border-width: 30px");
+		btnWuerfel6.getStyleClass().add("wurfel");
+		// btnWuerfel6.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel6);
 
 		// Buttons unter Wurfel
@@ -332,7 +342,7 @@ public class ClientView {
 		stage.setTitle("King of Tokyo");
 		stage.setScene(scene);
 		stage.show();
-
+		stage.getIcons().add(new Image("/Images/logo.png"));
 		// primaryStage.setTitle("King of Tokyo");
 		// primaryStage.setScene(scene);
 		stage.setResizable(false);
@@ -493,13 +503,13 @@ public class ClientView {
 		this.txChat = txChat;
 	}
 
-	public Button getBtnRegeln() {
-		return btnRegeln;
-	}
-
-	public void setBtnRegeln(Button btnRegeln) {
-		this.btnRegeln = btnRegeln;
-	}
+	// public Button getBtnRegeln() {
+	// return btnRegeln;
+	// }
+	//
+	// public void setBtnRegeln(Button btnRegeln) {
+	// this.btnRegeln = btnRegeln;
+	// }
 
 	public ToggleButton getBtnWuerfel1() {
 		return btnWuerfel1;

@@ -1,4 +1,13 @@
 .root {
 	-fx-background-color: #FFFFFF;
+}
 
+.wurfel {
+	-fx-border-width: 3;
+	-fx-border-color: white;
+}
+
+.wurfelFocused {
+	-fx-border-width: 3;
+	-fx-border-color: #32CD32;
 }

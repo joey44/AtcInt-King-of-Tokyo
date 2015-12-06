@@ -86,6 +86,8 @@ public class ClientSpielLogik {
 			d.getSpielerByID((a + IDcounter) % 4).setAmZug(true);
 
 			d.setModeration("Spieler Nr " + a + " hat den Zug beendet");
+			
+			
 
 		}
 

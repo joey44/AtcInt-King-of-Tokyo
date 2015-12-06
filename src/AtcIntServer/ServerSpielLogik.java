@@ -24,30 +24,56 @@ public class ServerSpielLogik {
 			if (spieler.isSpielerAktiv()) {
 				if (DatenAustausch.getInstanz().getSpielerAufTokyo() == null
 						&& spieler.equals(angrSpieler)) {
-					spieler.setAufTokyo(true);
-					angrSpieler.setAufTokyo(true);
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAufTokyo(true);
+					ruhmpunkteBerechnen(1, spieler);
+					return;
 				}
 			}
 		}
 
 		for (Spieler spieler : spielerListe) {
 			if (spieler.isSpielerAktiv()) {
+
 				if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
 
-					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 				}
-
 				if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
+
 					DatenAustausch.getInstanz().setSpielerAufTokyoAngegrifen(
 							true);
-					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 				}
 
-				if (spieler.getAnzahlLeben() <= 0) {
-					spieler.setAnzahlLeben(0);
-					spieler.setSpielerAktiv(false);
-					spieler.setAufTokyo(false);
+				if (spieler.getAnzahlLeben() <= 0 && spieler.isAufTokyo()) {
+
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAnzahlLeben(0);
+
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setSpielerAktiv(false);
+
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAufTokyo(false);
+
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAufTokyo(false);
+
+					DatenAustausch.getInstanz()
+							.getSpielerByID(angrSpieler.getSpielerID())
+							.setAufTokyo(true);
+
 					DatenAustausch.getInstanz().setModeration(
 							spieler.getSpielerName()
 									+ " hat verloren, LOOOOOOSEEEER!!!!");
@@ -55,7 +81,7 @@ public class ServerSpielLogik {
 			}
 		}
 
-		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
+		// DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
 	public void aufTokyoGehen(Spieler spielerAufTokyo) {
@@ -65,11 +91,14 @@ public class ServerSpielLogik {
 		for (Spieler spieler : spielerListe) {
 
 			if (spieler.equals(spielerAufTokyo)) {
-				spieler.setAufTokyo(true);
+
+				DatenAustausch.getInstanz()
+						.getSpielerByID(spieler.getSpielerID())
+						.setAufTokyo(true);
+
 			}
 		}
 
-		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
 	private static void lebenBerechnen(int punkte, Spieler spielerAmZug) {
@@ -79,12 +108,12 @@ public class ServerSpielLogik {
 
 		for (Spieler spieler : spielerListe) {
 			if (spieler.equals(spielerAmZug)) {
-
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+				DatenAustausch.getInstanz()
+						.getSpielerByID(spieler.getSpielerID())
+						.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
 
 			}
 		}
-		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
 	private static void ruhmpunkteBerechnen(int punkte, Spieler spielerAmZug) {
@@ -95,17 +124,21 @@ public class ServerSpielLogik {
 		for (Spieler spieler : spielerListe) {
 
 			if (spieler.equals(spielerAmZug)) {
-				spieler.setAnzahlRuhmpunkte(spieler.getAnzahlRuhmpunkte()
-						+ punkte);
+				DatenAustausch
+						.getInstanz()
+						.getSpielerByID(spieler.getSpielerID())
+						.setAnzahlRuhmpunkte(
+								spieler.getAnzahlRuhmpunkte() + punkte);
 
-				if (spieler.getAnzahlRuhmpunkte() >= 20) {
+				if (DatenAustausch.getInstanz()
+						.getSpielerByID(spieler.getSpielerID())
+						.getAnzahlRuhmpunkte() >= 20) {
 					siegerKueren(spieler);
-
 				}
-				DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 
 			}
 		}
+
 	}
 
 	private static void siegerKueren(Spieler spieler) {
@@ -137,7 +170,8 @@ public class ServerSpielLogik {
 		for (Integer i : map.keySet()) {
 
 			punkte = 0;
-			if (i == CONSTANT_HERZ) {
+
+			if (i == CONSTANT_HERZ && !spieler.isAufTokyo()) {
 				punkte = map.get(i);
 				lebenBerechnen(punkte, spieler);
 				continue;

@@ -151,6 +151,7 @@ public class ClientController {
 				view.getBtnWuerfel4().setDisable(false);
 				view.getBtnWuerfel5().setDisable(false);
 				view.getBtnWuerfel6().setDisable(false);
+
 			}
 
 		}
@@ -183,6 +184,23 @@ public class ClientController {
 		DatenAustausch d = getDatenAustausch();
 
 		d = ClientSpielLogik.wurfelWurfeln(d);
+
+		if (d.getwCounter() % 3 == 0) {
+
+			view.getBtnWuerfel1().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel1().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+			view.getBtnWuerfel2().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel2().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+			view.getBtnWuerfel3().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel3().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+			view.getBtnWuerfel4().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel4().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+			view.getBtnWuerfel5().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel5().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+			view.getBtnWuerfel6().getStyleClass().add("wurfel");// setStyle("wurfel");
+			view.getBtnWuerfel6().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+
+		}
 
 		setDatenAustausch(d);
 
@@ -238,10 +256,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel1().isSelected())
-				view.getBtnWuerfel1().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel1().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel1().isSelected()) {
+				view.getBtnWuerfel1().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel1().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel1().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel1().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 
 			System.out.println("würflenAuswahl1");
@@ -251,7 +271,6 @@ public class ClientController {
 			wurfelAuswahl(wID - 1);
 
 		}
-
 	}
 
 	class wurfeln2AuswahlEventHandler implements EventHandler<ActionEvent> {
@@ -259,10 +278,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel2().isSelected())
-				view.getBtnWuerfel2().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel2().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel2().isSelected()) {
+				view.getBtnWuerfel2().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel2().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel2().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel2().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 			System.out.println("würflenAuswahl2");
 
@@ -279,10 +300,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel3().isSelected())
-				view.getBtnWuerfel3().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel3().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel3().isSelected()) {
+				view.getBtnWuerfel3().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel3().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel3().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel3().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 			System.out.println("würflenAuswahl3");
 
@@ -299,10 +322,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel4().isSelected())
-				view.getBtnWuerfel4().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel4().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel4().isSelected()) {
+				view.getBtnWuerfel4().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel4().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel4().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel4().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 			System.out.println("würflenAuswahl4");
 
@@ -319,10 +344,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel5().isSelected())
-				view.getBtnWuerfel5().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel5().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel5().isSelected()) {
+				view.getBtnWuerfel5().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel5().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel5().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel5().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 			System.out.println("würflenAuswahl5");
 
@@ -339,10 +366,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
-			if (view.getBtnWuerfel6().isSelected())
-				view.getBtnWuerfel6().setStyle("-fx-border-color: blue");
-			else {
-				view.getBtnWuerfel6().setStyle("-fx-border-color: white");
+			if (view.getBtnWuerfel6().isSelected()) {
+				view.getBtnWuerfel6().getStyleClass().remove("wurfel");// setStyle("wurfel");
+				view.getBtnWuerfel6().getStyleClass().add("wurfelFocused");// setStyle("wurfel");
+			} else {
+				view.getBtnWuerfel6().getStyleClass().remove("wurfelFocused");// setStyle("wurfel");
+				view.getBtnWuerfel6().getStyleClass().add("wurfel");// setStyle("wurfel");
 			}
 
 			System.out.println("würflenAuswahl6");
