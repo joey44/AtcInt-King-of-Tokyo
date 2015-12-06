@@ -148,33 +148,44 @@ public class ClientView {
 
 		fp.getChildren().add(btnWurfeln);
 		btnWuerfel1 = new ToggleButton();
-
+		btnWuerfel1.setPadding(Insets.EMPTY);
+		btnWuerfel1.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel1);
 		// ImageView image2 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// ImageView image3 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_schwarz.jpg"),40,40,true,true));
 		btnWuerfel2 = new ToggleButton();
+		btnWuerfel2.setPadding(Insets.EMPTY);
+		btnWuerfel2.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel2);
 		// ImageView image4 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image4);
 		btnWuerfel3 = new ToggleButton();
+		btnWuerfel3.setPadding(Insets.EMPTY);
+		btnWuerfel3.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel3);
 		// ImageView image5 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image5);
 		btnWuerfel4 = new ToggleButton();
+		btnWuerfel4.setPadding(Insets.EMPTY);
+		btnWuerfel4.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel4);
 		// ImageView image6 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image6);
 		btnWuerfel5 = new ToggleButton();
+		btnWuerfel5.setPadding(Insets.EMPTY);
+		btnWuerfel5.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel5);
 		// ImageView image7 = new ImageView(new
 		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
 		// fp.getChildren().add(image7);
 		btnWuerfel6 = new ToggleButton();
+		btnWuerfel6.setPadding(Insets.EMPTY);
+		btnWuerfel6.setStyle("-fx-border-width: 30px");
 		fp.getChildren().add(btnWuerfel6);
 
 		// Buttons unter Wurfel

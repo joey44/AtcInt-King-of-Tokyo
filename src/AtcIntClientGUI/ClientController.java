@@ -23,14 +23,13 @@ public class ClientController {
 
 		this.view = view;
 		this.stage = stage;
-		
-		
+
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			
+
 			@Override
 			public void handle(WindowEvent event) {
 				clientServerVerbindung.disconnect();
-				
+
 			}
 		});
 
@@ -44,7 +43,7 @@ public class ClientController {
 		view.getBtnWuerfel4().setOnAction(new wurfeln4AuswahlEventHandler());
 		view.getBtnWuerfel5().setOnAction(new wurfeln5AuswahlEventHandler());
 		view.getBtnWuerfel6().setOnAction(new wurfeln6AuswahlEventHandler());
-		
+
 		view.getBtnSenden().setOnAction(new nachrichtSendenEventHandler());
 
 		view.getBtnTokyoVerlassen().setOnAction(
@@ -52,7 +51,7 @@ public class ClientController {
 		view.getBtnVerbinden().setOnAction(new verbindenEventHandler());
 
 		view.getBtnWurfeln().setDisable(true);
-		
+
 		view.getBtnWuerfel1().setDisable(true);
 		view.getBtnWuerfel2().setDisable(true);
 		view.getBtnWuerfel3().setDisable(true);
@@ -60,12 +59,10 @@ public class ClientController {
 		view.getBtnWuerfel5().setDisable(true);
 		view.getBtnWuerfel6().setDisable(true);
 
-	
-
 		view.getBtnTokyoVerlassen().setDisable(true);
 
 		view.getBtnVerbinden().setDefaultButton(true);
-		
+
 		view.getBtnSenden().setDisable(true);
 
 	}
@@ -86,7 +83,7 @@ public class ClientController {
 		// DatenAustausch d = this.datenAustausch;
 
 		// view.getLbModeration().setText("gewürfelt Client:" + clientID);
-		//view.setModeration("gewürfelt Client:" + clientID);
+		// view.setModeration("gewürfelt Client:" + clientID);
 		view.getLbSpieler0().setText(ClientSpielLogik.spielerName(d, 0));
 		view.getLbLeben0().setText(ClientSpielLogik.lebenAnzeigen(d, 0));
 		view.getLbPunkte0().setText(ClientSpielLogik.ruhmpunkteAnzeigen(d, 0));
@@ -109,7 +106,7 @@ public class ClientController {
 
 		view.getBtnWurfeln().setDisable(true);
 		view.getBtnTokyoVerlassen().setDisable(true);
-		
+
 		view.getBtnWuerfel1().setDisable(true);
 		view.getBtnWuerfel2().setDisable(true);
 		view.getBtnWuerfel3().setDisable(true);
@@ -123,48 +120,47 @@ public class ClientController {
 		view.getBtnWuerfel4().setSelected(d.getWurfelIsAusgewahlt(3));
 		view.getBtnWuerfel5().setSelected(d.getWurfelIsAusgewahlt(4));
 		view.getBtnWuerfel6().setSelected(d.getWurfelIsAusgewahlt(5));
-		
-		
-		view.getBtnWuerfel1().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(0))));
-		view.getBtnWuerfel2().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(1))));
-		view.getBtnWuerfel3().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(2))));
-		view.getBtnWuerfel4().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(3))));
-		view.getBtnWuerfel5().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(4))));
-		view.getBtnWuerfel6().setGraphic(new ImageView(view.getWurfelImage(d.getWurfel().getWert(5))));
-		
-//		view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
-//		view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
-//		view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
-//		view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
-//		view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");		
-		
-		
+
+		view.getBtnWuerfel1().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(0))));
+		view.getBtnWuerfel2().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(1))));
+		view.getBtnWuerfel3().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(2))));
+		view.getBtnWuerfel4().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(3))));
+		view.getBtnWuerfel5().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(4))));
+		view.getBtnWuerfel6().setGraphic(
+				new ImageView(view.getWurfelImage(d.getWurfel().getWert(5))));
+
+		// view.getBtnWuerfel2().setText(d.getWurfel().getWert(1) + "");
+		// view.getBtnWuerfel3().setText(d.getWurfel().getWert(2) + "");
+		// view.getBtnWuerfel4().setText(d.getWurfel().getWert(3) + "");
+		// view.getBtnWuerfel5().setText(d.getWurfel().getWert(4) + "");
+		// view.getBtnWuerfel6().setText(d.getWurfel().getWert(5) + "");
+
 		if (getClientID() == d.getSpielerAmZug().getSpielerID()) {
 			view.getBtnWurfeln().setDisable(false);
-			
-			if (d.getWurfel().getwCounter()%3 == 1 || d.getWurfel().getwCounter()%3 == 2){
+
+			if (d.getWurfel().getwCounter() % 3 == 1
+					|| d.getWurfel().getwCounter() % 3 == 2) {
 				view.getBtnWuerfel1().setDisable(false);
 				view.getBtnWuerfel2().setDisable(false);
 				view.getBtnWuerfel3().setDisable(false);
 				view.getBtnWuerfel4().setDisable(false);
 				view.getBtnWuerfel5().setDisable(false);
-				view.getBtnWuerfel6().setDisable(false);		
+				view.getBtnWuerfel6().setDisable(false);
 			}
-		
-			
-
-
 
 		}
 
-		//Möglichkeiten wenn Tokyo verlassen werden kan:
+		// Möglichkeiten wenn Tokyo verlassen werden kan:
 		if (getClientID() == d.getSpielerAufTokyo().getSpielerID()
-				//&& d.wurdeIchAngegrifen()
-				&& d.getwCounter()%3 ==0
-				&& d.isSpielerAufTokyoAngegrifen()
+				// && d.wurdeIchAngegrifen()
+				&& d.getwCounter() % 3 == 0 && d.isSpielerAufTokyoAngegrifen()
 				&& getClientID() != d.getSpielerAmZug().getSpielerID()) {
 			view.getBtnTokyoVerlassen().setDisable(false);
-			
 
 		}
 
@@ -173,16 +169,13 @@ public class ClientController {
 			view.getBtnTokyoVerlassen().setDisable(true);
 		}
 
-
-
 	}
-	
-	
-	
-	public void updateChat(Chat c){
-		
-		view.getTaChat().appendText(c.getAbsender()+": " + c.getChatNachricht() + "\n");
-		
+
+	public void updateChat(Chat c) {
+
+		view.getTaChat().appendText(
+				c.getAbsender() + ": " + c.getChatNachricht() + "\n");
+
 	}
 
 	public void wurfelWurfeln() {
@@ -192,13 +185,13 @@ public class ClientController {
 		d = ClientSpielLogik.wurfelWurfeln(d);
 
 		setDatenAustausch(d);
-		
+
 		d.setTokyoVerlassen(false);
 		d.setSpielerAufTokyoAngegrifen(false);
 
 		clientServerVerbindung.sendDatenAustauschToServer(d);
 
-		//updateClientGUI(getDatenAustausch(), getClientID());
+		// updateClientGUI(getDatenAustausch(), getClientID());
 
 	}
 
@@ -211,15 +204,14 @@ public class ClientController {
 	public void tokyoVerlasse() {
 
 		getDatenAustausch().tokyoVerlassenById(getClientID());
-		
-		
 
-		getDatenAustausch().setModeration("Spieler " + getClientID() + " hat Tokyo verlassen");
+		getDatenAustausch().setModeration(
+				"Spieler " + getClientID() + " hat Tokyo verlassen");
 
 		System.out.println("Spieler " + getClientID() + "Tokyo verlassen");
-		
+
 		getDatenAustausch().setTokyoVerlassen(true);
-		
+
 		clientServerVerbindung.sendDatenAustauschToServer(getDatenAustausch());
 
 	}
@@ -246,6 +238,12 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
+			if (view.getBtnWuerfel1().isSelected())
+				view.getBtnWuerfel1().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel1().setStyle("-fx-border-color: white");
+			}
+
 			System.out.println("würflenAuswahl1");
 
 			int wID = 1;
@@ -261,6 +259,11 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
+			if (view.getBtnWuerfel2().isSelected())
+				view.getBtnWuerfel2().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel2().setStyle("-fx-border-color: white");
+			}
 			System.out.println("würflenAuswahl2");
 
 			int wID = 2;
@@ -276,6 +279,11 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
+			if (view.getBtnWuerfel3().isSelected())
+				view.getBtnWuerfel3().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel3().setStyle("-fx-border-color: white");
+			}
 			System.out.println("würflenAuswahl3");
 
 			int wID = 3;
@@ -291,6 +299,11 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
+			if (view.getBtnWuerfel4().isSelected())
+				view.getBtnWuerfel4().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel4().setStyle("-fx-border-color: white");
+			}
 			System.out.println("würflenAuswahl4");
 
 			int wID = 4;
@@ -306,6 +319,11 @@ public class ClientController {
 		@Override
 		public void handle(ActionEvent event) {
 
+			if (view.getBtnWuerfel5().isSelected())
+				view.getBtnWuerfel5().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel5().setStyle("-fx-border-color: white");
+			}
 			System.out.println("würflenAuswahl5");
 
 			int wID = 5;
@@ -320,6 +338,12 @@ public class ClientController {
 
 		@Override
 		public void handle(ActionEvent event) {
+
+			if (view.getBtnWuerfel6().isSelected())
+				view.getBtnWuerfel6().setStyle("-fx-border-color: blue");
+			else {
+				view.getBtnWuerfel6().setStyle("-fx-border-color: white");
+			}
 
 			System.out.println("würflenAuswahl6");
 
@@ -339,8 +363,6 @@ public class ClientController {
 			System.out.println("tokyoVerlassen");
 
 			tokyoVerlasse();
-			
-			
 
 		}
 
@@ -359,27 +381,27 @@ public class ClientController {
 
 			// view.getLbModeration().setText("warten auf Spiel start");
 			view.setModeration("warten auf Spiel start");
-			
+
 			view.getBtnSenden().setDisable(false);
 		}
 
 	}
-	
-// Chat
+
+	// Chat
 	class nachrichtSendenEventHandler implements EventHandler<ActionEvent> {
 
 		@Override
 		public void handle(ActionEvent event) {
-			
-			Chat c = new Chat("","");
-			
+
+			Chat c = new Chat("", "");
+
 			c.setChatNachricht(view.getTf2Chat().getText());
 			c.setAbsender("S " + getClientID());
-			
+
 			clientServerVerbindung.sendChatToServer(c);
-			
+
 			view.getTf2Chat().clear();
-			
+
 		}
 
 	}
@@ -391,7 +413,5 @@ public class ClientController {
 	public void setDatenAustausch(DatenAustausch datenAustausch) {
 		this.datenAustausch = datenAustausch;
 	}
-	
-	
 
 }
