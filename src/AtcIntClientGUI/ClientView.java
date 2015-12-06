@@ -123,23 +123,24 @@ public class ClientView {
 				.getResourceAsStream("/Images/KingOfTokyo1.jpg"), 510, 510,
 				true, true));
 
-		vb.getChildren().add(image);
-		vb.setPadding(new Insets(10, 10, 10, 10));
-		vb.setSpacing(10);
-		HBox hbox = new HBox(3);
-		vb.getChildren().add(hbox);
-
-		btnTokyoVerlassen = new Button("Tokyo verlassen");
-		btnVerbinden = new Button("Verbinden");
-		lbTokyo = new Label("Wer ist auf Tokyo?");
-
-		// hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
-
 		taModeration = new TextArea();
 		taModeration.setEditable(false);
 		taModeration.setWrapText(true);
 
-		vb.getChildren().add(taModeration);
+		btnTokyoVerlassen = new Button("Tokyo verlassen");
+
+		vb.getChildren().addAll(image, btnTokyoVerlassen, taModeration);
+		vb.setPadding(new Insets(10, 10, 0, 10));
+		vb.setSpacing(0);
+		HBox hbox = new HBox(0);
+		vb.getChildren().add(hbox);
+
+		btnVerbinden = new Button("Verbinden");
+		lbTokyo = new Label("Wer ist auf Tokyo?");
+		// hbox.setPadding(Insets.EMPTY);
+		// hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
+
+		// vb.getChildren().add(taModeration);
 
 		// FlowPane mit den 6 Würfel wird estellt und in der Border Pane
 		// angeordnet
@@ -199,16 +200,16 @@ public class ClientView {
 		fp.getChildren().add(btnWuerfel6);
 
 		// Buttons unter Wurfel
-		fp.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
+		fp.getChildren().addAll(btnVerbinden, lbTokyo);
 		// Die ausgewÃ¤hlten Spieler werden angezeigt
 
 		HBox hb2 = new HBox();
 		hb2.setPadding(new Insets(5, 5, 5, 5));
 		hb2.setSpacing(40);
-		Text TxSpieler = new Text("Spieler");
-		TxSpieler.setFont(Font.font("Arial", FontWeight.BOLD,
-				FontPosture.REGULAR, 12));
-		hb2.getChildren().add(TxSpieler);
+		// Text TxSpieler = new Text("Spieler");
+		// TxSpieler.setFont(Font.font("Arial", FontWeight.BOLD,
+		// FontPosture.REGULAR, 12));
+		// hb2.getChildren().add(TxSpieler);
 
 		// Spieler generieren
 
