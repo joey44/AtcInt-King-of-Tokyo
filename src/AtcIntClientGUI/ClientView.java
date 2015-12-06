@@ -27,7 +27,7 @@ import javafx.stage.WindowEvent;
 public class ClientView {
 
 	private Scene scene;
-	
+
 	private Label lbPunkte1;
 	private Label lbPunkte2;
 	private Label lbPunkte0;
@@ -43,13 +43,13 @@ public class ClientView {
 	private Label lbLeben0;
 	private Label lbLeben3;
 
-	//Chat
+	// Chat
 	private Button btnSenden;
 	private TextArea taChat;
 	private TextField tf2Chat;
-	
+
 	private Text txChat;
-	
+
 	private Button btnVerbinden;
 
 	private Button btnTokyoVerlassen;
@@ -69,14 +69,12 @@ public class ClientView {
 	private ToggleButton btnWuerfel5;
 
 	private BorderPane root;
-	
+
 	private Image imgWurfel1;
 	private Image imgWurfel2;
 	private Image imgWurfel3;
 	private Image imgWurfel4;
 	private Image imgWurfel5;
-	
-	
 
 	public Image getWurfelImage(int i) {
 		if (i == 1)
@@ -91,22 +89,18 @@ public class ClientView {
 			return imgWurfel5;
 	}
 
-
-
 	public ClientView() {
-		
+
 		imgWurfel1 = new Image("/Images/1.jpg");
 		imgWurfel2 = new Image("/Images/2.jpg");
 		imgWurfel3 = new Image("/Images/3.jpg");
 		imgWurfel4 = new Image("/Images/herz.jpg");
 		imgWurfel5 = new Image("/Images/tatze.jpg");
-		
-		
 
 		// Generierung der Border Pane
 
 		root = new BorderPane();
-		
+
 		HBox hb = new HBox();
 		btnRegeln = new Button("Regeln"); // Button Regeln wird erstellt
 											// --> HyperLink noch ergänzen
@@ -134,12 +128,12 @@ public class ClientView {
 		btnVerbinden = new Button("Verbinden");
 		lbTokyo = new Label("Wer ist auf Tokyo?");
 
-		//hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
-		
+		// hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
+
 		taModeration = new TextArea();
 		taModeration.setEditable(false);
 		taModeration.setWrapText(true);
-		
+
 		vb.getChildren().add(taModeration);
 
 		// FlowPane mit den 6 W�rfel wird estellt und in der Border Pane
@@ -181,8 +175,8 @@ public class ClientView {
 		// fp.getChildren().add(image7);
 		btnWuerfel6 = new ToggleButton();
 		fp.getChildren().add(btnWuerfel6);
-		
-		//Buttons unter Wurfel
+
+		// Buttons unter Wurfel
 		fp.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
 		// Die ausgewählten Spieler werden angezeigt
 
@@ -288,8 +282,7 @@ public class ClientView {
 		taChat.setEditable(false);
 		taChat.setWrapText(true);
 		taChat.setFocusTraversable(false);
-		
-		
+
 		taChat.setPrefWidth(200);
 		taChat.setPrefHeight(300);
 		tf2Chat = new TextField();
@@ -299,9 +292,9 @@ public class ClientView {
 		vb2.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
 
 		scene = new Scene(root, 950, 650, Color.WHITE);
-	
-		
-		
+
+		scene.getStylesheets().add("style/stylesheet.css");
+
 		root.setTop(hb);
 		root.setLeft(vb);
 		root.setCenter(fp);
@@ -310,10 +303,9 @@ public class ClientView {
 
 	}
 
-
 	public void setModeration(String modText) {
 
-		this.taModeration.appendText("\n"+ modText);
+		this.taModeration.appendText("\n" + modText);
 	}
 
 	public Label getLbTokyo() {
@@ -328,13 +320,10 @@ public class ClientView {
 		stage.setTitle("King of Tokyo");
 		stage.setScene(scene);
 		stage.show();
-		
-		
 
 		// primaryStage.setTitle("King of Tokyo");
 		// primaryStage.setScene(scene);
 		stage.setResizable(false);
-	
 
 		// primaryStage.show();
 
@@ -548,35 +537,28 @@ public class ClientView {
 		this.btnWuerfel5 = btnWuerfel5;
 	}
 
-
 	public TextArea getTaChat() {
 		return taChat;
 	}
-
 
 	public void setTaChat(TextArea taChat) {
 		this.taChat = taChat;
 	}
 
-
 	public TextField getTf2Chat() {
 		return tf2Chat;
 	}
-
 
 	public void setTf2Chat(TextField tf2Chat) {
 		this.tf2Chat = tf2Chat;
 	}
 
-
 	public TextArea getTaModeration() {
 		return taModeration;
 	}
 
-
 	public void setTaModeration(TextArea taModeration) {
 		this.taModeration = taModeration;
 	}
-	
 
 }
