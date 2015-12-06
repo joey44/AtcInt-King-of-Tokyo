@@ -118,6 +118,7 @@ public class ClientView {
 		ImageView image = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/KingOfTokyo1.jpg"), 510, 510,
 				true, true));
+
 		vb.getChildren().add(image);
 		vb.setPadding(new Insets(10, 10, 10, 10));
 		vb.setSpacing(10);
