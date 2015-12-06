@@ -291,7 +291,7 @@ public class ClientView {
 		vb7.getChildren().addAll(lbSpieler3, imgTheKing, hb8);
 
 		hb2.getChildren().addAll(vb4, vb5, vb6, vb7);
-
+		hb2.setPadding(new Insets(0, 0, 0, 10));
 		// Chat --> Rechts ausgerichtet
 		VBox vb2 = new VBox();
 		txChat = new Text("Chat");

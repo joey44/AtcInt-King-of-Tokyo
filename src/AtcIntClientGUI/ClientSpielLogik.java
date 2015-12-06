@@ -34,7 +34,7 @@ public class ClientSpielLogik {
 
 		Spieler s = d2.getSpielerByID(clientID);
 
-		return "Name: " + s.getSpielerName();
+		return  s.getSpielerName();
 	}
 
 	public static String spielModerieren(DatenAustausch d) {
