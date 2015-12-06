@@ -56,6 +56,8 @@ public class ClientSpielLogik {
 	}
 
 	public static DatenAustausch wurfelWurfeln(DatenAustausch d) {
+
+		int IDcounter = 1;
 		if (d.getwCounter() % 3 == 0) {
 			for (int x = 0; x < 6; x++) {
 
@@ -74,7 +76,14 @@ public class ClientSpielLogik {
 			int a = s.getSpielerID();
 
 			d.getSpielerAmZug().setAmZug(false);
-			d.getSpielerByID((a + 1) % 4).setAmZug(true);
+
+			while (!(d.getSpielerByID((a + IDcounter) % 4).isSpielerAktiv())) {
+				IDcounter++;
+				if (IDcounter == 3) {
+					break;
+				}
+			}
+			d.getSpielerByID((a + IDcounter) % 4).setAmZug(true);
 
 			d.setModeration("Spieler Nr " + a + " hat den Zug beendet");
 

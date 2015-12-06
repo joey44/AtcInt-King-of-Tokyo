@@ -21,24 +21,37 @@ public class ServerSpielLogik {
 
 		for (Spieler spieler : spielerListe) {
 
-			if (DatenAustausch.getInstanz().getSpielerAufTokyo() == null
-					&& spieler.equals(angrSpieler)) {
-				spieler.setAufTokyo(true);
-				angrSpieler.setAufTokyo(true);
-
+			if (spieler.isSpielerAktiv()) {
+				if (DatenAustausch.getInstanz().getSpielerAufTokyo() == null
+						&& spieler.equals(angrSpieler)) {
+					spieler.setAufTokyo(true);
+					angrSpieler.setAufTokyo(true);
+				}
 			}
+		}
 
-			if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
+		for (Spieler spieler : spielerListe) {
+			if (spieler.isSpielerAktiv()) {
+				if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
 
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+				}
+
+				if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
+					DatenAustausch.getInstanz().setSpielerAufTokyoAngegrifen(
+							true);
+					spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+
+				}
+
+				if (spieler.getAnzahlLeben() <= 0) {
+					spieler.setAnzahlLeben(0);
+					spieler.setSpielerAktiv(false);
+					spieler.setAufTokyo(false);
+					DatenAustausch.getInstanz().setModeration(
+							spieler.getSpielerName() + " hat verloren");
+				}
 			}
-
-			if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
-				DatenAustausch.getInstanz().setSpielerAufTokyoAngegrifen(true);
-				spieler.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
-				break;
-			}
-
 		}
 
 		DatenAustausch.getInstanz().setSpielerListe(spielerListe);
