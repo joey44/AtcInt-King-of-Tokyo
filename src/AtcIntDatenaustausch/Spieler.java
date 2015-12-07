@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 public class Spieler implements Serializable{
 
-	private static final int DEFAULT_ANZAHL_LEBEN = 20;
+	private static final int DEFAULT_ANZAHL_LEBEN = 10;
 	private static final int DEFAULT_ANZAHL_RUHMPUNKTE = 0;
 	private int anzahlLeben;
 	private int anzahlRuhmpunkte;
 	private boolean isAufTokyo;
 	private int spielerID;
+	
 	private String spielerName;
 	private boolean isAmZug;
 	private boolean isSpielerAktiv;
-
+	
+	
 	public Spieler(int spielerID, String spielerName) {
 
 		this.spielerID = spielerID;

@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
+
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
 
@@ -50,6 +52,11 @@ public class ServerSpielLogik {
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
 							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+
+					// SpielerID setzen des Angreiffers, für das Nachrücken auf
+					// Tokyo
+					DatenAustausch.getInstanz().setSpielerAngriffID(
+							angrSpieler.getSpielerID());
 				}
 
 				if (spieler.getAnzahlLeben() <= 0 && spieler.isAufTokyo()) {
@@ -106,12 +113,17 @@ public class ServerSpielLogik {
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
-		for (Spieler spieler : spielerListe) {
-			if (spieler.equals(spielerAmZug)) {
-				DatenAustausch.getInstanz()
-						.getSpielerByID(spieler.getSpielerID())
-						.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+		// Ein Monster kann nie mehr als 10 haben
+		if (spielerAmZug.getAnzahlLeben() < 10) {
 
+			for (Spieler spieler : spielerListe) {
+
+				if (spieler.equals(spielerAmZug)) {
+					DatenAustausch.getInstanz()
+							.getSpielerByID(spieler.getSpielerID())
+							.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+
+				}
 			}
 		}
 	}

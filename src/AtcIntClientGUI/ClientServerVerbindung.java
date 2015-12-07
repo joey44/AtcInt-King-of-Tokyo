@@ -44,8 +44,12 @@ public class ClientServerVerbindung extends Thread {
 			this.ois = new ObjectInputStream(clientSocket.getInputStream());
 
 			this.clientID = 9;
+			
+			
 
 			this.start();
+			
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,7 +109,7 @@ public class ClientServerVerbindung extends Thread {
 				@Override
 				public void run() {
 					// entsprechende UI Komponente updaten
-					cview.getLbTitel().setText("King of Tokyo - Spieler Nr" + getClientID());
+					//cview.getLbTitel().setText("King of Tokyo - Spieler Nr" + getClientID());
 					// cview.getLbModeration().setText(
 					// "client " + getClientID() + "verbunden");
 					cview.setModeration("client " + getClientID() + "verbunden");
