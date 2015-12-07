@@ -43,6 +43,8 @@ public class ServerSpielLogik {
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
 							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
+
+					// Was passiert wenn Spieler dabei stirbt?
 				}
 				if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
 
@@ -77,9 +79,36 @@ public class ServerSpielLogik {
 							.getSpielerByID(spieler.getSpielerID())
 							.setAufTokyo(false);
 
-					DatenAustausch.getInstanz()
-							.getSpielerByID(angrSpieler.getSpielerID())
-							.setAufTokyo(true);
+					// Wenn Spieler am Zug stirbt
+//					if (DatenAustausch.getInstanz()
+//							.getSpielerByID(spieler.getSpielerID())
+//							.getSpielerID() == DatenAustausch.getInstanz()
+//							.getSpielerAmZug().getSpielerID()) {
+//
+//						DatenAustausch.getInstanz().getSpielerAmZug()
+//								.setAmZug(false);
+//
+//						int IDcounter = 1;
+//						int a = DatenAustausch.getInstanz().getSpielerAmZug()
+//								.getSpielerID();
+//
+//						while (!(DatenAustausch.getInstanz().getSpielerByID(
+//								(a + IDcounter) % 4).isSpielerAktiv())) {
+//							IDcounter++;
+//							if (IDcounter == 3) {
+//								break;
+//							}
+//						}
+//						DatenAustausch.getInstanz()
+//								.getSpielerByID((a + IDcounter) % 4)
+//								.setAmZug(true);
+//
+//					}
+
+					// ist nicht in den Regeln
+					// DatenAustausch.getInstanz()
+					// .getSpielerByID(angrSpieler.getSpielerID())
+					// .setAufTokyo(true);
 
 					DatenAustausch.getInstanz().setModeration(
 							spieler.getSpielerName()
@@ -114,14 +143,19 @@ public class ServerSpielLogik {
 				.getSpielerListe();
 
 		// Ein Monster kann nie mehr als 10 haben
-		if (spielerAmZug.getAnzahlLeben() < 10) {
 
-			for (Spieler spieler : spielerListe) {
+		for (Spieler spieler : spielerListe) {
 
-				if (spieler.equals(spielerAmZug)) {
+			if (spieler.equals(spielerAmZug)) {
+				DatenAustausch.getInstanz()
+						.getSpielerByID(spieler.getSpielerID())
+						.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+				
+				//nicht mehr als 10 PUnkte möglich
+				if (spieler.getAnzahlLeben() > 10) {
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
-							.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+							.setAnzahlLeben(10);
 
 				}
 			}
