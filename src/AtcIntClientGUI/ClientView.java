@@ -110,7 +110,7 @@ public class ClientView {
 		
 		
 		// linkRegeln.set // --> HyperLink noch ergänzen
-		lbTitel = new Label("King of Tokyo");
+//		lbTitel = new Label("King of Tokyo");
 		
 		//
 		linkRegeln.setMaxHeight(6);
@@ -119,7 +119,7 @@ public class ClientView {
 		// FontPosture.REGULAR, 12));
 		// hb.getChildren().addAll(linkRegeln, lbTitel);
 		hb.getChildren().add(linkRegeln);
-		hb.getChildren().add(lbTitel);
+//		hb.getChildren().add(lbTitel);
 
 		hb.setPadding(new Insets(10, 10, 10, 10));
 		hb.setSpacing(3);
