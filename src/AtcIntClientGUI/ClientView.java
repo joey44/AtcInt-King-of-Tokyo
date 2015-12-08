@@ -111,17 +111,20 @@ public class ClientView {
 		Separator vertSeparator = new Separator();
 		vertSeparator.setOrientation(Orientation.VERTICAL);
 
+		Separator vertSeparatorChat = new Separator();
+		vertSeparatorChat.setOrientation(Orientation.VERTICAL);
+
 		VBox menu = new VBox();
 		linkRegeln = new Hyperlink("Regeln"); // Button Regeln wird erstellt
 		// linkRegeln.set // --> HyperLink noch ergänzen
-		// lbTitel = new Label("King of Tokyo");
+		 lbTitel = new Label("King of Tokyo");
 
 		//
 		linkRegeln.setMaxHeight(6);
 		linkRegeln.setMaxWidth(70);
 		menu.getChildren().add(linkRegeln);
 		menu.getChildren().add(horizSeparatorMenu);
-		// hb.getChildren().add(lbTitel);
+		 menu.getChildren().add(lbTitel);
 
 		menu.setPadding(new Insets(10, 10, 10, 10));
 		menu.setSpacing(3);
@@ -217,11 +220,12 @@ public class ClientView {
 		// Spieler 1
 
 		VBox vbSpieler1 = new VBox();
+		vbSpieler1.setMinWidth(150);
 		ImageView image8 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/CyberBunny.jpg"), 120, 120, true,
 				true));
 		HBox hb5 = new HBox();
-		hb5.setPadding(new Insets(0, 0, 5, 5));
+		hb5.setPadding(new Insets(0, 0, 5, 0));
 		hb5.setSpacing(12);
 		ImageView image9 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Herz.jpeg"), 30, 30, true, true));
@@ -229,7 +233,8 @@ public class ClientView {
 		ImageView image10 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Stern.jpg"), 30, 30, true, true));
 		lbPunkte0 = new Label();
-
+		hb5.setMinWidth(130);
+		hb5.setMaxWidth(130);
 		hb5.getChildren().addAll(image9, lbLeben0, image10, lbPunkte0);
 		lbSpieler0 = new Label("SpielerName");
 		vbSpieler1.getChildren().addAll(lbSpieler0, image8, hb5);
@@ -237,11 +242,12 @@ public class ClientView {
 		// Spieler 2
 
 		VBox vbSpieler2 = new VBox();
+		vbSpieler2.setMinWidth(150);
 		ImageView image11 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/GigaZaur.jpg"), 120, 120, true,
 				true));
 		HBox hb6 = new HBox();
-		hb6.setPadding(new Insets(0, 0, 5, 5));
+		hb6.setPadding(new Insets(0, 0, 5, 0));
 		hb6.setSpacing(12);
 		ImageView image12 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Herz.jpeg"), 30, 30, true, true));
@@ -249,6 +255,8 @@ public class ClientView {
 		ImageView image13 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Stern.jpg"), 30, 30, true, true));
 		lbPunkte1 = new Label();
+		hb6.setMinWidth(130);
+		hb6.setMaxWidth(130);
 		hb6.getChildren().addAll(image12, lbLeben1, image13, lbPunkte1);
 		lbSpieler1 = new Label("SpielerName");
 		vbSpieler2.getChildren().addAll(lbSpieler1, image11, hb6);
@@ -256,11 +264,12 @@ public class ClientView {
 		// Spieler 3
 
 		VBox vbSpieler3 = new VBox();
+		vbSpieler3.setMinWidth(150);
 		ImageView imgMakaDragon = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/MekaDragon.jpg"), 120, 120, true,
 				true));
 		HBox hb7 = new HBox();
-		hb7.setPadding(new Insets(0, 0, 5, 5));
+		hb7.setPadding(new Insets(0, 0, 5, 0));
 		hb7.setSpacing(12);
 		ImageView image15 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Herz.jpeg"), 30, 30, true, true));
@@ -269,17 +278,20 @@ public class ClientView {
 				.getResourceAsStream("/Images/Stern.jpg"), 30, 30, true, true));
 		lbPunkte2 = new Label();
 		hb7.getChildren().addAll(image15, lbLeben2, image16, lbPunkte2);
+		hb7.setMinWidth(130);
+		hb7.setMaxWidth(130);
 		lbSpieler2 = new Label("SpielerName");
 		vbSpieler3.getChildren().addAll(lbSpieler2, imgMakaDragon, hb7);
 
 		// Spieler 4
 
 		VBox vbSpieler4 = new VBox();
+		vbSpieler4.setMinWidth(150);
 		ImageView imgTheKing = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/TheKing.jpg"), 120, 120, true,
 				true));
 		HBox hb8 = new HBox();
-		hb8.setPadding(new Insets(0, 0, 5, 5));
+		hb8.setPadding(new Insets(0, 0, 5, 0));
 		hb8.setSpacing(12);
 		ImageView image18 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/Herz.jpeg"), 30, 30, true, true));
@@ -288,21 +300,25 @@ public class ClientView {
 				.getResourceAsStream("/Images/Stern.jpg"), 30, 30, true, true));
 		lbPunkte3 = new Label();
 		hb8.getChildren().addAll(image18, lbLeben3, image19, lbPunkte3);
+		hb8.setMinWidth(130);
+		hb8.setMaxWidth(130);
 		lbSpieler3 = new Label("SpielerName");
 		vbSpieler4.getChildren().addAll(lbSpieler3, imgTheKing, hb8);
 
 		hbAlleSpieler.getChildren().addAll(vbSpieler1, vbSpieler2, vbSpieler3,
 				vbSpieler4);
 		hbAlleSpieler.setPadding(new Insets(0, 0, 0, 10));
-
 		vbAlleSpielerLayout.getChildren().add(hbAlleSpieler);
+
+		HBox hbChatLayout = new HBox();
+
 		// Chat --> Rechts ausgerichtet
-		VBox vb2 = new VBox();
+		VBox vbChat = new VBox();
 		txChat = new Text("Chat");
 
 		txChat.setFont(Font.font("Arial", FontWeight.NORMAL,
 				FontPosture.REGULAR, 14));
-		vb2.setPadding(new Insets(10, 10, 10, 10));
+		vbChat.setPadding(new Insets(10, 10, 10, 10));
 		spiel.setSpacing(20);
 		taChat = new TextArea();
 		taChat.setScrollLeft(0);
@@ -316,8 +332,9 @@ public class ClientView {
 		tf2Chat.setFocusTraversable(true);
 		btnSenden = new Button();
 		btnSenden.setText("Senden");
-		vb2.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
+		vbChat.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
 
+		hbChatLayout.getChildren().addAll(vertSeparatorChat, vbChat);
 		scene = new Scene(root, 950, 650, Color.WHITE);
 
 		scene.getStylesheets().add("style/stylesheet.css");
@@ -326,7 +343,7 @@ public class ClientView {
 		root.setLeft(spiel);
 		root.setCenter(fpWurfel);
 		root.setBottom(vbAlleSpielerLayout);
-		root.setRight(vb2);
+		root.setRight(hbChatLayout);
 
 	}
 
