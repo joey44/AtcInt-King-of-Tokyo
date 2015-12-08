@@ -71,6 +71,8 @@ public class ClientController {
 
 		this.datenAustausch = d;
 
+		
+
 		// DatenAustausch.setInstanz(d);
 
 		// view.getLbModeration().setText(d.getWurfel().toString());
@@ -224,9 +226,12 @@ public class ClientController {
 		getDatenAustausch().tokyoVerlassenById(getClientID());
 
 		getDatenAustausch().setModeration(
-				"Spieler " + getClientID() + " hat Tokyo verlassen und Spieler: " + getDatenAustausch().getSpielerAngriffID() + " rückt nach!");
+				"Spieler " + getClientID()
+						+ " hat Tokyo verlassen und Spieler: "
+						+ getDatenAustausch().getSpielerAngriffID()
+						+ " rückt nach!");
 
-		//Spieler der Angreift rückt nach auf Tokyo
+		// Spieler der Angreift rückt nach auf Tokyo
 		getDatenAustausch().getSpielerByID(
 				getDatenAustausch().getSpielerAngriffID()).setAufTokyo(true);
 
@@ -415,7 +420,7 @@ public class ClientController {
 			// view.getLbModeration().setText("warten auf Spiel start");
 			view.setModeration("warten auf Spiel start");
 			view.getBtnSenden().setDisable(false);
-			
+
 		}
 
 	}

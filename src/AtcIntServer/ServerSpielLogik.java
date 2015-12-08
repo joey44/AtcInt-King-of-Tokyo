@@ -62,6 +62,30 @@ public class ServerSpielLogik {
 				}
 
 				if (spieler.getAnzahlLeben() <= 0 && spieler.isAufTokyo()) {
+					
+					if (spieler.isAmZug()){
+						int IDcounter = 1;
+
+							int a = spieler.getSpielerID();
+
+							DatenAustausch.getInstanz()
+								.getSpielerAmZug().setAmZug(false);
+
+							while (!(DatenAustausch.getInstanz().getSpielerByID((a + IDcounter) % 4).isSpielerAktiv())) {
+								IDcounter++;
+								if (IDcounter == 3) {
+									break;
+								}
+							}
+							DatenAustausch.getInstanz()
+								.getSpielerByID((a + IDcounter) % 4).setAmZug(true);
+
+							DatenAustausch.getInstanz()
+								.setModeration("Spieler Nr " + a + " ist tot....");
+
+						
+						
+					}
 
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
@@ -79,37 +103,12 @@ public class ServerSpielLogik {
 							.getSpielerByID(spieler.getSpielerID())
 							.setAufTokyo(false);
 
-					// Wenn Spieler am Zug stirbt
-//					if (DatenAustausch.getInstanz()
-//							.getSpielerByID(spieler.getSpielerID())
-//							.getSpielerID() == DatenAustausch.getInstanz()
-//							.getSpielerAmZug().getSpielerID()) {
-//
-//						DatenAustausch.getInstanz().getSpielerAmZug()
-//								.setAmZug(false);
-//
-//						int IDcounter = 1;
-//						int a = DatenAustausch.getInstanz().getSpielerAmZug()
-//								.getSpielerID();
-//
-//						while (!(DatenAustausch.getInstanz().getSpielerByID(
-//								(a + IDcounter) % 4).isSpielerAktiv())) {
-//							IDcounter++;
-//							if (IDcounter == 3) {
-//								break;
-//							}
-//						}
-//						DatenAustausch.getInstanz()
-//								.getSpielerByID((a + IDcounter) % 4)
-//								.setAmZug(true);
-//
-//					}
+					 DatenAustausch.getInstanz()
+					 .getSpielerByID(angrSpieler.getSpielerID())
+					 .setAufTokyo(true);
 
-					// ist nicht in den Regeln
-					// DatenAustausch.getInstanz()
-					// .getSpielerByID(angrSpieler.getSpielerID())
-					// .setAufTokyo(true);
-
+					 
+					 
 					DatenAustausch.getInstanz().setModeration(
 							spieler.getSpielerName()
 									+ " hat verloren, LOOOOOOSEEEER!!!!");
