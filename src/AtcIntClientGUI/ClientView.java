@@ -116,6 +116,8 @@ public class ClientView {
 
 		VBox menu = new VBox();
 		linkRegeln = new Hyperlink("Regeln"); // Button Regeln wird erstellt
+		
+		
 		// linkRegeln.set // --> HyperLink noch ergänzen
 		 lbTitel = new Label("King of Tokyo");
 
