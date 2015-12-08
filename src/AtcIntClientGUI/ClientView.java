@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -105,23 +106,26 @@ public class ClientView {
 
 		root = new BorderPane();
 
-		HBox hb = new HBox();
+		Separator horizSeparatorMenu = new Separator();
+		Separator horizSeparatorSpieler = new Separator();
+		Separator vertSeparator = new Separator();
+		vertSeparator.setOrientation(Orientation.VERTICAL);
+
+		VBox menu = new VBox();
 		linkRegeln = new Hyperlink("Regeln"); // Button Regeln wird erstellt
 		// linkRegeln.set // --> HyperLink noch ergÃ¤nzen
-//		lbTitel = new Label("King of Tokyo");
-		
+		// lbTitel = new Label("King of Tokyo");
+
 		//
 		linkRegeln.setMaxHeight(6);
 		linkRegeln.setMaxWidth(70);
-		// linkRegeln.setFont(Font.font("Arial", FontWeight.BLACK,
-		// FontPosture.REGULAR, 12));
-		// hb.getChildren().addAll(linkRegeln, lbTitel);
-		hb.getChildren().add(linkRegeln);
-//		hb.getChildren().add(lbTitel);
+		menu.getChildren().add(linkRegeln);
+		menu.getChildren().add(horizSeparatorMenu);
+		// hb.getChildren().add(lbTitel);
 
-		hb.setPadding(new Insets(10, 10, 10, 10));
-		hb.setSpacing(3);
-		VBox vb = new VBox();
+		menu.setPadding(new Insets(10, 10, 10, 10));
+		menu.setSpacing(3);
+		VBox spiel = new VBox();
 		ImageView image = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/KingOfTokyo1.jpg"), 510, 510,
 				true, true));
@@ -130,16 +134,26 @@ public class ClientView {
 		taModeration.setEditable(false);
 		taModeration.setWrapText(true);
 
-		btnTokyoVerlassen = new Button("Tokyo verlassen");
-
-		vb.getChildren().addAll(image, btnTokyoVerlassen, taModeration);
-		vb.setPadding(new Insets(10, 10, 0, 10));
-		vb.setSpacing(0);
-		HBox hbox = new HBox(0);
-		vb.getChildren().add(hbox);
-
 		btnVerbinden = new Button("Verbinden");
+		btnVerbinden.getStyleClass().add("custom-button");
 		lbTokyo = new Label("Wer ist auf Tokyo?");
+
+		btnTokyoVerlassen = new Button("Tokyo verlassen");
+		btnTokyoVerlassen.getStyleClass().add("custom-button");
+
+		HBox hbTokyoOpt = new HBox();
+		hbTokyoOpt.setAlignment(Pos.CENTER_RIGHT);
+		hbTokyoOpt.setSpacing(310);
+		hbTokyoOpt.getChildren().addAll(btnTokyoVerlassen, lbTokyo);
+
+		spiel.setMaxWidth(50);
+		spiel.getChildren().addAll(image, hbTokyoOpt, taModeration);
+
+		spiel.setPadding(new Insets(0, 10, 5, 10));
+		spiel.setSpacing(0);
+		// HBox hbox = new HBox(0);
+		// spiel.getChildren().addAll(horizSeparator);
+
 		// hbox.setPadding(Insets.EMPTY);
 		// hbox.getChildren().addAll(btnTokyoVerlassen, btnVerbinden, lbTokyo);
 
@@ -147,78 +161,62 @@ public class ClientView {
 
 		// FlowPane mit den 6 Würfel wird estellt und in der Border Pane
 		// angeordnet
-		FlowPane fp = new FlowPane();
-		fp.setOrientation(Orientation.VERTICAL);
-		fp.setVgap(4);
-		fp.setHgap(4);
-		fp.setPadding(new Insets(5, 30, 5, 5));
+		FlowPane fpWurfel = new FlowPane();
+		fpWurfel.setOrientation(Orientation.VERTICAL);
+		fpWurfel.setVgap(4);
+		fpWurfel.setHgap(4);
+		fpWurfel.setPadding(new Insets(5, 30, 5, 5));
 		btnWurfeln = new Button("Würfeln");
+		btnWurfeln.getStyleClass().add("custom-button");
 
-		fp.getChildren().add(btnWurfeln);
+		fpWurfel.getChildren().add(btnWurfeln);
 		btnWuerfel1 = new ToggleButton();
 		btnWuerfel1.setPadding(Insets.EMPTY);
 		btnWuerfel1.getStyleClass().add("wurfel");
+		fpWurfel.getChildren().add(btnWuerfel1);
 
-		fp.getChildren().add(btnWuerfel1);
-		// ImageView image2 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
-		// ImageView image3 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_schwarz.jpg"),40,40,true,true));
 		btnWuerfel2 = new ToggleButton();
 		btnWuerfel2.setPadding(Insets.EMPTY);
 		btnWuerfel2.getStyleClass().add("wurfel");
-		// btnWuerfel2.setStyle("-fx-border-width: 30px");
-		fp.getChildren().add(btnWuerfel2);
-		// ImageView image4 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
-		// fp.getChildren().add(image4);
+		fpWurfel.getChildren().add(btnWuerfel2);
+
 		btnWuerfel3 = new ToggleButton();
 		btnWuerfel3.setPadding(Insets.EMPTY);
 		btnWuerfel3.getStyleClass().add("wurfel");
-		// btnWuerfel3.setStyle("-fx-border-width: 30px");
-		fp.getChildren().add(btnWuerfel3);
-		// ImageView image5 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
-		// fp.getChildren().add(image5);
+		fpWurfel.getChildren().add(btnWuerfel3);
+
 		btnWuerfel4 = new ToggleButton();
 		btnWuerfel4.setPadding(Insets.EMPTY);
 		btnWuerfel4.getStyleClass().add("wurfel");
-		// btnWuerfel4.setStyle("-fx-border-width: 30px");
-		fp.getChildren().add(btnWuerfel4);
-		// ImageView image6 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
-		// fp.getChildren().add(image6);
+		fpWurfel.getChildren().add(btnWuerfel4);
+
 		btnWuerfel5 = new ToggleButton();
 		btnWuerfel5.setPadding(Insets.EMPTY);
 		btnWuerfel5.getStyleClass().add("wurfel");
-		// btnWuerfel5.setStyle("-fx-border-width: 30px");
-		fp.getChildren().add(btnWuerfel5);
-		// ImageView image7 = new ImageView(new
-		// Image(getClass().getResourceAsStream("/Images/Wuerfel_1_hellgruen.jpg"),40,40,true,true));
-		// fp.getChildren().add(image7);
+		fpWurfel.getChildren().add(btnWuerfel5);
+
 		btnWuerfel6 = new ToggleButton();
 		btnWuerfel6.setPadding(Insets.EMPTY);
 		btnWuerfel6.getStyleClass().add("wurfel");
-		// btnWuerfel6.setStyle("-fx-border-width: 30px");
-		fp.getChildren().add(btnWuerfel6);
+		fpWurfel.getChildren().add(btnWuerfel6);
 
 		// Buttons unter Wurfel
-		fp.getChildren().addAll(btnVerbinden, lbTokyo);
+		fpWurfel.getChildren().addAll(btnVerbinden);
 		// Die ausgewÃ¤hlten Spieler werden angezeigt
 
-		HBox hb2 = new HBox();
-		hb2.setPadding(new Insets(5, 5, 5, 5));
-		hb2.setSpacing(40);
-		// Text TxSpieler = new Text("Spieler");
-		// TxSpieler.setFont(Font.font("Arial", FontWeight.BOLD,
-		// FontPosture.REGULAR, 12));
-		// hb2.getChildren().add(TxSpieler);
+		VBox vbAlleSpielerLayout = new VBox();
+		vbAlleSpielerLayout.setPadding(new Insets(5, 10, 5, 10));
+		vbAlleSpielerLayout.getChildren().add(horizSeparatorSpieler);
+
+		HBox hbAlleSpieler = new HBox();
+		hbAlleSpieler.setPadding(new Insets(5, 5, 5, 5));
+		hbAlleSpieler.setSpacing(40);
 
 		// Spieler generieren
 
 		// Spieler 1
 
-		VBox vb4 = new VBox();
+		VBox vbSpieler1 = new VBox();
 		ImageView image8 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/CyberBunny.jpg"), 120, 120, true,
 				true));
@@ -234,11 +232,11 @@ public class ClientView {
 
 		hb5.getChildren().addAll(image9, lbLeben0, image10, lbPunkte0);
 		lbSpieler0 = new Label("SpielerName");
-		vb4.getChildren().addAll(lbSpieler0, image8, hb5);
+		vbSpieler1.getChildren().addAll(lbSpieler0, image8, hb5);
 
 		// Spieler 2
 
-		VBox vb5 = new VBox();
+		VBox vbSpieler2 = new VBox();
 		ImageView image11 = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/GigaZaur.jpg"), 120, 120, true,
 				true));
@@ -253,11 +251,11 @@ public class ClientView {
 		lbPunkte1 = new Label();
 		hb6.getChildren().addAll(image12, lbLeben1, image13, lbPunkte1);
 		lbSpieler1 = new Label("SpielerName");
-		vb5.getChildren().addAll(lbSpieler1, image11, hb6);
+		vbSpieler2.getChildren().addAll(lbSpieler1, image11, hb6);
 
 		// Spieler 3
 
-		VBox vb6 = new VBox();
+		VBox vbSpieler3 = new VBox();
 		ImageView imgMakaDragon = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/MekaDragon.jpg"), 120, 120, true,
 				true));
@@ -272,11 +270,11 @@ public class ClientView {
 		lbPunkte2 = new Label();
 		hb7.getChildren().addAll(image15, lbLeben2, image16, lbPunkte2);
 		lbSpieler2 = new Label("SpielerName");
-		vb6.getChildren().addAll(lbSpieler2, imgMakaDragon, hb7);
+		vbSpieler3.getChildren().addAll(lbSpieler2, imgMakaDragon, hb7);
 
 		// Spieler 4
 
-		VBox vb7 = new VBox();
+		VBox vbSpieler4 = new VBox();
 		ImageView imgTheKing = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/TheKing.jpg"), 120, 120, true,
 				true));
@@ -291,10 +289,13 @@ public class ClientView {
 		lbPunkte3 = new Label();
 		hb8.getChildren().addAll(image18, lbLeben3, image19, lbPunkte3);
 		lbSpieler3 = new Label("SpielerName");
-		vb7.getChildren().addAll(lbSpieler3, imgTheKing, hb8);
+		vbSpieler4.getChildren().addAll(lbSpieler3, imgTheKing, hb8);
 
-		hb2.getChildren().addAll(vb4, vb5, vb6, vb7);
-		hb2.setPadding(new Insets(0, 0, 0, 10));
+		hbAlleSpieler.getChildren().addAll(vbSpieler1, vbSpieler2, vbSpieler3,
+				vbSpieler4);
+		hbAlleSpieler.setPadding(new Insets(0, 0, 0, 10));
+
+		vbAlleSpielerLayout.getChildren().add(hbAlleSpieler);
 		// Chat --> Rechts ausgerichtet
 		VBox vb2 = new VBox();
 		txChat = new Text("Chat");
@@ -302,7 +303,7 @@ public class ClientView {
 		txChat.setFont(Font.font("Arial", FontWeight.NORMAL,
 				FontPosture.REGULAR, 14));
 		vb2.setPadding(new Insets(10, 10, 10, 10));
-		vb.setSpacing(20);
+		spiel.setSpacing(20);
 		taChat = new TextArea();
 		taChat.setScrollLeft(0);
 		taChat.setEditable(false);
@@ -321,10 +322,10 @@ public class ClientView {
 
 		scene.getStylesheets().add("style/stylesheet.css");
 
-		root.setTop(hb);
-		root.setLeft(vb);
-		root.setCenter(fp);
-		root.setBottom(hb2);
+		root.setTop(menu);
+		root.setLeft(spiel);
+		root.setCenter(fpWurfel);
+		root.setBottom(vbAlleSpielerLayout);
 		root.setRight(vb2);
 
 	}
