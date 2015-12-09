@@ -15,8 +15,10 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -113,27 +115,38 @@ public class ClientView {
 
 		Separator vertSeparatorChat = new Separator();
 		vertSeparatorChat.setOrientation(Orientation.VERTICAL);
+		HBox menuLayout = new HBox();
 
 		VBox menu = new VBox();
 		linkRegeln = new Hyperlink("Regeln"); // Button Regeln wird erstellt
-		
-		
-		// linkRegeln.set // --> HyperLink noch ergänzen
-		 lbTitel = new Label("King of Tokyo");
 
-		//
+		// linkRegeln.set // --> HyperLink noch ergänzen
+		lbTitel = new Label("King of Tokyo");
+		lbTitel.getStyleClass().add("Titel");
+
+	
 		linkRegeln.setMaxHeight(6);
 		linkRegeln.setMaxWidth(70);
-		menu.getChildren().add(linkRegeln);
-		menu.getChildren().add(horizSeparatorMenu);
-		 menu.getChildren().add(lbTitel);
+		linkRegeln.setBorder(Border.EMPTY);
+		menuLayout.getChildren().addAll(lbTitel, linkRegeln);
+		menuLayout.setAlignment(Pos.CENTER_LEFT);
+		menuLayout.setSpacing(10);
 
-		menu.setPadding(new Insets(10, 10, 10, 10));
+		menu.getChildren().addAll(menuLayout, horizSeparatorMenu);
+
+		menu.setPadding(new Insets(5, 10, 0, 10));
 		menu.setSpacing(3);
 		VBox spiel = new VBox();
 		ImageView image = new ImageView(new Image(getClass()
 				.getResourceAsStream("/Images/KingOfTokyo1.jpg"), 510, 510,
 				true, true));
+
+		DropShadow ds = new DropShadow();
+		ds.setOffsetY(3.0);
+		ds.setOffsetX(3.0);
+		ds.setColor(Color.GRAY);
+
+		image.setEffect(ds);
 
 		taModeration = new TextArea();
 		taModeration.setEditable(false);
@@ -141,20 +154,22 @@ public class ClientView {
 
 		btnVerbinden = new Button("Verbinden");
 		btnVerbinden.getStyleClass().add("custom-button");
+		btnVerbinden.setMinWidth(100);
 		lbTokyo = new Label("Wer ist auf Tokyo?");
 
 		btnTokyoVerlassen = new Button("Tokyo verlassen");
 		btnTokyoVerlassen.getStyleClass().add("custom-button");
+		btnTokyoVerlassen.setMinWidth(150);
 
 		HBox hbTokyoOpt = new HBox();
-		hbTokyoOpt.setAlignment(Pos.CENTER_RIGHT);
-		hbTokyoOpt.setSpacing(310);
+		hbTokyoOpt.setAlignment(Pos.CENTER_LEFT);
+		hbTokyoOpt.setSpacing(200);
 		hbTokyoOpt.getChildren().addAll(btnTokyoVerlassen, lbTokyo);
-
+		hbTokyoOpt.setPadding(new Insets(-10, 0, -10, 0));
 		spiel.setMaxWidth(50);
 		spiel.getChildren().addAll(image, hbTokyoOpt, taModeration);
 
-		spiel.setPadding(new Insets(0, 10, 5, 10));
+		spiel.setPadding(new Insets(5, 10, 0, 10));
 		spiel.setSpacing(0);
 		// HBox hbox = new HBox(0);
 		// spiel.getChildren().addAll(horizSeparator);
@@ -172,6 +187,7 @@ public class ClientView {
 		fpWurfel.setHgap(4);
 		fpWurfel.setPadding(new Insets(5, 30, 5, 5));
 		btnWurfeln = new Button("W�rfeln");
+		btnWurfeln.setMinWidth(100);
 		btnWurfeln.getStyleClass().add("custom-button");
 
 		fpWurfel.getChildren().add(btnWurfeln);
@@ -207,11 +223,12 @@ public class ClientView {
 
 		// Buttons unter Wurfel
 		fpWurfel.getChildren().addAll(btnVerbinden);
+//		fpWurfel.setAlignment(Pos.CENTER);
 		// Die ausgewählten Spieler werden angezeigt
 
 		VBox vbAlleSpielerLayout = new VBox();
-		vbAlleSpielerLayout.setPadding(new Insets(5, 10, 5, 10));
-		vbAlleSpielerLayout.getChildren().add(horizSeparatorSpieler);
+//		vbAlleSpielerLayout.setPadding(new Insets(5, 10, 5, 10));
+		
 
 		HBox hbAlleSpieler = new HBox();
 		hbAlleSpieler.setPadding(new Insets(5, 5, 5, 5));
@@ -309,18 +326,20 @@ public class ClientView {
 
 		hbAlleSpieler.getChildren().addAll(vbSpieler1, vbSpieler2, vbSpieler3,
 				vbSpieler4);
-		hbAlleSpieler.setPadding(new Insets(0, 0, 0, 10));
-		vbAlleSpielerLayout.getChildren().add(hbAlleSpieler);
-
+		hbAlleSpieler.setPadding(new Insets(0, 0, 0, 0));
+		vbAlleSpielerLayout.getChildren().addAll(horizSeparatorSpieler,hbAlleSpieler);
+//		vbAlleSpielerLayout.getChildren().add(horizSeparatorSpieler);
+		vbAlleSpielerLayout.setPadding(new Insets(-1, 0, 0, 10));
+		vbAlleSpielerLayout.setSpacing(10);
 		HBox hbChatLayout = new HBox();
 
 		// Chat --> Rechts ausgerichtet
 		VBox vbChat = new VBox();
-		txChat = new Text("Chat");
-
-		txChat.setFont(Font.font("Arial", FontWeight.NORMAL,
-				FontPosture.REGULAR, 14));
-		vbChat.setPadding(new Insets(10, 10, 10, 10));
+//		txChat = new Text("Chat");
+Label lbChat = new Label("Chat");
+//		txChat.setFont(Font.font("Arial", FontWeight.NORMAL,
+//				FontPosture.REGULAR, 14));
+		vbChat.setPadding(new Insets(10, 10, 0, 10));
 		spiel.setSpacing(20);
 		taChat = new TextArea();
 		taChat.setScrollLeft(0);
@@ -334,7 +353,7 @@ public class ClientView {
 		tf2Chat.setFocusTraversable(true);
 		btnSenden = new Button();
 		btnSenden.setText("Senden");
-		vbChat.getChildren().addAll(txChat, taChat, tf2Chat, btnSenden);
+		vbChat.getChildren().addAll(lbChat, taChat, tf2Chat, btnSenden);
 
 		hbChatLayout.getChildren().addAll(vertSeparatorChat, vbChat);
 		scene = new Scene(root, 950, 650, Color.WHITE);

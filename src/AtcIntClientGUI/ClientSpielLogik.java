@@ -7,6 +7,8 @@ import AtcIntDatenaustausch.Spieler;
 
 public class ClientSpielLogik {
 
+
+
 	// ClientController controller;
 
 	public static String lebenAnzeigen(DatenAustausch d2, int clientID) {

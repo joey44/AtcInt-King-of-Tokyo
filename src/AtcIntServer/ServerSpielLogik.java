@@ -12,12 +12,15 @@ import AtcIntDatenaustausch.Spieler;
 
 public class ServerSpielLogik {
 
-	public static final int CONSTANT_TATZE = 5;
-	public static final int CONSTANT_HERZ = 4;
+	private static final int CONSTANT_TATZE = 5;
+	private static final int CONSTANT_HERZ = 4;
+	private static boolean isErsteRundeTokyo = true;
 
 	private static void angreifen(int punkte, Spieler angrSpieler) {
 		// Methode evaluiert, ob angreifender Spieler auf Tokyo ist/ welche
 		// Spieler angreift
+		int totCounter = 0;
+
 		ArrayList<Spieler> spielerListe = DatenAustausch.getInstanz()
 				.getSpielerListe();
 
@@ -25,14 +28,21 @@ public class ServerSpielLogik {
 
 			if (spieler.isSpielerAktiv()) {
 				if (DatenAustausch.getInstanz().getSpielerAufTokyo() == null
-						&& spieler.equals(angrSpieler)) {
+
+				&& spieler.equals(angrSpieler)) {
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
 							.setAufTokyo(true);
 					ruhmpunkteBerechnen(1, spieler);
+					isErsteRundeTokyo = false;
 					return;
 				}
 			}
+		}
+
+		if (angrSpieler.isAufTokyo() && !isErsteRundeTokyo) {
+			// Wenn mind. eine Runde auf Tokyo überlebt hat
+			ruhmpunkteBerechnen(2, angrSpieler);
 		}
 
 		for (Spieler spieler : spielerListe) {
@@ -44,6 +54,8 @@ public class ServerSpielLogik {
 							.getSpielerByID(spieler.getSpielerID())
 							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
 
+					DatenAustausch.getInstanz().setSpielerAngriffID(
+							angrSpieler.getSpielerID());
 					// Was passiert wenn Spieler dabei stirbt?
 				}
 				if (!angrSpieler.isAufTokyo() && spieler.isAufTokyo()) {
@@ -61,32 +73,41 @@ public class ServerSpielLogik {
 							angrSpieler.getSpielerID());
 				}
 
-				if (spieler.getAnzahlLeben() <= 0 && spieler.isAufTokyo()) {
-					
-					if (spieler.isAmZug()){
+				if (spieler.getAnzahlLeben() <= 0) {
+					totCounter++;
+					// && spieler.isAufTokyo()) {
+
+					if (spieler.isAmZug()) {
 						int IDcounter = 1;
 
-							int a = spieler.getSpielerID();
+						int a = spieler.getSpielerID();
 
-							DatenAustausch.getInstanz()
-								.getSpielerAmZug().setAmZug(false);
+						DatenAustausch.getInstanz().getSpielerAmZug()
+								.setAmZug(false);
 
-							while (!(DatenAustausch.getInstanz().getSpielerByID((a + IDcounter) % 4).isSpielerAktiv())) {
-								IDcounter++;
-								if (IDcounter == 3) {
-									break;
-								}
+						while (!(DatenAustausch.getInstanz().getSpielerByID(
+								(a + IDcounter) % 4).isSpielerAktiv())) {
+							IDcounter++;
+							if (IDcounter == 3) {
+								break;
 							}
-							DatenAustausch.getInstanz()
-								.getSpielerByID((a + IDcounter) % 4).setAmZug(true);
+						}
+						DatenAustausch.getInstanz()
+								.getSpielerByID((a + IDcounter) % 4)
+								.setAmZug(true);
 
-							DatenAustausch.getInstanz()
-								.setModeration("Spieler Nr " + a + " ist tot....");
-
-						
-						
+						DatenAustausch.getInstanz().setModeration(
+								"Spieler Nr " + a + " wurde getötet");
+						if (totCounter >= 2) {
+							// wenn mehrere Spieler in einem Zug getötet werden
+							DatenAustausch
+									.getInstanz()
+									.setModeration(
+											(DatenAustausch.getInstanz()
+													.getModeration())
+													+ (" und Spieler Nr " + a + " wurde getötet"));
+						}
 					}
-
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
 							.setAnzahlLeben(0);
@@ -95,28 +116,19 @@ public class ServerSpielLogik {
 							.getSpielerByID(spieler.getSpielerID())
 							.setSpielerAktiv(false);
 
-					DatenAustausch.getInstanz()
-							.getSpielerByID(spieler.getSpielerID())
-							.setAufTokyo(false);
+					if (spieler.isAufTokyo()) {
+						DatenAustausch.getInstanz()
+								.getSpielerByID(spieler.getSpielerID())
+								.setAufTokyo(false);
+						DatenAustausch.getInstanz()
+								.getSpielerByID(angrSpieler.getSpielerID())
+								.setAufTokyo(true);
+						isErsteRundeTokyo = true;
+					}
 
-					DatenAustausch.getInstanz()
-							.getSpielerByID(spieler.getSpielerID())
-							.setAufTokyo(false);
-
-					 DatenAustausch.getInstanz()
-					 .getSpielerByID(angrSpieler.getSpielerID())
-					 .setAufTokyo(true);
-
-					 
-					 
-					DatenAustausch.getInstanz().setModeration(
-							spieler.getSpielerName()
-									+ " hat verloren, LOOOOOOSEEEER!!!!");
 				}
 			}
 		}
-
-		// DatenAustausch.getInstanz().setSpielerListe(spielerListe);
 	}
 
 	public void aufTokyoGehen(Spieler spielerAufTokyo) {
@@ -130,6 +142,7 @@ public class ServerSpielLogik {
 				DatenAustausch.getInstanz()
 						.getSpielerByID(spieler.getSpielerID())
 						.setAufTokyo(true);
+				isErsteRundeTokyo = true;
 
 			}
 		}
@@ -149,8 +162,8 @@ public class ServerSpielLogik {
 				DatenAustausch.getInstanz()
 						.getSpielerByID(spieler.getSpielerID())
 						.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
-				
-				//nicht mehr als 10 PUnkte möglich
+
+				// nicht mehr als 10 PUnkte möglich
 				if (spieler.getAnzahlLeben() > 10) {
 					DatenAustausch.getInstanz()
 							.getSpielerByID(spieler.getSpielerID())
