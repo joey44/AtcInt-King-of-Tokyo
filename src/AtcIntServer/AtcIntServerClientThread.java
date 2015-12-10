@@ -89,8 +89,8 @@ public class AtcIntServerClientThread extends Thread {
 		
 		try {
 			
-			int a = w.getSpielerListe().size();
-			System.out.println(a);
+			//int a = w.getSpielerListe().size();
+			//System.out.println(a);
 			
 			this.out.writeObject(w);
 			out.flush();
