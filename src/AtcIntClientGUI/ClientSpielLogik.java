@@ -58,7 +58,10 @@ public class ClientSpielLogik {
 	}
 
 	public static DatenAustausch wurfelWurfeln(DatenAustausch d) {
-
+		Spieler s = d.getSpielerAmZug();
+		int a = s.getSpielerID();
+		
+		
 		int IDcounter = 1;
 		if (d.getwCounter() % 3 == 0) {
 			for (int x = 0; x < 6; x++) {
@@ -69,13 +72,11 @@ public class ClientSpielLogik {
 
 		d.wurfeln();
 
-		d.setModeration("Spieler Nr: " + d.getSpielerAmZug().getSpielerID()
-				+ " hat " + d.getwCounter() % 3 + " Mal gewürfelt");
+		d.setModeration(s.getSpielerName() + " hat " + d.getwCounter() % 3 + " Mal gewürfelt");
 
 		if (d.getwCounter() % 3 == 0) {
 
-			Spieler s = d.getSpielerAmZug();
-			int a = s.getSpielerID();
+			
 
 			d.getSpielerAmZug().setAmZug(false);
 
@@ -87,7 +88,7 @@ public class ClientSpielLogik {
 			}
 			d.getSpielerByID((a + IDcounter) % 4).setAmZug(true);
 
-			d.setModeration("Spieler Nr " + a + " hat den Zug beendet");
+			d.setModeration(s.getSpielerName() + " hat den Zug beendet");
 			
 			
 

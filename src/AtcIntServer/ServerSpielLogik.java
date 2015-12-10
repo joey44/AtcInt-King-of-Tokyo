@@ -27,6 +27,10 @@ public class ServerSpielLogik {
 
 				&& spieler.equals(angrSpieler)) {
 					DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID()).setAufTokyo(true);
+					
+					DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
+							+ "\n" + (spieler.getSpielerName() + " geht auf Tokyo"));
+				
 					ruhmpunkteBerechnen(1, spieler);
 					isErsteRundeTokyo = false;
 					return;
@@ -35,6 +39,11 @@ public class ServerSpielLogik {
 		}
 
 		if (angrSpieler.isAufTokyo() && !isErsteRundeTokyo) {
+			
+			DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
+					+ "\n" + ("eine Runde auf Tokyo überlebt"));
+		
+			
 			// Wenn mind. eine Runde auf Tokyo überlebt hat
 			ruhmpunkteBerechnen(2, angrSpieler);
 		}
@@ -43,6 +52,7 @@ public class ServerSpielLogik {
 			if (spieler.isSpielerAktiv()) {
 
 				if (angrSpieler.isAufTokyo() && !spieler.isAufTokyo()) {
+					
 
 					DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID())
 							.setAnzahlLeben(spieler.getAnzahlLeben() - punkte);
@@ -111,9 +121,9 @@ public class ServerSpielLogik {
 					}
 
 					DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
-							+ "\n" + (" Spieler Nr " + spieler.getSpielerID() + " wurde getötet"));
+							+ "\n" + (spieler.getSpielerName() + " wurde getötet"));
 					
-					
+					//checken ob Spieler gewonnen hat
 					siegerKueren(angrSpieler);
 				}
 			}
@@ -147,10 +157,17 @@ public class ServerSpielLogik {
 			if (spieler.equals(spielerAmZug)) {
 				DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID())
 						.setAnzahlLeben(spieler.getAnzahlLeben() + punkte);
+				
+				DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
+						+ "\n" + (spieler.getSpielerName() + " bekommt " + punkte + " Leben"));
+				
 
 				// nicht mehr als 10 PUnkte möglich
 				if (spieler.getAnzahlLeben() > 10) {
 					DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID()).setAnzahlLeben(10);
+					
+					DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
+							+ "\n" + ("Es sind aber maximal 10 Leben möglich"));
 
 				}
 			}
@@ -166,7 +183,12 @@ public class ServerSpielLogik {
 			if (spieler.equals(spielerAmZug)) {
 				DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID())
 						.setAnzahlRuhmpunkte(spieler.getAnzahlRuhmpunkte() + punkte);
-
+				
+				DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
+						+ "\n" + (spieler.getSpielerName() + " bekommt " + punkte + " Ruhmpunkte"));
+			
+				
+				//checken ob Spieler gewonnen hat
 				if (DatenAustausch.getInstanz().getSpielerByID(spieler.getSpielerID()).getAnzahlRuhmpunkte() >= 20) {
 					siegerKueren(spieler);
 				}
