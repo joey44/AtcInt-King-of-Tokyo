@@ -71,8 +71,6 @@ public class ClientController {
 
 		this.datenAustausch = d;
 
-		
-
 		// DatenAustausch.setInstanz(d);
 
 		// view.getLbModeration().setText(d.getWurfel().toString());
@@ -170,6 +168,27 @@ public class ClientController {
 		else if (d.getSpielerAufTokyo() == null) {
 			System.out.println("kein Spieler ist auf Tokyo");
 			view.getBtnTokyoVerlassen().setDisable(true);
+		}
+
+		// Wenn Spiel fertig ist, alle Buttons ausser Chat deaktivieren
+		if (d.isSpielEnde()) {
+
+			view.getBtnTokyoVerlassen().setDisable(true);
+			view.getBtnWurfeln().setDisable(true);
+
+			view.getBtnWuerfel1().setDisable(true);
+			view.getBtnWuerfel2().setDisable(true);
+			view.getBtnWuerfel3().setDisable(true);
+			view.getBtnWuerfel4().setDisable(true);
+			view.getBtnWuerfel5().setDisable(true);
+			view.getBtnWuerfel6().setDisable(true);
+			
+			
+			System.out.println("Spiel fertig");
+
+			// zurück in die Lobby
+			// Ende
+
 		}
 
 	}

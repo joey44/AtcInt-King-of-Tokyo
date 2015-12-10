@@ -1,11 +1,8 @@
 package AtcIntServer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
 
 import AtcIntDatenaustausch.DatenAustausch;
 import AtcIntDatenaustausch.Spieler;
@@ -67,6 +64,9 @@ public class ServerSpielLogik {
 
 				//Spieler ist tot
 				if (spieler.getAnzahlLeben() <= 0) {
+					
+					DatenAustausch.getInstanz().setTotSpielerCounter(DatenAustausch.getInstanz().getTotSpielerCounter() + 1);
+					
 					totCounter++;
 					// && spieler.isAufTokyo()) {
 
@@ -111,8 +111,10 @@ public class ServerSpielLogik {
 					}
 
 					DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration()
-							+ (" Spieler Nr " + spieler.getSpielerID() + " wurde getötet"));
-
+							+ "\n" + (" Spieler Nr " + spieler.getSpielerID() + " wurde getötet"));
+					
+					
+					siegerKueren(angrSpieler);
 				}
 			}
 
@@ -175,9 +177,16 @@ public class ServerSpielLogik {
 	}
 
 	private static void siegerKueren(Spieler spieler) {
+		
+		if (spieler.getAnzahlRuhmpunkte() >= 20 || DatenAustausch.getInstanz().getTotSpielerCounter() == 3){
+			
+			DatenAustausch.getInstanz().setModeration(DatenAustausch.getInstanz().getModeration() + "\n" + spieler.getSpielerName() + " hat gewonnen");
+			
+			DatenAustausch.getInstanz().setSpielEnde(true);
+			// spielBeenden( );
+		}
 
-		DatenAustausch.getInstanz().setModeration(spieler.getSpielerName() + " hat gewonnen");
-		// spielBeenden( );
+	
 	}
 
 	public static void spielerAusschliessen(Spieler spieler) {

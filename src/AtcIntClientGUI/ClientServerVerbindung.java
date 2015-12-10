@@ -142,8 +142,6 @@ public class ClientServerVerbindung extends Thread {
 					int a = this.datenAustausch.getSpielerListe().size();
 					System.out.println(a);
 
-					controller.objectFromServerSetDatenaustausch(this.datenAustausch);
-
 					// UI updaten
 					Platform.runLater(new Runnable() {
 						@Override
@@ -154,6 +152,9 @@ public class ClientServerVerbindung extends Thread {
 							controller.updateClientGUI(getDatenAustausch(), getClientID());
 						}
 					});
+					
+					
+					controller.objectFromServerSetDatenaustausch(this.datenAustausch);
 
 				}
 

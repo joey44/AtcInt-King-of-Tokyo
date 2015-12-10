@@ -18,12 +18,16 @@ public class DatenAustausch implements Serializable {
 	private int clientID;
 	private boolean isTokyoVerlassen;
 	private boolean isSpielerAufTokyoAngegrifen;
+	private int totSpielerCounter = 0;
+	private boolean isSpielEnde;
 	
 	public static final int CONSTANT_TATZE = 5;
 	
 	private int spielerAngriffID;
 	
 	
+
+
 
 	private DatenAustausch() {
 
@@ -129,16 +133,19 @@ public class DatenAustausch implements Serializable {
 	}
 
 	
+
+		
+
 	@Override
 	public String toString() {
 		return "DatenAustausch [wurfel=" + wurfel + ", moderation="
 				+ moderation + ", spielerListe=" + spielerListe + ", runde="
 				+ runde + ", clientID=" + clientID + ", isTokyoVerlassen="
 				+ isTokyoVerlassen + ", isSpielerAufTokyoAngegrifen="
-				+ isSpielerAufTokyoAngegrifen + ", spielerAngriffID="
-				+ spielerAngriffID + "]";
+				+ isSpielerAufTokyoAngegrifen + ", totSpielerCounter="
+				+ totSpielerCounter + ", isSpielEnde=" + isSpielEnde
+				+ ", spielerAngriffID=" + spielerAngriffID + "]";
 	}
-		
 
 	public boolean wurdeIchAngegrifen(){
 		
@@ -222,8 +229,26 @@ public class DatenAustausch implements Serializable {
 
 	public void setSpielerAngriffID(int spielerAngriffID) {
 		this.spielerAngriffID = spielerAngriffID;
+		
+		
 	}
 
+	public int getTotSpielerCounter() {
+		return totSpielerCounter;
+	}
+
+	public void setTotSpielerCounter(int totSpielerCounter) {
+		this.totSpielerCounter = totSpielerCounter;
+	}
+
+	public boolean isSpielEnde() {
+		return isSpielEnde;
+	}
+
+	public void setSpielEnde(boolean isSpielEnde) {
+		this.isSpielEnde = isSpielEnde;
+	}
+	
 	
 	
 
